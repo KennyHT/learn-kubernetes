@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: api-replicaset
+  labels:
+    app: training-api
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: api-pod
+  template:
+    metadata:
+      name: api-pod  
+      labels:
+        app: api-pod
+    spec:
+      containers:
+      - name: training-api
+        imagePullPolicy: IfNotPresent # So it will use local image if found, good for development
+        image: training.io/api:1.0
+        ports:
+          - containerPort: 80
+        livenessProbe: 
+          httpGet: 
+            path: /api/v1/health-check/
+            port: 80 
+          initialDelaySeconds: 5 
+          timeoutSeconds: 1 
+          periodSeconds: 10 
+          failureThreshold: 3
