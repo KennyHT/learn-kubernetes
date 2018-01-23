@@ -1,14 +1,21 @@
 apiVersion: apps/v1beta2
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: api-replicaset
+  name: api-deployment
   labels:
-    app: training-api
+    app: api
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
-      app: api
+      app: api  
+  minReadySeconds: 60
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 15%
+      maxSurge: 100%
   template:
     metadata:
       name: api
@@ -18,7 +25,7 @@ spec:
       containers:
       - name: training-api
         imagePullPolicy: IfNotPresent # So it will use local image if found, good for development
-        image: training.io/api:1.0
+        image: training.io/api:2.0
         ports:
           - containerPort: 80
         livenessProbe: 

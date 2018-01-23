@@ -4,7 +4,7 @@ metadata:
   name: api-service
 spec:  
   selector:
-    app: api-pod
+    app: api
   ports:
   - name: app-port
     port: 80

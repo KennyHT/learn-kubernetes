@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: api-pod  
   labels:
-    app: api-pod
+    app: api
 spec:
   containers:
   - name: training-api
