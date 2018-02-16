@@ -26,4 +26,5 @@ Open a new terminal window and create the api pod.
 
     kubectl create -f templates/api-pod.yaml
 
-Switch back to the other terminal at which point, it will launch a web browser window when an endpoint becomes available. 
+Switch back to the other terminal at which point, it will launch a web browser window when an endpoint becomes available.
+

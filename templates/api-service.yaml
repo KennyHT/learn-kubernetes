@@ -8,4 +8,4 @@ spec:
   ports:
   - name: app-port
     port: 80
-  type: NodePort
+  type: LoadBalancer

@@ -26,4 +26,3 @@ Then observe the state change to the list of pods:
 Observe the deployment history:
 
     kubectl rollout history deployment/api-deployment
-

@@ -1,13 +1,3 @@
-##############
-#  Minikube  #
-##############
-
-minikube-start:
-	minikube start --kubernetes-version=v1.9.2 --bootstrapper=kubeadm
-
-minikube-stop:
-	minikube stop
-
 #########
 #  API  #
 #########
