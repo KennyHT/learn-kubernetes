@@ -8,4 +8,6 @@ spec:
   ports:
   - name: app-port
     port: 80
+  - name: secure-app-port
+    port: 443
   type: LoadBalancer

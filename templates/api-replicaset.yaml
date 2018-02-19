@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: training-api
-        imagePullPolicy: IfNotPresent # So it will use local image if found, good for development
+        imagePullPolicy: IfNotPresent
         image: training.io/api:1.0
         ports:
           - containerPort: 80

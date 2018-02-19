@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: api  
@@ -24,8 +24,8 @@ spec:
     spec:
       containers:
       - name: training-api
-        imagePullPolicy: IfNotPresent # So it will use local image if found, good for development
-        image: training.io/api:1.0
+        imagePullPolicy: IfNotPresent
+        image: training.io/api:2.0
         ports:
           - containerPort: 80
         livenessProbe: 
