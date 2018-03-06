@@ -2,7 +2,7 @@
 
 Deploy our nginx pod:
 
-    kubectl create -f templates/api-pod.yaml
+    kubectl apply -f templates/api-pod.yaml
 
 Observe that it is running via Docker (just for fun really):
 
