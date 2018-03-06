@@ -15,3 +15,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/www/api/v1
 COPY ./data /var/www/api/v1
 COPY ./conf/api.conf /etc/nginx/conf.d/
+
+EXPOSE 443

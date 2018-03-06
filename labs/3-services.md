@@ -6,19 +6,19 @@ Create the service:
 
     kubectl apply -f templates/api-service.yaml
 
-Inspect the service so we can get the randomly assigned port:
+Inspect the service so we can get the randomly assigned ports:
 
-    kubectl describe service/api-service
+    kubectl describe service api-service | grep Port
+
+Confirm we don't have any pods matching the label the service is querying for:
+
+    kubectl get pods api-pod
 
 What happens when we try to access the service?
 
     curl http://<MINIKUBE_IP>:<PORT>
 
-Confirm we don't have any pods matching the label the service is querying for:
-
-    kubectl get pods
-
-Minikube has a neat shortcut for launching our service on the correct IP and port. Execute and leave running.
+Minikube has a neat shortcut for launching our service on the correct IP and port(s). Execute this and leave it running.
 
     minikube service api-service
 
@@ -26,5 +26,19 @@ Open a new terminal window and create the api pod.
 
     kubectl apply -f templates/api-pod.yaml
 
-Switch back to the other terminal at which point, it will launch a web browser window when an endpoint becomes available.
+Switch back to the other terminal at which point, it will launch a web browser window once an endpoint becomes available.
 
+How did the service know to send traffic to the `api-pod`? Because the `api-pod` had a label of `app=api` and the `api-service` had a label selector of `app=api`. The service then looked up the endpoint associated with each pod so it could load balance across them.
+
+## How does internal pod to service communication work?
+
+Good question! Let's see.
+
+Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaranteed not to change.
+
+    echo `kubectl get service api-service --template='{{.spec.clusterIP}}'`
+
+Now let's ssh to the minikube instance and use curl to perform a request inside the Kubernetes cluser.
+
+    minikube ssh
+    curl <API SERVICE IP>/api/v1/users/

@@ -12,7 +12,7 @@ Observe that it is running via Docker (just for fun really):
 
 Verify that the api container is running in the pod and is listening on port 80:
 
-    kubectl get pods api-pod  --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+    kubectl get pods api-pod --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
 If all you need to work on is a single pod, then you can just deploy the pod, then port forward from the machine `kubectl` is running on to access the pod outside the cluster without deploying a service.
 
@@ -60,4 +60,4 @@ Question: Which command is preferable and why? (think declarative vs. imperative
 
  - Add horizontal pod auto-scaling example - https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
  - Add container request and limit for resources - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
- 
+ - Example of assigning pods to a specific node.
