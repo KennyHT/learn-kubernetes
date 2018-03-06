@@ -4,7 +4,7 @@ To illustrate the dynamic and loosely coupled design of Kubernetes, we're going 
 
 Create the service:
 
-    kubectl create -f templates/api-service.yaml
+    kubectl apply -f templates/api-service.yaml
 
 Inspect the service so we can get the randomly assigned port:
 
@@ -24,7 +24,7 @@ Minikube has a neat shortcut for launching our service on the correct IP and por
 
 Open a new terminal window and create the api pod.
 
-    kubectl create -f templates/api-pod.yaml
+    kubectl apply -f templates/api-pod.yaml
 
 Switch back to the other terminal at which point, it will launch a web browser window when an endpoint becomes available.
 

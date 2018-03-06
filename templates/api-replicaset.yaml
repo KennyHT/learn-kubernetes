@@ -5,7 +5,7 @@ metadata:
   labels:
     app: training-api
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
       app: api
@@ -18,7 +18,7 @@ spec:
       containers:
       - name: training-api
         imagePullPolicy: IfNotPresent
-        image: training.io/api:1.0
+        image: training.io/api:2.0
         ports:
           - containerPort: 80
         livenessProbe: 

@@ -9,12 +9,12 @@ spec:
   selector:
     matchLabels:
       app: api  
-  minReadySeconds: 60
+  minReadySeconds: 30
   progressDeadlineSeconds: 600
   revisionHistoryLimit: 2
   strategy:
     rollingUpdate:
-      maxUnavailable: 15%
+      maxUnavailable: 0%
       maxSurge: 100%
   template:
     metadata:
@@ -25,7 +25,7 @@ spec:
       containers:
       - name: training-api
         imagePullPolicy: IfNotPresent
-        image: training.io/api:2.0
+        image: training.io/api:1.0
         ports:
           - containerPort: 80
         livenessProbe: 

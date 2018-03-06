@@ -8,7 +8,7 @@ For the solution, see the `templates/api-replicaset.yaml`.
 
 To deploy:
 
-    kubectl create -f templates/api-replicaset.yaml
+    kubectl apply -f templates/api-replicaset.yaml
 
 To verify
 

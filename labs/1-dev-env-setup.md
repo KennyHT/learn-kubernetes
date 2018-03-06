@@ -46,4 +46,8 @@ Can we see the newly created image in minikube?
 
 ## Minikube add-ons
 
-This course does not use any add-ons at this time.
+Let's enable the `kube-dns` addon so we can lookup services internally by their service name.
+
+    minikube addons enable kube-dns
+
+*Note*: This is currently not working in Minikube 0.25.0 and Kubernetes 1.9
