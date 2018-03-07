@@ -37,3 +37,7 @@ Let's take one of the replicaset pods out of service.
     kubectl label pods api-replicaset-<HASH> --overwrite app=api-unhealthy
 
 This will cause Kubernetes to disassociate that pod with the replicaset which in turn, will cause Kubernetes to create a new pod. As this pod is now unmanaged, you can exec into it without fear of it being killed.
+
+Clean up now by deleting your replicaset:
+
+    kubectl delete -f templates/api-replicaset.yaml
