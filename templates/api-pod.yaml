@@ -11,6 +11,7 @@ spec:
     image: training.io/api:1.0
     ports:
       - containerPort: 80
+      - containerPort: 443
     livenessProbe: 
       httpGet: 
         path: /api/v1/health-check/
