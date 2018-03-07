@@ -19,7 +19,7 @@ Then observe the state change to the list of pods every second using the `watch`
 
     watch -n 1 kubectl get pods 
 
-Notice the old pods don't get deleted straight away. This is because of `spec.minReadySeconds` value of 60 seconds.
+Notice the old pods don't get deleted straight away. This is because of `spec.minReadySeconds` value of 30 seconds.
 
 ## Deploy a new version of our API container
 
