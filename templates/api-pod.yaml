@@ -11,12 +11,26 @@ spec:
     image: training.io/api:1.0
     ports:
       - containerPort: 80
-      - containerPort: 443
+      - containerPort: 443    
+    # Perhaps the API, while technically healthy, is not yet "ready" to receive
+    # traffic, as it may be downloading data, doing computations etc.
+    readinessProbe: 
+      httpGet: 
+        path: /api/v1/readiness-check/
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 5
+    ## Is the API in a state where it is healthy enough to respond to requests?
     livenessProbe: 
       httpGet: 
         path: /api/v1/health-check/
         port: 80 
       initialDelaySeconds: 5 
-      timeoutSeconds: 1 
-      periodSeconds: 10 
+      timeoutSeconds: 1
+      periodSeconds: 10
       failureThreshold: 3
+  - name: local-cache
+    imagePullPolicy: IfNotPresent
+    image: redis:3-alpine
+    ports:
+      - containerPort: 6379
