@@ -60,3 +60,4 @@ Question: Which command is preferable and why? (think declarative vs. imperative
  - Add horizontal pod auto-scaling example - https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
  - Add container request and limit for resources - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
  - Example of assigning pods to a specific node.
+ - Add QoS with resource constraints - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
