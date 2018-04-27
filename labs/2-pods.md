@@ -49,10 +49,9 @@ To specify which pod you want to access, use the `--container` (or `-c-) option 
     kubectl logs api-pod --container training-api --follow
     kubectl exec -it api-pod --container training-api sh
 
-Finally, remvove your pod in one of the following ways:
+Finally, remove your pod:
 
     kubectl delete -f templates/api-pod.yaml
-    kubectl delete pods/api-pod
 
 Question: Which command is preferable and why? (think declarative vs. imperative).
 

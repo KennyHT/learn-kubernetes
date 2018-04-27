@@ -1,8 +1,16 @@
 # Development Environment Setup
 
+## The watch command
+
+The watch command allows you to observe the output from running a command every n seconds.
+
+To install it with homebrew, use `brew install watch`.
+
 ### Bash complete
 
-Completion instructions are for environments running bash. Windows users are encouraged to explore using the Windows Subshell for Linux.
+Completion instructions are for environments running bash. 
+
+For this to work, you need `bash-completion` installed by homebrew by running `brew install bash-completion`.
 
 Other shells are supported by Minikube and Kubectl but are not supported in this course.
 

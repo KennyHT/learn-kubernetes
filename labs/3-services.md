@@ -30,9 +30,9 @@ Switch back to the other terminal at which point, it will launch a web browser w
 
 How did the service know to send traffic to the `api-pod`? Because the `api-pod` had a label of `app=api` and the `api-service` had a label selector of `app=api`. The service then looked up the endpoint associated with each pod so it could load balance across them.
 
-## How does internal pod to service communication work?
+## The ClusterIP
 
-Good question! Let's see.
+When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.
 
 Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaranteed not to change.
 

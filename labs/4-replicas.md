@@ -34,9 +34,14 @@ Let's take one of the replicaset pods out of service.
     kubectl get pods
 
     # Take it out of service by changing its label
-    kubectl label pods api-replicaset-<HASH> --overwrite app=api-unhealthy
+    # NOTE: Changing the label value is only to disassociate it the 
+    replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
+    
+    kubectl label pods api-replicaset-<HASH> --overwrite app=api-quarantined.
 
 This will cause Kubernetes to disassociate that pod with the replicaset which in turn, will cause Kubernetes to create a new pod. As this pod is now unmanaged, you can exec into it without fear of it being killed.
+
+*TODO*: Add name change as well to make it more obvious which pod was disassociated with the replicaset.
 
 Clean up now by deleting your replicaset:
 
