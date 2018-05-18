@@ -25,3 +25,6 @@ site-server:
 
 site-build:
 	docker container run --rm -v "$(CURDIR)":/usr/src/app rabbitbird/mkdocs mkdocs build --clean --strict
+
+deploy-gh-pages:
+	./bin/deploy-site.sh
