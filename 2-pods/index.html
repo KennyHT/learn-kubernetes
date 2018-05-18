@@ -365,12 +365,12 @@ kubectl get pods api-pod -o json
 </td></tr></table>
 
 <p>This works, but beware. If we had more than one container in our Pod, it wouldn't as kubectl would not know which container we want logs for. To do this in a way which will always work, let's use the container name.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs api-pod training-api
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs api-pod hermetic-api
 </pre></div>
 </td></tr></table>
 
 <p>If we want to tail the logs, we need to supply the <code>-f</code> flag.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs api-pod training-api -f
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs api-pod hermetic-api -f
 </pre></div>
 </td></tr></table>
 
@@ -381,7 +381,7 @@ kubectl get pods api-pod -o json
 
 <p>By default, <code>kubectl</code> will execute the command against the first container in the <code>spec.containers</code> list. </p>
 <p>To specify which pod you want to access, use the <code>--container</code> (or <code>-c</code>) option along with the container name:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it api-pod --container training-api sh
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it api-pod --container hermetic-api sh
 </pre></div>
 </td></tr></table>
 

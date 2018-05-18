@@ -353,14 +353,12 @@
 <h2 id="services-and-docker-for-mac">Services and Docker for Mac<a class="headerlink" href="#services-and-docker-for-mac" title="Permanent link">&para;</a></h2>
 <p>For those of you coming from Minikube, you may find Docker for Desktop's approach to service exposure a bit strange.</p>
 <p>So can we access the service from our host machine? Well sort of, but not in the way you may expect.</p>
-<p>Docker purposely want us trying to access the Linux VM and instead, it plans on port forwarding every <code>targetPort</code> value to the VM for us.</p>
+<p>Docker does not want us accessing the Linux VM via IP directly and instead, it plans on port forwarding every <code>port</code> value in our service to the VM for us from our host.</p>
 <p>Open a new terminal window and create the api pod.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f templates/api-pod.yaml
 </pre></div>
 </td></tr></table>
 
-<p>Switch back to the other terminal at which point, it will launch a web browser window once an endpoint becomes available.</p>
-<p>How did the service know to send traffic to the <code>api-pod</code>? Because the <code>api-pod</code> had a label of <code>app=api</code> and the <code>api-service</code> had a label selector of <code>app=api</code>. The service then looked up the endpoint associated with each pod so it could load balance across them.</p>
 <h2 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h2>
 <p>When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>
 <p>Let's find the <code>Cluster IP</code> value of the <code>api-service</code>. The Cluster IP is guaranteed not to change.</p>

@@ -230,13 +230,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#build-the-api-docker-image" title="Build the API Docker image" class="md-nav__link">
-    Build the API Docker image
-  </a>
-  
-</li>
-      
       
       
       
@@ -337,13 +330,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#build-the-api-docker-image" title="Build the API Docker image" class="md-nav__link">
-    Build the API Docker image
-  </a>
-  
-</li>
-      
       
       
       
@@ -382,17 +368,6 @@
 
 <p>Then install the completion for kubectl.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl completion bash &gt; $(brew --prefix)/etc/bash_completion.d/kubectl
-</pre></div>
-</td></tr></table>
-
-<h2 id="build-the-api-docker-image">Build the API Docker image<a class="headerlink" href="#build-the-api-docker-image" title="Permanent link">&para;</a></h2>
-<p>The Docker image used in this lab is a simple NGINX container that pretends to be an API for a users service. It's a simple standalone container but also useful as an example of how to use Docker and NGINX for stubbing out an API with fixed data.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make api-build
-</pre></div>
-</td></tr></table>
-
-<p>You can optionally supply a <code>VERSION</code> variable which you will use in the deployments section.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make api-build VERSION=1.0
 </pre></div>
 </td></tr></table>
                 
