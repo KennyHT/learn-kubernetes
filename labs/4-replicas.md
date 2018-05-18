@@ -22,27 +22,6 @@ Notice that the name of the pods is different for those that were created by the
     # TODO: Fix. Not working.
     kubectl get pod api-replicaset-<HASH> --template='{{(index (index .metadata.annotations))}}{{"\n"}}'
 
-## Debugging Tip: Isolating a pod or pods from a ReplicaSet
-
-If a pod pods begin misbehaving, you may not want it to be killed, as you may want to quarantine it (take it out of service) in order to inspect it figure out what went wrong.
-
-To do this, you can change or overwrite the labels (depending upon the replicaset label selector).
-
-Let's take one of the replicaset pods out of service.
-
-    # Get a pod name
-    kubectl get pods
-
-    # Take it out of service by changing its label
-    # NOTE: Changing the label value is only to disassociate it the 
-    replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
-    
-    kubectl label pods api-replicaset-<HASH> --overwrite app=api-quarantined.
-
-This will cause Kubernetes to disassociate that pod with the replicaset which in turn, will cause Kubernetes to create a new pod. As this pod is now unmanaged, you can exec into it without fear of it being killed.
-
-*TODO*: Add name change as well to make it more obvious which pod was disassociated with the replicaset.
-
 Clean up now by deleting your replicaset:
 
     kubectl delete -f templates/api-replicaset.yaml

@@ -22,11 +22,11 @@ spec:
         ports:
           - containerPort: 80
           - containerPort: 443
-        livenessProbe: 
-          httpGet: 
+        livenessProbe:
+          httpGet:
             path: /api/v1/health-check/
-            port: 80 
-          initialDelaySeconds: 5 
-          timeoutSeconds: 1 
-          periodSeconds: 10 
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
           failureThreshold: 3

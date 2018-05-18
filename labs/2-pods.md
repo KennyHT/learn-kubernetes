@@ -1,8 +1,12 @@
 # Pods Lab
 
-In this lab, we will deploy a pod to our Minikube instance.
+In this lab, we will deploy a pod, the unit of compute to our Kubernetes instance.
 
-Deploy our nginx pod:
+You will notice that we **always** use the declarative form for changing the state of our Kubernetes cluster and I strongly encourage you to always do the same.
+
+See the page on [Object Management using kubetcl](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/declarative-config/) for more info.
+
+Deploy our API pod:
 
     kubectl apply -f templates/api-pod.yaml
 
@@ -14,15 +18,13 @@ Verify that the api container is running in the pod and is listening on port 80:
 
     kubectl get pods api-pod --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
-If all you need to work on is a single pod, then you can just deploy the pod, then port forward from the machine `kubectl` is running on to access the pod outside the cluster without deploying a service.
-
-Port forward from the host to the pod:
+For development purposes, often you only need a single pod exposed. If so, then you can just deploy the pod and port forward from your host.
 
     kubectl port-forward api-pod 8080:80
 
 View the API in your browser at http://localhost:8080/api/v1/users/
 
-Kill the port-forwarding process in your terminal/
+Kill the port-forwarding process in your terminal using a SIGINT (Ctrl+c).
 
 Let's inspect our pod (in a few different ways):
 
@@ -38,22 +40,27 @@ Let's view the logs for our pod:
 
     kubectl logs api-pod
 
-Let's exec into our pod:
+This works, but beware. If we had more than one container in our Pod, it wouldn't as kubectl would not know which container we want logs for. To do this in a way which will always work, let's use the container name.
+
+    kubectl logs api-pod training-api
+
+If we want to tail the logs, we need to supply the `-f` flag.
+
+    kubectl logs api-pod training-api -f
+
+Wouldn't it be great if we could get into a container inside our Pod, as easily as we the `docker container exec` command. Turns out we
 
     kubectl exec -it api-pod sh
 
-For these commands in this instance, we did not need to specify which container to access the logs or exec into because there is only one container in the pod. By default, `kubectl` will execute the command against the first container in the `spec.containers` list. 
+By default, `kubectl` will execute the command against the first container in the `spec.containers` list. 
 
-To specify which pod you want to access, use the `--container` (or `-c-) option along with the container name:
+To specify which pod you want to access, use the `--container` (or `-c`) option along with the container name:
 
-    kubectl logs api-pod --container training-api --follow
     kubectl exec -it api-pod --container training-api sh
 
 Finally, remove your pod:
 
     kubectl delete -f templates/api-pod.yaml
-
-Question: Which command is preferable and why? (think declarative vs. imperative).
 
 ## TODO
 

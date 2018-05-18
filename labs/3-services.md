@@ -14,13 +14,13 @@ Confirm we don't have any pods matching the label the service is querying for:
 
     kubectl get pods api-pod
 
-What happens when we try to access the service?
+## Services and Docker for Mac
 
-    curl http://<MINIKUBE_IP>:<PORT>
+For those of you coming from Minikube, you may find Docker for Desktop's approach to service exposure a bit strange.
 
-Minikube has a neat shortcut for launching our service on the correct IP and port(s). Execute this and leave it running.
+So can we access the service from our host machine? Well sort of, but not in the way you may expect.
 
-    minikube service api-service
+Docker purposely want us trying to access the Linux VM and instead, it plans on port forwarding every `targetPort` value to the VM for us.
 
 Open a new terminal window and create the api pod.
 
@@ -41,4 +41,5 @@ Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaran
 Now let's ssh to the minikube instance and use curl to perform a request inside the Kubernetes cluser.
 
     minikube ssh
+    curl <API SERVICE IP>/api/v1/users/
     curl <API SERVICE IP>/api/v1/users/
