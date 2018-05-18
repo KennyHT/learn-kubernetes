@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: api-replicaset
   labels:
-    app: training-api
+    app: hermetic-api
 spec:
   replicas: 5
   selector:
@@ -16,9 +16,9 @@ spec:
         app: api
     spec:
       containers:
-      - name: training-api
+      - name: hermetic-api
         imagePullPolicy: IfNotPresent
-        image: training.io/api:1.0
+        image: rabbitbird/hermetic-api:1.0
         ports:
           - containerPort: 80
           - containerPort: 443

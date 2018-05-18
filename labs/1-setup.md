@@ -27,13 +27,3 @@ Then add this to your ~/.bash_profile:
 Then install the completion for kubectl.
 
     kubectl completion bash > $(brew --prefix)/etc/bash_completion.d/kubectl
-
-## Build the API Docker image
-
-The Docker image used in this lab is a simple NGINX container that pretends to be an API for a users service. It's a simple standalone container but also useful as an example of how to use Docker and NGINX for stubbing out an API with fixed data.
-
-    make api-build
-
-You can optionally supply a `VERSION` variable which you will use in the deployments section.
-
-    make api-build VERSION=1.0

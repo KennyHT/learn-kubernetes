@@ -25,9 +25,9 @@ spec:
         kubernetes.io/change-cause: 'Data changed in API, updating to 1.0'
     spec:
       containers:
-      - name: training-api
+      - name: hermetic-api
         imagePullPolicy: IfNotPresent
-        image: training.io/api:1.0
+        image: rabbitbird/hermetic-api:1.0
         ports:
           - containerPort: 80
         livenessProbe:

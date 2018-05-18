@@ -20,15 +20,12 @@ For those of you coming from Minikube, you may find Docker for Desktop's approac
 
 So can we access the service from our host machine? Well sort of, but not in the way you may expect.
 
-Docker purposely want us trying to access the Linux VM and instead, it plans on port forwarding every `targetPort` value to the VM for us.
+Docker does not want us accessing the Linux VM via IP directly and instead, it plans on port forwarding every `port` value in our service to the VM for us from our host.
 
 Open a new terminal window and create the api pod.
 
     kubectl apply -f templates/api-pod.yaml
 
-Switch back to the other terminal at which point, it will launch a web browser window once an endpoint becomes available.
-
-How did the service know to send traffic to the `api-pod`? Because the `api-pod` had a label of `app=api` and the `api-service` had a label selector of `app=api`. The service then looked up the endpoint associated with each pod so it could load balance across them.
 
 ## The ClusterIP
 
