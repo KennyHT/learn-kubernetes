@@ -38,3 +38,6 @@ spec:
           timeoutSeconds: 1
           periodSeconds: 10
           failureThreshold: 3
+
+# ToDO: Research how Kubernetes ensures that any previous connections are finished before killing the Pod.
+# TODo: Add instructions to lab for creating different version of

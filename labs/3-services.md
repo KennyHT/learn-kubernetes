@@ -2,13 +2,19 @@
 
 To illustrate the dynamic and loosely coupled design of Kubernetes, we're going to expose a service, but exposing the service first without any pods to support it.
 
+!!! note
+
+    Because Docker for Desktop does not bind the NodePort associated with the LoadBalancer Service type
+    to localhost (on the host), I will be using the NodePort service template in the below examples.
+
 Create the service:
 
-    kubectl apply -f templates/api-service.yaml
+    # `np` is short for NodePort
+    kubectl apply -f templates/api-service-np.yaml
 
 Inspect the service so we can get the randomly assigned ports:
 
-    kubectl describe service api-service | grep Port
+    kubectl describe service api-service-np | grep Port
 
 Confirm we don't have any pods matching the label the service is querying for:
 
@@ -18,9 +24,11 @@ Confirm we don't have any pods matching the label the service is querying for:
 
 For those of you coming from Minikube, you may find Docker for Desktop's approach to service exposure a bit strange.
 
-So can we access the service from our host machine? Well sort of, but not in the way you may expect.
+So can we access the service from our host machine? Well sort of, but not in the way you might expect.
 
-Docker does not want us accessing the Linux VM via IP directly and instead, it plans on port forwarding every `port` value in our service to the VM for us from our host.
+### Load Balancer
+
+The for load ort forwarding every `port` value (not the NodePort) in our service to the VM for us from our host.
 
 Open a new terminal window and create the api pod.
 
