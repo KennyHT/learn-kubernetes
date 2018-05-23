@@ -87,12 +87,12 @@
         },
         {
             "location": "/4-replicas/",
-            "text": "Replicas Lab\n\u00b6\n\n\nThis lab is a bit different in that you'll be creating the replicaset.yaml yourself.\n\n\nCode challenge\n\u00b6\n\n\nUsing the documentation at \nhttps://kubernetes.io/docs/concepts/workloads/controllers/replicaset/\n, create a replicaset resource in \ntemplate/replicaset.yaml\n that uses the information from the \ntemplates/api-pod.yaml\n file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).\n\n\nFor the solution, see the \ntemplates/api-replicaset-solution.yaml\n.\n\n\nTo deploy:\n\n\n1\nkubectl apply -f templates/api-replicaset.yaml\n\n\n\n\n\n\nTo verify:\n\n\n1\n2\nkubectl get replicasets\nkubectl get pods\n\n\n\n\n\n\nNotice that the name of the pods is different for those that were created by the ReplicaSet.\n\n\n1\n2\n# TODO: Fix. Not working.\n\n\nkubectl get pod api-replicaset-<HASH> --template='\n{{\n(\nindex\n \n(\nindex\n \n.metadata.annotations\n))\n}}{{\n\"\\n\"\n}}\n'\n\n\n\n\n\n\n\nClean up now by deleting your replicaset:\n\n\n1\nkubectl delete -f templates/api-replicaset.yaml",
+            "text": "Replicas Lab\n\u00b6\n\n\nThis lab is a bit different in that you'll be creating the the \napi-replicaset.yaml\n yourself.\n\n\nCode challenge\n\u00b6\n\n\nUsing the documentation at \nhttps://kubernetes.io/docs/concepts/workloads/controllers/replicaset/\n, create a replicaset resource in \ntemplate/replicaset.yaml\n that uses the information from the \ntemplates/api-pod.yaml\n file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).\n\n\nFor the solution, see the \ntemplates/api-replicaset-solution.yaml\n.\n\n\nTo deploy:\n\n\n1\nkubectl apply -f templates/api-replicaset.yaml\n\n\n\n\n\n\nTo verify:\n\n\n1\n2\nkubectl get replicasets\nkubectl get pods\n\n\n\n\n\n\nNotice that the name of the pods is different for those that were created by the ReplicaSet.\n\n\n1\n2\n# TODO: Fix. Not working.\n\n\nkubectl get pod api-replicaset-<HASH> --template='\n{{\n(\nindex\n \n(\nindex\n \n.metadata.annotations\n))\n}}{{\n\"\\n\"\n}}\n'\n\n\n\n\n\n\n\nClean up now by deleting your replicaset:\n\n\n1\nkubectl delete -f templates/api-replicaset.yaml",
             "title": "Replicas"
         },
         {
             "location": "/4-replicas/#replicas-lab",
-            "text": "This lab is a bit different in that you'll be creating the replicaset.yaml yourself.",
+            "text": "This lab is a bit different in that you'll be creating the the  api-replicaset.yaml  yourself.",
             "title": "Replicas Lab"
         },
         {
