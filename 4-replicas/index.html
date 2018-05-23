@@ -322,7 +322,7 @@
                 <h1 id="replicas-lab">Replicas Lab<a class="headerlink" href="#replicas-lab" title="Permanent link">&para;</a></h1>
 <p>This lab is a bit different in that you'll be creating the replicaset.yaml yourself.</p>
 <h2 id="code-challenge">Code challenge<a class="headerlink" href="#code-challenge" title="Permanent link">&para;</a></h2>
-<p>Using the documentation at <em><a href="https://v1-9.docs.kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank">https://v1-9.docs.kubernetes.io/docs/concepts/workloads/controllers/replicaset/</a></em>, create a replicaset resource in <code>template/replicaset.yaml</code> that uses the information from the <code>templates/api-pod.yaml</code> file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).</p>
+<p>Using the documentation at <em><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank">https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/</a></em>, create a replicaset resource in <code>template/replicaset.yaml</code> that uses the information from the <code>templates/api-pod.yaml</code> file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).</p>
 <p>For the solution, see the <code>templates/api-replicaset-solution.yaml</code>.</p>
 <p>To deploy:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f templates/api-replicaset.yaml
