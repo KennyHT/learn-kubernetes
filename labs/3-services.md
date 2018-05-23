@@ -42,7 +42,7 @@ Now that we've deployed our API pod, we can get the FQDN.
 
     kubectl exec -ti <pod-id> nslookup api-service
 
-## The ClusterIP
+### The ClusterIP
 
 When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.
 
@@ -50,8 +50,10 @@ Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaran
 
     echo `kubectl get service api-service --template='{{.spec.clusterIP}}'`
 
-Now let's ssh to the minikube instance and use curl to perform a request inside the Kubernetes cluser.
+### TODO
 
-    minikube ssh
-    curl <API SERVICE IP>/api/v1/users/
-    curl <API SERVICE IP>/api/v1/users/
+ - Example with hitting the service from the Docker VM.
+ - Example of hitting the service IP address.
+ - Example of hitting the service hostname.
+ - Example of using the NodePort so you can have services that forward to the same Pod ports.
+
