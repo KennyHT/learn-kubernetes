@@ -1,6 +1,6 @@
 # Replicas Lab
 
-This lab is a bit different in that you'll be creating the replicaset.yaml yourself.
+This lab is a bit different in that you'll be creating the the `api-replicaset.yaml` yourself.
 
 ## Code challenge
 
