@@ -4,7 +4,7 @@ This lab is a bit different in that you'll be creating the replicaset.yaml yours
 
 ## Code challenge
 
-Using the documentation at *[https://v1-9.docs.kubernetes.io/docs/concepts/workloads/controllers/replicaset/](https://v1-9.docs.kubernetes.io/docs/concepts/workloads/controllers/replicaset/)*, create a replicaset resource in `template/replicaset.yaml` that uses the information from the `templates/api-pod.yaml` file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).
+Using the documentation at *[https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)*, create a replicaset resource in `template/replicaset.yaml` that uses the information from the `templates/api-pod.yaml` file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).
 
 For the solution, see the `templates/api-replicaset-solution.yaml`.
 
