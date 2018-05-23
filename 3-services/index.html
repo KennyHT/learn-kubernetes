@@ -238,6 +238,26 @@
     Services and Docker for Mac
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer" title="Load Balancer" class="md-nav__link">
+    Load Balancer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-name-by-dns" title="Service name by DNS" class="md-nav__link">
+    Service name by DNS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -307,6 +327,26 @@
     Services and Docker for Mac
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer" title="Load Balancer" class="md-nav__link">
+    Load Balancer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-name-by-dns" title="Service name by DNS" class="md-nav__link">
+    Service name by DNS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -335,13 +375,20 @@
                 
                 <h1 id="services-lab">Services Lab<a class="headerlink" href="#services-lab" title="Permanent link">&para;</a></h1>
 <p>To illustrate the dynamic and loosely coupled design of Kubernetes, we're going to expose a service, but exposing the service first without any pods to support it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because Docker for Desktop does not bind the NodePort associated with the LoadBalancer Service type
+to localhost (on the host), I will be using the NodePort service template in the below examples.</p>
+</div>
 <p>Create the service:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f templates/api-service.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># `np` is short for NodePort
+kubectl apply -f templates/api-service-np.yaml
 </pre></div>
 </td></tr></table>
 
 <p>Inspect the service so we can get the randomly assigned ports:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service api-service | grep Port
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service api-service-np | grep Port
 </pre></div>
 </td></tr></table>
 
@@ -352,10 +399,18 @@
 
 <h2 id="services-and-docker-for-mac">Services and Docker for Mac<a class="headerlink" href="#services-and-docker-for-mac" title="Permanent link">&para;</a></h2>
 <p>For those of you coming from Minikube, you may find Docker for Desktop's approach to service exposure a bit strange.</p>
-<p>So can we access the service from our host machine? Well sort of, but not in the way you may expect.</p>
-<p>Docker does not want us accessing the Linux VM via IP directly and instead, it plans on port forwarding every <code>port</code> value in our service to the VM for us from our host.</p>
+<p>So can we access the service from our host machine? Well sort of, but not in the way you might expect.</p>
+<h3 id="load-balancer">Load Balancer<a class="headerlink" href="#load-balancer" title="Permanent link">&para;</a></h3>
+<p>The for load port forwarding every <code>port</code> value (not the NodePort) in our service to the VM for us from our host.</p>
 <p>Open a new terminal window and create the api pod.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f templates/api-pod.yaml
+</pre></div>
+</td></tr></table>
+
+<h3 id="service-name-by-dns">Service name by DNS<a class="headerlink" href="#service-name-by-dns" title="Permanent link">&para;</a></h3>
+<p>This must be done through a container running in the same namespace as the service.</p>
+<p>Now that we've deployed our API pod, we can get the FQDN.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -ti &lt;pod-id&gt; nslookup api-service
 </pre></div>
 </td></tr></table>
 
