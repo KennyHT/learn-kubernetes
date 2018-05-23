@@ -14,7 +14,7 @@ To install it with homebrew, use `brew install watch`.
 
 ## Bash completion for kubectl
 
-THe kubectl CLI is huge and the completion functionality will help save time and help you learn.
+The kubectl CLI is huge and the completion functionality will help save time and help you learn.
 
 For this to work, you need `bash-completion` installed by homebrew by running:
 

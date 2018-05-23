@@ -28,12 +28,19 @@ So can we access the service from our host machine? Well sort of, but not in the
 
 ### Load Balancer
 
-The for load ort forwarding every `port` value (not the NodePort) in our service to the VM for us from our host.
+The for load port forwarding every `port` value (not the NodePort) in our service to the VM for us from our host.
 
 Open a new terminal window and create the api pod.
 
     kubectl apply -f templates/api-pod.yaml
 
+### Service name by DNS
+
+This must be done through a container running in the same namespace as the service.
+
+Now that we've deployed our API pod, we can get the FQDN.
+
+    kubectl exec -ti <pod-id> nslookup api-service
 
 ## The ClusterIP
 
