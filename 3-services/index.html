@@ -255,15 +255,22 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#the-clusterip" title="The ClusterIP" class="md-nav__link">
     The ClusterIP
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo" title="TODO" class="md-nav__link">
+    TODO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -344,15 +351,22 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#the-clusterip" title="The ClusterIP" class="md-nav__link">
     The ClusterIP
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo" title="TODO" class="md-nav__link">
+    TODO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -414,21 +428,20 @@ kubectl apply -f templates/api-service-np.yaml
 </pre></div>
 </td></tr></table>
 
-<h2 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h2>
+<h3 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h3>
 <p>When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>
 <p>Let's find the <code>Cluster IP</code> value of the <code>api-service</code>. The Cluster IP is guaranteed not to change.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">echo `kubectl get service api-service --template=&#39;</span><span class="cp">{{</span><span class="nv">.spec.clusterIP</span><span class="cp">}}</span><span class="x">&#39;`</span>
 </pre></div>
 </td></tr></table>
 
-<p>Now let's ssh to the minikube instance and use curl to perform a request inside the Kubernetes cluser.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>minikube ssh
-curl &lt;API SERVICE IP&gt;/api/v1/users/
-curl &lt;API SERVICE IP&gt;/api/v1/users/
-</pre></div>
-</td></tr></table>
+<h3 id="todo">TODO<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Example with hitting the service from the Docker VM.</li>
+<li>Example of hitting the service IP address.</li>
+<li>Example of hitting the service hostname.</li>
+<li>Example of using the NodePort so you can have services that forward to the same Pod ports.</li>
+</ul>
                 
                   
                 
