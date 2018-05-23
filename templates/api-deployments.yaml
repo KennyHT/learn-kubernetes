@@ -30,6 +30,21 @@ spec:
         image: rabbitbird/hermetic-api:1.0
         ports:
           - containerPort: 80
+          - containerPort: 443
+        #
+        # Readiness Check
+        #
+        # Perhaps the API, while technically healthy, is not yet "ready" to receive
+        # traffic, as it may be downloading data, doing computations etc.
+        readinessProbe:
+          httpGet:
+            path: /api/v1/readiness-check/
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        #
+        # Health Check
+        #
         livenessProbe:
           httpGet:
             path: /api/v1/health-check/
