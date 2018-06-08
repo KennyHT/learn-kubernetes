@@ -4,33 +4,24 @@ To illustrate the dynamic and loosely coupled design of Kubernetes, we're going 
 
 !!! note
 
-    Because Docker for Desktop does not bind the NodePort associated with the LoadBalancer Service type
-    to localhost (on the host), I will be using the NodePort service template in the below examples.
+    Because Docker for Desktop does not bind the `NodePort` associated with the `LoadBalancer` Service type to localhost (on the host), I will be using the `NodePort` service template in the below examples.
+
+    When using type `LoadBalancer`, every `port` value (not the NodePort) in our service is mapped from our host machine to the Docker VM. I have no idea why this is the default as it means that we can't have multiple services which listen on the same ports.
 
 Create the service:
 
     # `np` is short for NodePort
-    kubectl apply -f templates/api-service-np.yaml
+    kubectl apply -f templates/api-service-node-port.yaml
 
 Inspect the service so we can get the randomly assigned ports:
 
-    kubectl describe service api-service-np | grep Port
+    kubectl describe service api-service | grep Port
 
 Confirm we don't have any pods matching the label the service is querying for:
 
     kubectl get pods api-pod
 
-## Services and Docker for Mac
-
-For those of you coming from Minikube, you may find Docker for Desktop's approach to service exposure a bit strange.
-
-So can we access the service from our host machine? Well sort of, but not in the way you might expect.
-
-### Load Balancer
-
-The for load port forwarding every `port` value (not the NodePort) in our service to the VM for us from our host.
-
-Open a new terminal window and create the api pod.
+Then open a new terminal window and create the api pod.
 
     kubectl apply -f templates/api-pod.yaml
 
@@ -52,8 +43,8 @@ Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaran
 
 ### TODO
 
+ - File a bug with Docker that the NodePort doesn't work with type LoadBalancer, unless you configure it with type NodePort at some stage.
  - Example with hitting the service from the Docker VM.
  - Example of hitting the service IP address.
  - Example of hitting the service hostname.
  - Example of using the NodePort so you can have services that forward to the same Pod ports.
-
