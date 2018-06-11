@@ -48,3 +48,5 @@ Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaran
  - Example of hitting the service IP address.
  - Example of hitting the service hostname.
  - Example of using the NodePort so you can have services that forward to the same Pod ports.
+ - Clarify that "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS to perform the lookup against.
+ 

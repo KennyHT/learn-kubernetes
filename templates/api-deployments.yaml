@@ -29,8 +29,9 @@ spec:
         imagePullPolicy: IfNotPresent
         image: rabbitbird/hermetic-api:1.0
         ports:
-          - containerPort: 80
-          - containerPort: 443
+          - name: app
+            containerPort: 8080
+
         #
         # Readiness Check
         #
@@ -39,7 +40,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /api/v1/readiness-check/
-            port: 80
+            port: app
           initialDelaySeconds: 5
           periodSeconds: 5
         #
@@ -48,11 +49,12 @@ spec:
         livenessProbe:
           httpGet:
             path: /api/v1/health-check/
-            port: 80
+            port: app
           initialDelaySeconds: 5
           timeoutSeconds: 1
           periodSeconds: 10
           failureThreshold: 3
+
 
 # ToDO: Research how Kubernetes ensures that any previous connections are finished before killing the Pod.
 # TODo: Add instructions to lab for creating different version of

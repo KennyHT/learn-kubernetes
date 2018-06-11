@@ -6,8 +6,10 @@ spec:
   selector:
     app: api
   ports:
-  - name: app-port
+  - name: http
     port: 80
-  - name: secure-app-port
+    targetPort: app
+  - name: https
     port: 443
+    targetPort: app
   type: LoadBalancer
