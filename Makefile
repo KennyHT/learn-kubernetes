@@ -5,8 +5,14 @@
 API_IMAGE_NAME=training.io/api
 VERSION=1.0
 
-api-build:
-	docker build -t $(API_IMAGE_NAME):$(VERSION) ./api
+build:
+	cd /tmp && \
+	rm -fr learn-docker && \
+    git clone https://github.com/ryan-blunden/learn-docker && \
+    cd learn-docker && \
+    "$(MAKE)" build && \
+    cd ../ && \
+    rm -fr learn-docker
 
 docker-for-mac-vm-exec:
 	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i $(CMD)

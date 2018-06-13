@@ -6,6 +6,14 @@ These instructions are currently for MacOS users with [homebrew](https://brew.sh
 
 At time of writing (April 2018), the Edge edition is still required for getting the Kubernetes integrated version of Docker for Desktop. More info at https://www.docker.com/kubernetes
 
+## The `learn-docker` containers
+
+These labs depends on images that are built using the `https://github.com/ryan-blunden/learn-docker` repository.
+
+To build the required images:
+
+    make build
+
 ## The watch command
 
 The watch command allows you to observe the output from running a command every n seconds.
