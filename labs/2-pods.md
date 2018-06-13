@@ -20,7 +20,7 @@ Verify that the api container is running in the pod and is listening on port 80:
 
 For development purposes, often you only need a single pod exposed. If so, then you can just deploy the pod and port forward from your host.
 
-    kubectl port-forward api-pod 8080:80
+    kubectl port-forward api-pod 8080:8080
 
 View the API in your browser at http://localhost:8080/api/v1/users/
 
