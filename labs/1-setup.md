@@ -6,7 +6,33 @@ These instructions are currently for MacOS users with [homebrew](https://brew.sh
 
 At time of writing (April 2018), the Edge edition is still required for getting the Kubernetes integrated version of Docker for Desktop. More info at https://www.docker.com/kubernetes
 
-## The `learn-docker` containers
+## Kubernetes Dashboard
+
+The Kubernetes dashboard is a vital tool, particularly when learning Kubernetes.
+
+Deploy the Kubernetes Dashboard
+
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+Then, we need to setup port forwarding so we can access the Dashboard from outside the Kubernetes cluster (running on the Docker for Desktop Linux VM).
+
+The `kubectl port-forward` command requires the name of the Kubernetes Dashboard Pod so lets get that.
+
+    # Windows
+    kubectl get pods --namespace kube-system | findstr kubernetes-dashboard
+
+    # Mac
+    kubectl get pods --namespace kube-system | grep kubernetes-dashboard
+
+Then setup the port-forwarding.
+
+    kubectl port-forward <POD NAME> 30000:8443 --namespace kube-system
+
+Now you can access the dashboard at [https://localhost:30000/](https://localhost:30000/).
+
+If you're on a Mac or Windows using the WSL, you can use the bash code at this [GitHub Gist](https://gist.github.com/ryan-blunden/86f14deea43b79058882dda764c38650) to give you two functions for starting and stopping the Kubernetes Dashboard.
+
+## Required images
 
 These labs depends on images that are built using the `https://github.com/ryan-blunden/learn-docker` repository.
 
