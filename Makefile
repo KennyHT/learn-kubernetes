@@ -1,36 +1,55 @@
-#########
-#  API  #
-#########
+#############
+##  Setup  ##
+#############
 
-API_IMAGE_NAME=training.io/api
-VERSION=1.0
+setup: docker-images-build update-kubetail
 
-build:
+update-kubetail:
+	./bin/update-kubetail.sh
+
+docker-images-build:
 	cd /tmp && \
 	rm -fr learn-docker && \
     git clone https://github.com/ryan-blunden/learn-docker && \
-    cd learn-docker && \
-    "$(MAKE)" build && \
-    cd ../ && \
+    cd learn-docker/mkdocs && \
+	"$(MAKE)" docker-build && \
+	cd ../hermetic-api && \
+	"$(MAKE)" build && \
+    cd /tmp && \
     rm -fr learn-docker
 
-docker-for-mac-vm-exec:
-	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i $(CMD)
 
-shell:
-	"$(MAKE)" docker-for-mac-vm-exec CMD="sh"
+###########
+##  API  ##
+###########
+
+docker-vm-shell:
+	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh
+
+api-tail:
+	./bin/kubetail api
+
+############################
+##  Kubernetes Dashboard  ##
+############################
+
+k8s-dashboard-start:
+	K8S_DASHBOARD_PORT=$(K8S_DASHBOARD_PORT) ./bin/kube-dashboard.sh k8s-dashboard-start
+
+k8s-dashboard-stop:
+	./bin/kube-dashboard.sh k8s-dashboard-stop
 
 
-###############
-#  Microsite  #
-###############
-
+#################
+##  Microsite  ##
+#################
 
 site-server:
-	docker container run --rm -v "$(CURDIR)":/usr/src/app -p 8080:8080 rabbitbird/mkdocs
+	docker container run --rm -v "$(CURDIR)":/usr/src/app -p 8080:8080 rabbitbird/mkdocs:latest
 
 site-build:
-	docker container run --rm -v "$(CURDIR)":/usr/src/app rabbitbird/mkdocs mkdocs build --clean --strict
+	docker container run --rm -v "$(CURDIR)":/usr/src/app rabbitbird/mkdocs:latest mkdocs build --clean --strict
 
 deploy-gh-pages:
 	./bin/deploy-site.sh
+

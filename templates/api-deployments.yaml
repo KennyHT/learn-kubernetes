@@ -30,7 +30,7 @@ spec:
         image: rabbitbird/hermetic-api:1.0
         ports:
           - name: app
-            containerPort: 8080
+            containerPort: 80
 
         #
         # Readiness Check
@@ -42,7 +42,7 @@ spec:
             path: /api/v1/readiness-check/
             port: app
           initialDelaySeconds: 5
-          periodSeconds: 5
+          periodSeconds: 30
         #
         # Health Check
         #
@@ -52,7 +52,7 @@ spec:
             port: app
           initialDelaySeconds: 5
           timeoutSeconds: 1
-          periodSeconds: 10
+          periodSeconds: 30
           failureThreshold: 3
 
 
