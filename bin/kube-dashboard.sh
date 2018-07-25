@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-K8S_DASHBOARD_PORT=${K8S_DASHBOARD_PORT:-30000}
+K8S_DASHBOARD_PORT=30000
 
 k8s-dashboard-start () {
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml

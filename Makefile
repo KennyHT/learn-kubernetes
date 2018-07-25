@@ -8,15 +8,13 @@ update-kubetail:
 	./bin/update-kubetail.sh
 
 docker-images-build:
-	cd /tmp && \
-	rm -fr learn-docker && \
-    git clone https://github.com/ryan-blunden/learn-docker && \
-    cd learn-docker/mkdocs && \
-	"$(MAKE)" docker-build && \
-	cd ../hermetic-api && \
-	"$(MAKE)" build && \
-    cd /tmp && \
-    rm -fr learn-docker
+	git clone https://github.com/ryan-blunden/learn-docker
+	cd learn-docker && "$(MAKE)" build
+	#
+	# [info] The following will generate errors you can safely ignore
+	#
+	-@rm -fr learn-docker
+	-@rmdir learn-docker /s /q
 
 
 ###########
@@ -33,8 +31,10 @@ api-tail:
 ##  Kubernetes Dashboard  ##
 ############################
 
+# Listens on port 30000
+
 k8s-dashboard-start:
-	K8S_DASHBOARD_PORT=$(K8S_DASHBOARD_PORT) ./bin/kube-dashboard.sh k8s-dashboard-start
+	./bin/kube-dashboard.sh k8s-dashboard-start
 
 k8s-dashboard-stop:
 	./bin/kube-dashboard.sh k8s-dashboard-stop
