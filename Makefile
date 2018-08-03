@@ -8,6 +8,13 @@ build:
 update-kubetail:
 	./bin/update-kubetail.sh
 
+#################
+##  DEBUG POD  ##
+#################
+
+debug-pod:
+	kubectl run my-shell --rm -i --tty --image alpine:latest -- sh
+
 
 ###########
 ##  API  ##
