@@ -8,8 +8,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install pip setuptools --upgrade --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host && \
-    pip install -r requirements.txt --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host && \
+RUN pip install pip setuptools --upgrade --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host files.pythonhosted.org && \
+    pip install -r requirements.txt --trusted-host pypi.python.org --trusted-host pypi.org --trusted-host files.pythonhosted.org && \
     rm -fr /root/.cache
 
 COPY . .
