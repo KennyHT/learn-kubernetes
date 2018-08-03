@@ -6,19 +6,20 @@ metadata:
     app: api
 spec:
   containers:
-  - name: hermetic-api
+  - name: simple-server
     imagePullPolicy: IfNotPresent
-    image: rabbitbird/hermetic-api:1.0
+    image: rabbitbird/simple-server:1.0
     ports:
       - name: app
         containerPort: 8080
     resources:
-      limits:
-        memory: "200Mi"
-        cpu: "700m"
       requests:
         memory: "200Mi"
-        cpu: "700m"
+        cpu: "250m"
+      limits:
+        memory: "200Mi"
+        cpu: "500m"
+
 
     #
     # Readiness Check
@@ -27,7 +28,7 @@ spec:
     # traffic, as it may be downloading data, doing computations etc.
     readinessProbe:
       httpGet:
-        path: /api/v1/readiness-check/
+        path: /readiness-check
         port: app
       initialDelaySeconds: 5
       periodSeconds: 5
@@ -36,7 +37,7 @@ spec:
     #
     livenessProbe:
       httpGet:
-        path: /api/v1/health-check/
+        path: /health-check
         port: app
       initialDelaySeconds: 5
       timeoutSeconds: 1

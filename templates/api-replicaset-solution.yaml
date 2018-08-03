@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: api-replicaset
   labels:
-    app: hermetic-api
+    app: simple-server
 spec:
   replicas: 5
   selector:
@@ -16,9 +16,9 @@ spec:
         app: api
     spec:
       containers:
-      - name: hermetic-api
+      - name: simple-server
         imagePullPolicy: IfNotPresent
-        image: rabbitbird/hermetic-api:1.0
+        image: rabbitbird/simple-server:1.0
         ports:
           - name: app
             containerPort: 8080

@@ -25,9 +25,9 @@ spec:
         kubernetes.io/change-cause: 'Data changed in API, updating to 1.0'
     spec:
       containers:
-      - name: hermetic-api
+      - name: simple-server
         imagePullPolicy: IfNotPresent
-        image: rabbitbird/hermetic-api:1.0
+        image: rabbitbird/simple-server:1.0
         ports:
           - name: app
             containerPort: 80

@@ -42,11 +42,11 @@ Let's view the logs for our pod:
 
 This works, but beware. If we had more than one container in our Pod, it wouldn't as kubectl would not know which container we want logs for. To do this in a way which will always work, let's use the container name.
 
-    kubectl logs api-pod hermetic-api
+    kubectl logs api-pod simple-server
 
 If we want to tail the logs, we need to supply the `-f` flag.
 
-    kubectl logs api-pod hermetic-api -f
+    kubectl logs api-pod simple-server -f
 
 Wouldn't it be great if we could get into a container inside our Pod, as easily as we the `docker container exec` command. Turns out we
 
@@ -56,7 +56,7 @@ By default, `kubectl` will execute the command against the first container in th
 
 To specify which pod you want to access, use the `--container` (or `-c`) option along with the container name:
 
-    kubectl exec -it api-pod --container hermetic-api sh
+    kubectl exec -it api-pod --container simple-server sh
 
 Finally, remove your pod:
 

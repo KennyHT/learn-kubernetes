@@ -2,19 +2,11 @@
 ##  Setup  ##
 #############
 
-setup: docker-images-build update-kubetail
+setup: 
+	cd simple-server && "$(MAKE)" build
 
 update-kubetail:
 	./bin/update-kubetail.sh
-
-docker-images-build:
-	git clone https://github.com/ryan-blunden/learn-docker
-	cd learn-docker && "$(MAKE)" build
-	#
-	# [info] The following will generate errors you can safely ignore
-	#
-	-@rm -fr learn-docker
-	-@rmdir learn-docker /s /q
 
 
 ###########
