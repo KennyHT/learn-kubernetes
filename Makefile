@@ -2,7 +2,7 @@
 ##  Setup  ##
 #############
 
-setup: 
+build: 
 	cd simple-server && "$(MAKE)" build
 
 update-kubetail:

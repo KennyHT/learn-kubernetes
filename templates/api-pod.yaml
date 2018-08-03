@@ -22,24 +22,23 @@ spec:
 
 
     #
-    # Readiness Check
-    #
-    # Perhaps the API, while technically healthy, is not yet "ready" to receive
-    # traffic, as it may be downloading data, doing computations etc.
+    # Readiness Check: Is your app ready to serve traffic
+    # 
     readinessProbe:
-      httpGet:
-        path: /readiness-check
-        port: app
-      initialDelaySeconds: 5
-      periodSeconds: 5
-    #
-    # Health Check
-    #
-    livenessProbe:
       httpGet:
         path: /health-check
         port: app
       initialDelaySeconds: 5
       timeoutSeconds: 1
-      periodSeconds: 10
-      failureThreshold: 3
+      periodSeconds: 3
+      failureThreshold: 5
+
+    #
+    # Liveness Check: Is your application even alive
+    # 
+    # If the process in your Container is able to crash on its own whenever 
+    # it encounters an issue or becomes unhealthy, you do not necessarily need 
+    # a liveness probe.
+    #
+    # We don't implement one because our server application *can* crash.
+

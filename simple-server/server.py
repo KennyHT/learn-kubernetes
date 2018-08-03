@@ -12,7 +12,6 @@ class SETTINGS:
     HOST: str = '0.0.0.0'
     PORT: int = 8080
     HEALTHY: bool = True
-    READY: bool = True    
 
 
 @dataclass
@@ -27,8 +26,7 @@ def index() -> HTTPResponse:
         'hostname': socket.gethostname(),
         'ip': socket.gethostbyname(socket.gethostname()),
         'time': datetime.datetime.utcnow(),
-        'health': SETTINGS.HEALTHY,
-        'ready': SETTINGS.READY
+        'health': SETTINGS.HEALTHY
     })
 
     return HTTPResponse(content=content, content_type='text/html')
@@ -40,21 +38,11 @@ def health() -> HTTPResponse:
 
     return HTTPResponse(content=json.dumps({'status': 'unhealthy'}), status=503)
 
-def ready() -> HTTPResponse:
-    if SETTINGS.READY:
-        return HTTPResponse(content=json.dumps({'status': 'ready'}))
-
-    return HTTPResponse(content=json.dumps({'status': 'not-ready'}), status=503)
-
 
 def switch_health() -> HTTPResponse:
     SETTINGS.HEALTHY = not SETTINGS.HEALTHY
     return HTTPResponse(content=json.dumps({'new_health_status': SETTINGS.HEALTHY}))
 
-
-def switch_readiness() -> HTTPResponse:
-    SETTINGS.READY = not SETTINGS.READY
-    return HTTPResponse(content=json.dumps({'new_readiness_status': SETTINGS.READY}))
 
 def _404():
     return HTTPResponse(content=json.dumps({'error': 'not found'}), status=404)
@@ -67,9 +55,7 @@ def _500(error: str):
 URLS = {
     '/': index,
     '/health-check': health,
-    '/readiness-check': ready,
-    '/switch-health': switch_health,
-    '/switch-ready': switch_readiness
+    '/switch-health': switch_health
 }
 
 

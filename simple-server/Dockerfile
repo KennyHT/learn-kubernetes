@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 RUN apt-get update && \
     apt-get upgrade -y  && \
-    apt-get install -y --no-install-recommends nano jq less groff && \
+    apt-get install -y --no-install-recommends curl nano jq less groff && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["python", "server.py"]
+CMD ["python", "-u", "server.py"]
