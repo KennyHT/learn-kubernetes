@@ -1,3 +1,5 @@
 .idea
 site
 bin/kubetail
+.vscode
+
