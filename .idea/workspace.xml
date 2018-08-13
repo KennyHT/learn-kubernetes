@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65ee7e12-1c5a-4128-85b1-e64ced7d10f7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="65ee7e12-1c5a-4128-85b1-e64ced7d10f7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,17 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,6 +45,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -64,21 +53,10 @@
               <item name="learn-kubernetes" type="b2602c69:ProjectViewProjectNode" />
               <item name="learn-kubernetes" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="learn-kubernetes" type="b2602c69:ProjectViewProjectNode" />
-              <item name="learn-kubernetes" type="462c0819:PsiDirectoryNode" />
-              <item name="labs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="learn-kubernetes" type="b2602c69:ProjectViewProjectNode" />
-              <item name="learn-kubernetes" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -135,30 +113,44 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="1058" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.5202914" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1368477" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.516129" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18315019" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1368477" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.5202914" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,67 +165,362 @@
     <option name="LAST_COMMIT_MESSAGE" value="Now uses mkdocs to render the labs files locally." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="243">
-            <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/data/meta/index.json" />
-    <entry file="file://$PROJECT_DIR$/mkdocs.yml">
+    <entry file="file://$PROJECT_DIR$/bin/kube-dashboard.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labs/1-setup.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="81">
-            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="297">
-            <caret line="11" column="79" lean-forward="true" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labs/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="81">
-            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="75" />
+        <state relative-caret-position="646">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/update-kubetail.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/kubetail">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="308" lean-forward="true" selection-start-line="308" selection-end-line="308" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/api-service-load-balancer.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.kube-dashboard" />
+    <entry file="file://$PROJECT_DIR$/simple-server/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/http/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="647" lean-forward="true" selection-start-line="647" selection-end-line="647" />
+          <folding>
+            <element signature="e#0#1094#1" />
+            <element signature="e#1097#1108#0" />
+            <element signature="e#2993#3097#0" />
+            <element signature="e#3446#3895#0" />
+            <element signature="e#4000#4334#0" />
+            <element signature="e#4108#4334#0" />
+            <element signature="e#8315#8377#0" />
+            <element signature="e#8646#8714#0" />
+            <element signature="e#9011#13005#0" />
+            <element signature="e#9011#9312#1" />
+            <element signature="e#9716#11077#0" />
+            <element signature="e#9780#10508#0" />
+            <element signature="e#9987#10044#0" />
+            <element signature="e#10570#10717#0" />
+            <element signature="e#10902#11077#0" />
+            <element signature="e#11120#11385#0" />
+            <element signature="e#11232#11385#0" />
+            <element signature="e#11461#11599#0" />
+            <element signature="e#11772#11903#0" />
+            <element signature="e#11963#12123#0" />
+            <element signature="e#12185#12361#0" />
+            <element signature="e#12924#12985#0" />
+            <element signature="e#13048#13721#0" />
+            <element signature="e#13048#13621#1" />
+            <element signature="e#13765#15157#0" />
+            <element signature="e#13765#13991#1" />
+            <element signature="e#14017#14939#0" />
+            <element signature="e#14133#14318#0" />
+            <element signature="e#14376#14427#0" />
+            <element signature="e#14485#14548#0" />
+            <element signature="e#14647#14796#0" />
+            <element signature="e#14988#15157#0" />
+            <element signature="e#15189#15384#0" />
+            <element signature="e#15454#17471#0" />
+            <element signature="e#15454#16079#1" />
+            <element signature="e#16494#16543#0" />
+            <element signature="e#16732#16854#0" />
+            <element signature="e#16870#17364#0" />
+            <element signature="e#16870#16923#0" />
+            <element signature="e#17008#17176#0" />
+            <element signature="e#17530#17923#0" />
+            <element signature="e#17530#17729#1" />
+            <element signature="e#17987#18521#0" />
+            <element signature="e#18083#18521#0" />
+            <element signature="e#18119#18254#0" />
+            <element signature="e#19145#19324#0" />
+            <element signature="e#19255#19324#0" />
+            <element signature="e#19363#19498#0" />
+            <element signature="e#19412#19498#0" />
+            <element signature="e#19555#19814#0" />
+            <element signature="e#19555#19639#1" />
+            <element signature="e#19864#20166#0" />
+            <element signature="e#19864#20125#1" />
+            <element signature="e#20218#20906#0" />
+            <element signature="e#20218#20715#1" />
+            <element signature="e#20789#20904#0" />
+            <element signature="e#20946#21054#0" />
+            <element signature="e#21112#21310#0" />
+            <element signature="e#21356#21628#0" />
+            <element signature="e#21715#21839#0" />
+            <element signature="e#21879#21950#0" />
+            <element signature="e#21956#21992#0" />
+            <element signature="e#22285#22378#0" />
+            <element signature="e#22442#22791#1" />
+            <element signature="e#22873#23051#0" />
+            <element signature="e#22955#23051#0" />
+            <element signature="e#23084#23176#0" />
+            <element signature="e#23211#25084#0" />
+            <element signature="e#23211#23596#1" />
+            <element signature="e#23704#24486#0" />
+            <element signature="e#23806#24216#0" />
+            <element signature="e#23954#24037#0" />
+            <element signature="e#24285#24419#0" />
+            <element signature="e#24381#24419#0" />
+            <element signature="e#24607#24686#0" />
+            <element signature="e#24712#25028#0" />
+            <element signature="e#25057#25084#0" />
+            <element signature="e#25130#27555#0" />
+            <element signature="e#25130#25387#1" />
+            <element signature="e#25473#25602#0" />
+            <element signature="e#25686#25802#0" />
+            <element signature="e#26067#26179#0" />
+            <element signature="e#26233#26319#0" />
+            <element signature="e#26499#27153#0" />
+            <element signature="e#26696#26758#0" />
+            <element signature="e#26816#26919#0" />
+            <element signature="e#26995#27151#0" />
+            <element signature="e#27601#28700#0" />
+            <element signature="e#27601#27848#1" />
+            <element signature="e#28423#28629#0" />
+            <element signature="e#28499#28585#0" />
+            <element signature="e#28754#29304#0" />
+            <element signature="e#28754#29257#1" />
+            <element signature="e#29346#30090#0" />
+            <element signature="e#29346#29795#1" />
+            <element signature="e#30252#30398#0" />
+            <element signature="e#30475#31929#0" />
+            <element signature="e#30475#30941#1" />
+            <element signature="e#31072#31142#0" />
+            <element signature="e#31304#31465#0" />
+            <element signature="e#31493#31707#0" />
+            <element signature="e#31556#31707#0" />
+            <element signature="e#31594#31641#0" />
+            <element signature="e#31970#32283#0" />
+            <element signature="e#32312#32379#0" />
+            <element signature="e#32442#42266#0" />
+            <element signature="e#32442#32621#1" />
+            <element signature="e#32699#32764#0" />
+            <element signature="e#32878#33155#0" />
+            <element signature="e#32878#32966#1" />
+            <element signature="e#33047#33155#0" />
+            <element signature="e#33190#33375#0" />
+            <element signature="e#33407#34276#0" />
+            <element signature="e#33407#33976#1" />
+            <element signature="e#34205#34255#0" />
+            <element signature="e#34368#34455#0" />
+            <element signature="e#34496#34639#0" />
+            <element signature="e#34672#42266#0" />
+            <element signature="e#34839#35119#0" />
+            <element signature="e#35003#35079#0" />
+            <element signature="e#35228#35292#0" />
+            <element signature="e#35649#35778#0" />
+            <element signature="e#35834#35975#0" />
+            <element signature="e#36069#36275#0" />
+            <element signature="e#36124#36275#0" />
+            <element signature="e#36285#36338#0" />
+            <element signature="e#37144#37896#0" />
+            <element signature="e#37238#37896#0" />
+            <element signature="e#37390#37896#0" />
+            <element signature="e#37419#37599#0" />
+            <element signature="e#37738#37896#0" />
+            <element signature="e#38440#38581#0" />
+            <element signature="e#38899#38925#0" />
+            <element signature="e#39062#39177#0" />
+            <element signature="e#39400#40504#0" />
+            <element signature="e#39704#40080#0" />
+            <element signature="e#39907#39963#0" />
+            <element signature="e#40134#40378#0" />
+            <element signature="e#40415#40504#0" />
+            <element signature="e#40532#42266#0" />
+            <element signature="e#40685#40933#0" />
+            <element signature="e#40782#40882#0" />
+            <element signature="e#41795#41853#0" />
+            <element signature="e#42394#43005#0" />
+            <element signature="e#42394#42509#1" />
+            <element signature="e#42659#43005#0" />
+            <element signature="e#42933#43005#0" />
+            <element signature="e#43038#43791#0" />
+            <element signature="e#43276#43366#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-server/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="62" column="4" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/kube-dashboard.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/deployment.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple-server/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/kuard-pod.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/namespace.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mkdocs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/service.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/replicaset-solution.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labs/5-deployments.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-783" />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labs/1-namespaces.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="323">
+            <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="204">
+            <caret line="12" selection-start-line="12" selection-end-line="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labs/0-setup.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="204">
+            <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects/pod.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labs/3-services.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="236">
+            <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labs/2-pods.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="595">
+            <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/deploy-site.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" selection-start-line="6" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/api/data/meta/index.json" />
+    <entry file="file://$PROJECT_DIR$/mkdocs.yml" />
+    <entry file="file://$PROJECT_DIR$/labs/1-setup.md" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/labs/index.md" />
+    <entry file="file://$PROJECT_DIR$/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/Makefile" />
   </component>
 </project>
