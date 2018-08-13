@@ -4,6 +4,7 @@
 
 setup:
 	docker image pull debian:stretch-slim
+	docker image pull gcr.io/kuar-demo/kuard-amd64:1
 
 update-kubetail:
 	./bin/update-kubetail.sh

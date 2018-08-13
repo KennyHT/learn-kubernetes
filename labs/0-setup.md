@@ -6,29 +6,33 @@ Windows users are encouraged to install the [Windows Subsystem for Linux](https:
 
 ## Docker for Desktop
 
-Download and install Docker for Desktop.
+Download and install [Docker for Desktop](https://www.docker.com/products/docker-desktop).
+
+If you're on Linux, [then this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Kubernetes super star Liz Rice (even though she uses the VM from her Mac) should work like a charm.
 
 ## Kubectl Proxy
 
-For easy of 
+For easy access to services running in your development environment, you can use kubectl proxy.
 
-Now you can access the dashboard at [https://localhost:30000/](https://localhost:30000/).
+    kubectl proxy
 
-If you're on a Mac or Windows using the WSL, you can use the bash code at this [GitHub Gist](https://gist.github.com/ryan-blunden/86f14deea43b79058882dda764c38650) to give you two functions for starting and stopping the Kubernetes Dashboard.
+You can now access services throgh the tunnel exposed on localhost port 8001.
+
+See [this page from the Kubernetes docs](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls) for learning how to manually construct links to your services.
 
 ## Required images
 
-These labs depends on images that are built using the `https://github.com/ryan-blunden/learn-docker` repository.
+To save some time during the class, you can run `make setup` to pull down the two required images for these labs.
 
-To build the required images:
-
-    make build
+    make setup
 
 ## The watch command
 
 The watch command allows you to observe the output from running a command every n seconds.
 
-To install it with homebrew, use `brew install watch`.
+While kubernetes has a built-in `--watch` flag, I often don't use it as it doesnt't flush the previous output.
+
+To install it with homebrew on the Mac, use `brew install watch`.
 
 ## Bash completion for kubectl
 
