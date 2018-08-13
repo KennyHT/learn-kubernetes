@@ -8,23 +8,28 @@ build:
 update-kubetail:
 	./bin/update-kubetail.sh
 
-#################
-##  DEBUG POD  ##
-#################
+#############
+##  DEBUG  ##
+#############
 
-debug-pod:
-	kubectl run my-shell --rm -i --tty --image alpine:latest -- sh
+NAMESPACE=?learn-k8s
 
+debug-container:
+	kubectl run my-shell --rm -it --image alpine -- sh --namespace=NAMESPACE
 
-###########
-##  API  ##
-###########
+pod-logs:
+	./bin/kubetail $(NAME) --namespace $(NAMESPACE)
+
+watch-pods:
+	watch -n 1 kubectl get pods -o wide --namespace $(NAMESPACE)
+
+event-stream:
+	kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces
 
 docker-vm-shell:
 	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh
 
-api-tail:
-	./bin/kubetail api
+
 
 ############################
 ##  Kubernetes Dashboard  ##
@@ -32,16 +37,16 @@ api-tail:
 
 # Listens on port 30000
 
-k8s-dashboard-start:
-	./bin/kube-dashboard.sh k8s-dashboard-start
+k8s-dashboard-up:
+	./bin/kube-dashboard.sh k8s-dashboard-up
 
-k8s-dashboard-stop:
-	./bin/kube-dashboard.sh k8s-dashboard-stop
+k8s-dashboard-down:
+	./bin/kube-dashboard.sh k8s-dashboard-down
 
 
-#################
-##  Microsite  ##
-#################
+############
+##  Docs  ##
+############
 
 site-server:
 	docker container run --rm -v "$(CURDIR)":/usr/src/app -p 8080:8080 rabbitbird/mkdocs:latest
@@ -51,4 +56,3 @@ site-build:
 
 deploy-gh-pages:
 	./bin/deploy-site.sh
-

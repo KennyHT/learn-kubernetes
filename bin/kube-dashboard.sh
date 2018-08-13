@@ -2,7 +2,7 @@
 
 K8S_DASHBOARD_PORT=30000
 
-k8s-dashboard-start () {
+k8s-dashboard-up () {
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
     until kubectl get pods --namespace=kube-system | grep kubernetes-dashboard &> /dev/null
@@ -17,12 +17,12 @@ k8s-dashboard-start () {
 	        sleep 1
         done
 
-    nohup kubectl port-forward $(kubectl get pods --namespace=kube-system | grep kubernetes-dashboard | awk '{print $1}') ${K8S_DASHBOARD_PORT}:8443 --namespace=kube-system &> /dev/null &
+    nohup kubectl port-forward ${kube_dashboard_name} ${K8S_DASHBOARD_PORT}:8443 --namespace=kube-system &> /dev/null &
 
-    echo "Kubernetes dashboard available at https://localhost:${K8S_DASHBOARD_PORT}"
+    echo "[info]: Kubernetes dashboard available at https://localhost:${K8S_DASHBOARD_PORT}"
 }
 
-k8s-dashboard-stop() {
+k8s-dashboard-down() {
     kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
     kill $(lsof -nP -i tcp:${K8S_DASHBOARD_PORT} | grep LISTEN | awk '{print $2}')
 }

@@ -64,10 +64,9 @@ Finally, remove your pod:
 
 ## TODO
 
- - Show example of using `make shell` to hit the pod ip address from the Linux VM.
+ - Show example of using `make shell` to hit the pod ip address from the Linux VM with the node port
+ - Show debug pod example
  - Add instructions for checking pod logs and exec'ing into the container through the dashboard.
  - Show what happens when you change certain set only fields (ports) vs labels or names.
  - Add horizontal pod auto-scaling example - https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
- - Add container request and limit for resources - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
  - Example of assigning pods to a specific node.
- - Add QoS with resource constraints - https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/

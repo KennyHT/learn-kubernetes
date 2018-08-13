@@ -43,7 +43,6 @@ Let's find the `Cluster IP` value of the `api-service`. The Cluster IP is guaran
 
 ### TODO
 
- - File a bug with Docker that the NodePort doesn't work with type LoadBalancer, unless you configure it with type NodePort at some stage.
  - Example with hitting the service from the Docker VM.
  - Example of hitting the service IP address.
  - Example of hitting the service hostname.
