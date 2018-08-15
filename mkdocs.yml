@@ -20,9 +20,9 @@ markdown_extensions:
 
 pages:
 - Home: 'index.md'
-- Setup: '0-setup.md'
-- Namespaces: '1-namespaces.md'
-- Pods: '2-pods.md'
-- Services: '3-services.md'
-- Replicas: '4-replicas.md'
-- Deployments: '5-deployments.md'
+- Setup: 'setup.md'
+- Namespaces: 'namespaces.md'
+- Pods: 'pods.md'
+- Services: 'services.md'
+- Replicas: 'replicas.md'
+- Deployments: 'deployments.md'

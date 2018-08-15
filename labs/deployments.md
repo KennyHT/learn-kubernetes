@@ -65,5 +65,6 @@ Let's take one of the deployment pods out of service.
 
 This will cause Kubernetes to disassociate that pod with the replicaset which in turn, will cause Kubernetes to create a new pod. As this pod is now unmanaged, you can exec into it without fear of it being killed.
 
+<!--
 *TODO*: Add name change as well to make it more obvious which pod was disassociated with the replicaset.
-
+-->

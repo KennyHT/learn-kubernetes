@@ -67,7 +67,7 @@ By default, `kubectl` will execute the command against the first container in th
 
 To specify which Pod you want to access, use the `--container` (or `-c`) option along with the container name:
 
-    kubectl exec -it pod --container kuard sh
+    kubectl exec -it kuard-pod --container kuard sh
     
 Now let's see how Kubernetes reacts to us setting the kuard container to an unhealthy state.
 
@@ -76,10 +76,10 @@ Now let's see how Kubernetes reacts to us setting the kuard container to an unhe
 Then in another terminal:
 
     make event-stream
-    
+
 Or...
 
-    make watch pods
+    make watch-pods
 
 Now let's set go to http://localhost:8080/ and set the health to unhealthy and we'll watch Kubernetes give it a chance to recover, then when it exceeds the unhealthy count threshold, kill the Pod and replace it with another. 
 
@@ -87,9 +87,14 @@ Finally, remove your Pod:
 
     kubectl delete -f objects/pod.yaml
 
+<!--
 ## TODO
 
  - Show debug Pod example
+ - Health and Readiness check
+ - OOM killing
+ - Image pull policy
  - Show what happens when you change certain set only fields (ports) vs labels or names.
  - Add horizontal Pod auto-scaling example - https://kubernetes.io/docs/tasks/run-application/horizontal-Pod-autoscale/
  - Example of assigning Pods to a specific node.
+-->

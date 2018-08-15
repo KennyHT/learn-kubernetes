@@ -26,13 +26,23 @@ To save some time during the class, you can run `make setup` to pull down the tw
 
     make setup
 
-## The watch command
+## System utilities
 
-The watch command allows you to observe the output from running a command every n seconds.
+### watch
+
+The `watch` binary allows you to observe the output from running a command every n seconds.
 
 While kubernetes has a built-in `--watch` flag, I often don't use it as it doesnt't flush the previous output.
 
 To install it with homebrew on the Mac, use `brew install watch`.
+
+### jq
+
+The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
+
+For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool to have lying around, even if you use it to do nothing more than just pretty print JSON in the terminal.
+
+To install it with homebrew on the Mac, use `brew install watch`. 
 
 ## Bash completion for kubectl
 
