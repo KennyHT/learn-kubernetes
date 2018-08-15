@@ -36,7 +36,7 @@
     
     
       
-        <title>Deployments - Learn Kubernetes</title>
+        <title>Replicas - Learn Kubernetes</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#deployments" tabindex="1" class="md-skip">
+      <a href="#replicas-lab" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -105,7 +105,7 @@
                 Learn Kubernetes
               </span>
               <span class="md-header-nav__topic">
-                Deployments
+                Replicas
               </span>
             
           
@@ -188,7 +188,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../0-setup/" title="Setup" class="md-nav__link">
+    <a href="../setup/" title="Setup" class="md-nav__link">
       Setup
     </a>
   </li>
@@ -200,7 +200,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../1-namespaces/" title="Namespaces" class="md-nav__link">
+    <a href="../namespaces/" title="Namespaces" class="md-nav__link">
       Namespaces
     </a>
   </li>
@@ -212,7 +212,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../2-pods/" title="Pods" class="md-nav__link">
+    <a href="../pods/" title="Pods" class="md-nav__link">
       Pods
     </a>
   </li>
@@ -224,20 +224,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../3-services/" title="Services" class="md-nav__link">
+    <a href="../services/" title="Services" class="md-nav__link">
       Services
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../4-replicas/" title="Replicas" class="md-nav__link">
-      Replicas
     </a>
   </li>
 
@@ -257,11 +245,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Deployments
+        Replicas
       </label>
     
-    <a href="./" title="Deployments" class="md-nav__link md-nav__link--active">
-      Deployments
+    <a href="./" title="Replicas" class="md-nav__link md-nav__link--active">
+      Replicas
     </a>
     
       
@@ -275,22 +263,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scale-our-pods-using-deployments" title="Scale our pods using Deployments" class="md-nav__link">
-    Scale our pods using Deployments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-a-new-version-of-our-api-container" title="Deploy a new version of our API container" class="md-nav__link">
-    Deploy a new version of our API container
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Debugging Tip: Isolating a pod or pods from a ReplicaSet" class="md-nav__link">
-    Debugging Tip: Isolating a pod or pods from a ReplicaSet
+  <a href="#code-challenge" title="Code challenge" class="md-nav__link">
+    Code challenge
   </a>
   
 </li>
@@ -303,6 +277,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deployments/" title="Deployments" class="md-nav__link">
+      Deployments
+    </a>
   </li>
 
     
@@ -327,22 +313,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scale-our-pods-using-deployments" title="Scale our pods using Deployments" class="md-nav__link">
-    Scale our pods using Deployments
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-a-new-version-of-our-api-container" title="Deploy a new version of our API container" class="md-nav__link">
-    Deploy a new version of our API container
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Debugging Tip: Isolating a pod or pods from a ReplicaSet" class="md-nav__link">
-    Debugging Tip: Isolating a pod or pods from a ReplicaSet
+  <a href="#code-challenge" title="Code challenge" class="md-nav__link">
+    Code challenge
   </a>
   
 </li>
@@ -364,84 +336,34 @@
               
                 
                 
-                <h1 id="deployments">Deployments<a class="headerlink" href="#deployments" title="Permanent link">&para;</a></h1>
-<p>Create the deployment object:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
+                <h1 id="replicas-lab">Replicas Lab<a class="headerlink" href="#replicas-lab" title="Permanent link">&para;</a></h1>
+<p>This lab is a bit different in that you'll be creating the the <code>api-replicaset.yaml</code> yourself.</p>
+<h2 id="code-challenge">Code challenge<a class="headerlink" href="#code-challenge" title="Permanent link">&para;</a></h2>
+<p>Using the documentation at <em><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank">https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/</a></em>, create a replicaset resource in <code>template/replicaset.yaml</code> that uses the information from the <code>objects/pod.yaml</code> file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).</p>
+<p>For the solution, see the <code>objects/api-replicaset-solution.yaml</code>.</p>
+<p>To deploy:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-replicaset.yaml
 </pre></div>
 </td></tr></table>
 
-<p>Get the state of the deploloyment:</p>
+<p>To verify:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get deployments
-kubectl describe deployment api-deployment
-</pre></div>
-</td></tr></table>
-
-<h2 id="scale-our-pods-using-deployments">Scale our pods using Deployments<a class="headerlink" href="#scale-our-pods-using-deployments" title="Permanent link">&para;</a></h2>
-<p>Update <code>spec.replicas</code> in <code>api-deployments.yaml</code> to be 15, then deploy our changes:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
-</pre></div>
-</td></tr></table>
-
-<p>Then observe the state change to the list of pods every second using the <code>watch</code> command:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>watch -n 1 kubectl get pods
-</pre></div>
-</td></tr></table>
-
-<p>Notice the old pods don't get deleted straight away. This is because of <code>spec.minReadySeconds</code> value of 30 seconds.</p>
-<h2 id="deploy-a-new-version-of-our-api-container">Deploy a new version of our API container<a class="headerlink" href="#deploy-a-new-version-of-our-api-container" title="Permanent link">&para;</a></h2>
-<p>Let's change the data in <code>api/data/users/index.json</code> to change the data served by our API.</p>
-<p>Then lets build a new version of the api container:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make api-build VERSION=2.0
-</pre></div>
-</td></tr></table>
-
-<p>Now update your <code>api-deployments.yaml</code> file, changing the image tag to <code>2.0</code> and adding the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">annotations</span><span class="o">:</span>
-    <span class="n">kubernetes</span><span class="o">.</span><span class="na">io</span><span class="o">/</span> <span class="n">change</span><span class="o">-</span><span class="n">cause</span><span class="o">:</span> <span class="s1">&#39;Data changed in API, updating to 2.0&#39;</span>
-</pre></div>
-</td></tr></table>
-
-<p>Then apply your change:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
-</pre></div>
-</td></tr></table>
-
-<p>Then observe the state change to the list of pods every second using the <code>watch</code> command:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>watch -n 1 kubectl get pods
-</pre></div>
-</td></tr></table>
-
-<p>Observe the deployment history:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment/api-deployment
-</pre></div>
-</td></tr></table>
-
-<h2 id="debugging-tip-isolating-a-pod-or-pods-from-a-replicaset">Debugging Tip: Isolating a pod or pods from a ReplicaSet<a class="headerlink" href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Permanent link">&para;</a></h2>
-<p>If a pod pods begin misbehaving, you may not want it to be killed, as you may want to quarantine it (take it out of service) in order to inspect it figure out what went wrong.</p>
-<p>To do this, you can change or overwrite the labels (depending upon the replicaset label selector).</p>
-<p>Let's take one of the deployment pods out of service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># Get a pod name
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get replicasets
 kubectl get pods
-
-# Take it out of service by changing its label
-# NOTE: Changing the label value is only to disassociate it the
-replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
-
-kubectl label pods api-replicaset-&lt;HASH&gt; --overwrite app=api-quarantined.
 </pre></div>
 </td></tr></table>
 
-<p>This will cause Kubernetes to disassociate that pod with the replicaset which in turn, will cause Kubernetes to create a new pod. As this pod is now unmanaged, you can exec into it without fear of it being killed.</p>
-<p><em>TODO</em>: Add name change as well to make it more obvious which pod was disassociated with the replicaset.</p>
+<p>Notice that the name of the pods is different for those that were created by the ReplicaSet.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x"># TODO: Fix. Not working.</span>
+<span class="x">kubectl get pod api-replicaset-&lt;HASH&gt; --template=&#39;</span><span class="cp">{{</span><span class="o">(</span><span class="nv">index</span> <span class="o">(</span><span class="nv">index</span> <span class="nv">.metadata.annotations</span><span class="o">))</span><span class="cp">}}{{</span><span class="s2">&quot;\n&quot;</span><span class="cp">}}</span><span class="x">&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Clean up now by deleting your replicaset:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete -f objects/api-replicaset.yaml
+</pre></div>
+</td></tr></table>
                 
                   
                 
@@ -462,7 +384,7 @@ kubectl label pods api-replicaset-&lt;HASH&gt; --overwrite app=api-quarantined.
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../4-replicas/" title="Replicas" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../services/" title="Services" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -471,11 +393,25 @@ kubectl label pods api-replicaset-&lt;HASH&gt; --overwrite app=api-quarantined.
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Replicas
+                Services
               </span>
             </div>
           </a>
         
+        
+          <a href="../deployments/" title="Deployments" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deployments
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
