@@ -46,4 +46,4 @@ If you get an error message like `The connection to the server localhost:8080 wa
 
     You can also switch the context by using the Docker toolbar utility.
     
-    <img style="width: 400px" src="/media/img/docker-for-desktop-set-context.jpg" />
+    <img style="width: 400px" src="../media/img/docker-for-desktop-set-context.jpg" />
