@@ -37,10 +37,8 @@ Then we weed to tell `kubectl` to use this `context`.
 Test that it worked:
 
     kubectl get pods
-    
 
 If you get an error message like `The connection to the server localhost:8080 was refused - did you specify the right host or port?`, its probably because the cluster name in your `$HOME/.kube/config` context you created doesn't match any cluster names in your context as the default server address for `kubectl` is `localhost:8080`.
-
 
 !!! note
 
