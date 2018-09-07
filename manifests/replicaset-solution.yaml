@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: kuard-replicaset
-  labels:
-    app: simple-server
 spec:
   replicas: 5
   selector:
@@ -11,37 +9,65 @@ spec:
       app: kuard
   template:
     metadata:
-      name: api
+      name: kuard-pod
       labels:
         app: kuard
+        role: introspection
+        tier: frontend
     spec:
       containers:
-      - name: simple-server
-        imagePullPolicy: IfNotPresent
-        image: rabbitbird/simple-server:1.0
-        ports:
-          - name: app
-            containerPort: 8080
+        - name: kuard
+          imagePullPolicy: IfNotPresent
+          # Tag can be 1, 2 or 3
+          image: gcr.io/kuar-demo/kuard-amd64:1
 
-        #
-        # Readiness Check
-        #
-        # Perhaps the API, while technically healthy, is not yet "ready" to receive
-        # traffic, as it may be downloading data, doing computations etc.
-        readinessProbe:
-          httpGet:
-            path: /api/v1/readiness-check/
-            port: app
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        #
-        # Health Check
-        #
-        livenessProbe:
-          httpGet:
-            path: /api/v1/health-check/
-            port: app
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
-          periodSeconds: 10
-          failureThreshold: 3
+          ports:
+            - name: app
+              containerPort: 8080
+
+          # Environment vars using a ConfigMap
+          # env:
+          #   # This doesn't have to match the key from the ConfigMap
+          #   - name: CONFIG_KEY_1
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: kuard-config
+          #         key: CONFIG_KEY_1
+          #   - name: CONFIG_KEY_2
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: kuard-config
+          #         key: CONFIG_KEY_2
+
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "250m"
+            limits:
+              memory: "400Mi"
+              cpu: "500m"
+
+          # Liveness Check: Is your application alive?
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: app
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 5
+            failureThreshold: 3
+          #
+          # Readiness Check: Is your app ready to serve traffic
+          #
+          # Use this if there is something your container needs to do on
+          # startup (e.g. compute and load large data-set into memory)
+          # before it can be considered ready to receive traffic.
+          #
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: app
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            periodSeconds: 5
+            failureThreshold: 3
