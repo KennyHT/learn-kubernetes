@@ -30,7 +30,11 @@ We'll call the context `learn-k8s` (first positional argument).
 
     kubectl config set-context learn-k8s --cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
 
-Then we weed to tell `kubectl` to use this `context`.
+But this has only created the context. Asking for the pods without specifying a namespace lists the pods for the default namespace.
+
+    kubectl get pods
+
+Let's tell `kubectl` to use our new `learn-k8s context.
 
     kubectl config use-context learn-k8s
 

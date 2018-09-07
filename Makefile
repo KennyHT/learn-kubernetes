@@ -16,16 +16,16 @@ update-kubetail:
 DEBUG_DEPLOYMENT_NAME=debug-shell
 
 debug-container-up:
-	kubectl run $(DEBUG_DEPLOYMENT_NAME) --rm -it --image debian:stretch-slim -- bash
+	kubectl run $(DEBUG_DEPLOYMENT_NAME) --rm -it --image alpine:latest -- sh
 
 debug-container-down:
-	kubectl delete $(DEBUG_DEPLOYMENT_NAME)
+	kubectl delete deployment $(DEBUG_DEPLOYMENT_NAME)
 
 pod-logs:
 	./bin/kubetail $(NAME)
 
 watch-pods:
-	watch -n 1 kubectl get pods -o wide
+	kubectl get pods -o wide --watch
 
 event-stream:
 	kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces
