@@ -36,7 +36,7 @@
     
     
       
-        <title>Replicas - Learn Kubernetes</title>
+        <title>ReplicaSets - Learn Kubernetes</title>
       
     
     
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../#replicas-lab" tabindex="1" class="md-skip">
+      <a href="../#replicasets-lab" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -105,7 +105,7 @@
                 Learn Kubernetes
               </span>
               <span class="md-header-nav__topic">
-                Replicas
+                ReplicaSets
               </span>
             
           
@@ -245,11 +245,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Replicas
+        ReplicaSets
       </label>
     
-    <a href="./" title="Replicas" class="md-nav__link md-nav__link--active">
-      Replicas
+    <a href="./" title="ReplicaSets" class="md-nav__link md-nav__link--active">
+      ReplicaSets
     </a>
     
       
@@ -336,13 +336,14 @@
               
                 
                 
-                <h1 id="replicas-lab">Replicas Lab<a class="headerlink" href="#replicas-lab" title="Permanent link">&para;</a></h1>
-<p>This lab is a bit different in that you'll be creating the the <code>kuard-replicaset.yaml</code> yourself.</p>
+                <h1 id="replicasets-lab">ReplicaSets Lab<a class="headerlink" href="#replicasets-lab" title="Permanent link">&para;</a></h1>
+<p>This lab is a bit different in that you'll be creating the the <code>replicaset.yaml</code> yourself.</p>
 <h2 id="code-challenge">Code challenge<a class="headerlink" href="#code-challenge" title="Permanent link">&para;</a></h2>
 <p>Using the documentation at <em><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank">https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/</a></em>, create a replicaset resource in <code>template/replicaset.yaml</code> that uses the information from the <code>manifests/pod.yaml</code> file. Set the number of replicas to whatever you like (although less than 20 is probably a good idea :).</p>
-<p>For the solution, see the <code>manifests/kuard-replicaset-solution.yaml</code>.</p>
+<p>For the solution, see the <code>manifests/replicaset-solution.yaml</code>.</p>
+<p>We will use the solution with a copy of the <code>manifests/replicaset-solution.yaml</code> renamed to <code>manifests/replicaset.yaml</code> below but use your own <code>replicaset.yam</code> file if you completed the code challenge.</p>
 <p>To deploy:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/kuard-replicaset.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/replicaset.yaml
 </pre></div>
 </td></tr></table>
 
@@ -354,14 +355,14 @@ kubectl get pods
 </td></tr></table>
 
 <p>Notice that the name of the pods is different for those that were created by the ReplicaSet.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x"># TODO: Fix. Not working.</span>
-<span class="x">kubectl get pod kuard-replicaset-&lt;HASH&gt; --template=&#39;</span><span class="cp">{{</span><span class="o">(</span><span class="nv">index</span> <span class="o">(</span><span class="nv">index</span> <span class="nv">.metadata.annotations</span><span class="o">))</span><span class="cp">}}{{</span><span class="s2">&quot;\n&quot;</span><span class="cp">}}</span><span class="x">&#39;</span>
+<p>Notice too that the <code>kuard-service</code> now has multiple endpoints.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe services kuard-service
 </pre></div>
 </td></tr></table>
 
+<p>Replicasets are in that they give us a way to manage multiple Pods, but they have no ability to help us change between one version of Pods to another. That's what deployments are for.</p>
 <p>Clean up now by deleting your replicaset:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete -f manifests/kuard-replicaset.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete -f manifests/replicaset.yaml
 </pre></div>
 </td></tr></table>
                 
