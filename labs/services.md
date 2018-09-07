@@ -20,22 +20,43 @@ Confirm we don't have any pods matching the label the service is querying for:
 
     kubectl get pods kuard-pod
 
-Then open a new terminal window and create the kuard pod.
+We can tell the service doesn't have Pods because there are no endpoints associated with the service.
+
+    kubectl describe service kuard-service
+
+Let's create the kuard Pod again.
 
     kubectl apply -f manifests/pod.yaml
+
+And now, we can see one endpoint.
+
+    kubectl describe service kuard-service
 
 ### Service name by DNS
 
 This must be done through a container running in the same namespace as the service.
 
-Now that we've deployed our API pod, we can get the FQDN.
+Now that we've deployed the kuard Pod, we can get the fully qualified domain name (FQDN).
 
-    debug-container-up
+    make debug-container-up
     nslookup kuard-service
+
+!!! note
+    The output from `nslookup` which says "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS server to perform the lookup against.
+
+Now let's try making a request to the service.
+
+    wget kuard-service -q -O -
+
+What's neat is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.
+
+Exit (to kill) the debug container.
 
 ### The ClusterIP
 
 When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.
+
+Virtual doesn't mean magic through.
 
 Let's find the `Cluster IP` value of the `kuard-service`. The Cluster IP is guaranteed not to change.
 
@@ -44,13 +65,9 @@ Let's find the `Cluster IP` value of the `kuard-service`. The Cluster IP is guar
     
 Let's verify that this is a legit IP address by hitting it from the Docker VM.
 
-    kubectl describe service kuard-service
     make docker-vm-shell
-    ping <ip address>
+    wget <IP> -q -O -
 
-<!--
-### TODO
+No magic and no hidden IP address scheme. Kubernetes is awesome!
 
- - Example of hitting the service hostname.
- - Clarify that "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS to perform the lookup against.
- -->
+Exit out of the Docker VM shell

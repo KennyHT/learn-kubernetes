@@ -20,7 +20,7 @@ Verify it succeeded.
     
 ## The kubectl context
 
-A `context` is just that, a context for what cluster, which user and which namespace should be used for communicating to an API server.
+A `context` is just that, a context for what cluster, which user and which namespace should be used for deploying resources.
 
 You can use contexts for switching between different clusters or even the same cluster but with a different user, different namespace or both.
 
