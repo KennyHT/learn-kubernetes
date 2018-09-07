@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuard-service
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  kuard_mapping
+      prefix: /kuard/
+      service: kuard-service
+spec:
+  selector:
+    app: kuard
+  ports:
+  - name: http
+    port: 80
+    targetPort: app

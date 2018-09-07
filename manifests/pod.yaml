@@ -12,9 +12,25 @@ spec:
     imagePullPolicy: IfNotPresent
     # Tag can be 1, 2 or 3
     image: gcr.io/kuar-demo/kuard-amd64:1
+
     ports:
       - name: app
         containerPort: 8080
+
+    # Environment vars using a ConfigMap
+    # env:
+    #   # This doesn't have to match the key from the ConfigMap
+    #   - name: CONFIG_KEY_1
+    #     valueFrom:
+    #       configMapKeyRef:
+    #         name: kuard-config
+    #         key: CONFIG_KEY_1
+    #   - name: CONFIG_KEY_2
+    #     valueFrom:
+    #       configMapKeyRef:
+    #         name: kuard-config
+    #         key: CONFIG_KEY_2
+
     resources:
       requests:
         memory: "200Mi"
@@ -22,9 +38,8 @@ spec:
       limits:
         memory: "400Mi"
         cpu: "500m"
-    #
+
     # Liveness Check: Is your application alive?
-    #
     livenessProbe:
       httpGet:
         path: /healthy

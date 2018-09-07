@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kuard-config
+data:
+  CONFIG_KEY_1: Value 1
+  CONFIG_KEY_2: Value 2

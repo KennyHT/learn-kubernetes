@@ -12,7 +12,7 @@ From the excellent [Kubernetes Up and Running](https://www.amazon.com/Kubernetes
 
 Deploy our kuard Pod:
 
-    kubectl apply -f objects/pod.yaml
+    kubectl apply -f manifests/pod.yaml
 
 Verify that the container is running in the Pod and is listening on port 8080:
 
@@ -21,13 +21,13 @@ Verify that the container is running in the Pod and is listening on port 8080:
 
 For fun, let's deploy the `kuard-pod` into the `learn-k8s` namespace.
 
-    kubectl apply -f objects/pod.yaml --namespace=learn-k8s
+    kubectl apply -f manifests/pod.yaml --namespace=learn-k8s
 
 No complaints about the Pod having the same name as its in a different namespace. 
 
 Let's now delete it as we'll be using the default namespace for the training for ease of use.
 
-    kubectl delete -f objects/pod.yaml --namespace=learn-k8s
+    kubectl delete -f manifests/pod.yaml --namespace=learn-k8s
     
 For development purposes, often you only need a single Pod exposed. If so, then you can just deploy the Pod and port forward from your host.
 
@@ -85,7 +85,7 @@ Now let's set go to http://localhost:8080/ and set the health to unhealthy and w
 
 Finally, remove your Pod:
 
-    kubectl delete -f objects/pod.yaml
+    kubectl delete -f manifests/pod.yaml
 
 <!--
 ## TODO

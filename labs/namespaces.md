@@ -12,7 +12,7 @@ What objects are in a particular namespace?
 
 Let's create the `learn-k8s` namespace that we'll use at times during this training.
 
-    kubectl apply -f objects/namespace.yaml
+    kubectl apply -f manifests/namespace.yaml
 
 Verify it succeeded.
 

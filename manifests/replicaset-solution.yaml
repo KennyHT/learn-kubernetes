@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: api-replicaset
+  name: kuard-replicaset
   labels:
     app: simple-server
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: api
+      app: kuard
   template:
     metadata:
       name: api
       labels:
-        app: api
+        app: kuard
     spec:
       containers:
       - name: simple-server

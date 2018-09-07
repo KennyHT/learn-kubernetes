@@ -10,7 +10,7 @@ To illustrate the dynamic and loosely coupled design of Kubernetes, we're going 
 
 Create the service:
 
-    kubectl apply -f objects/service.yaml
+    kubectl apply -f manifests/service.yaml
 
 Inspect the service so we can get the randomly assigned ports:
 
@@ -22,7 +22,7 @@ Confirm we don't have any pods matching the label the service is querying for:
 
 Then open a new terminal window and create the kuard pod.
 
-    kubectl apply -f objects/pod.yaml
+    kubectl apply -f manifests/pod.yaml
 
 ### Service name by DNS
 

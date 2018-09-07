@@ -10,6 +10,13 @@ Download and install [Docker for Desktop](https://www.docker.com/products/docker
 
 If you're on Linux, [then this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Kubernetes super star Liz Rice (even though she uses the VM from her Mac) should work like a charm.
 
+## Kubernetes Check
+
+Execute the following commands to check all is well.
+
+    kubectl cluster-info
+    kubectl get nodes
+
 ## Kubectl Proxy
 
 For easy access to services running in your development environment, you can use kubectl proxy.
@@ -40,7 +47,7 @@ To install it with homebrew on the Mac, use `brew install watch`.
 
 The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
 
-For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool to have lying around, even if you use it to do nothing more than just pretty print JSON in the terminal.
+For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
 
 To install it with homebrew on the Mac, use `brew install watch`. 
 

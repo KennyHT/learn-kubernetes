@@ -13,7 +13,6 @@ update-kubetail:
 ##  DEBUG  ##
 #############
 
-NAMESPACE=learn-k8s
 DEBUG_DEPLOYMENT_NAME=debug-shell
 
 debug-container-up:
