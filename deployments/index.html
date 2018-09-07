@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.4">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
     
     
       
@@ -54,8 +54,8 @@
       <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
-      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
@@ -79,7 +79,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#deployments" tabindex="1" class="md-skip">
+      <a href="../#deployments" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -366,20 +366,20 @@
                 
                 <h1 id="deployments">Deployments<a class="headerlink" href="#deployments" title="Permanent link">&para;</a></h1>
 <p>Create the deployment object:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployments.yaml
 </pre></div>
 </td></tr></table>
 
 <p>Get the state of the deploloyment:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get deployments
-kubectl describe deployment api-deployment
+kubectl describe deployment kuard-deployment
 </pre></div>
 </td></tr></table>
 
 <h2 id="scale-our-pods-using-deployments">Scale our pods using Deployments<a class="headerlink" href="#scale-our-pods-using-deployments" title="Permanent link">&para;</a></h2>
-<p>Update <code>spec.replicas</code> in <code>api-deployments.yaml</code> to be 15, then deploy our changes:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
+<p>Update <code>spec.replicas</code> in <code>deployments.yaml</code> to be 15, then deploy our changes:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployments.yaml
 </pre></div>
 </td></tr></table>
 
@@ -392,11 +392,11 @@ kubectl describe deployment api-deployment
 <h2 id="deploy-a-new-version-of-our-api-container">Deploy a new version of our API container<a class="headerlink" href="#deploy-a-new-version-of-our-api-container" title="Permanent link">&para;</a></h2>
 <p>Let's change the data in <code>api/data/users/index.json</code> to change the data served by our API.</p>
 <p>Then lets build a new version of the api container:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make api-build VERSION=2.0
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make kuard-build VERSION=2.0
 </pre></div>
 </td></tr></table>
 
-<p>Now update your <code>api-deployments.yaml</code> file, changing the image tag to <code>2.0</code> and adding the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
+<p>Now update your <code>deployments.yaml</code> file, changing the image tag to <code>2.0</code> and adding the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">annotations</span><span class="o">:</span>
     <span class="n">kubernetes</span><span class="o">.</span><span class="na">io</span><span class="o">/</span> <span class="n">change</span><span class="o">-</span><span class="n">cause</span><span class="o">:</span> <span class="s1">&#39;Data changed in API, updating to 2.0&#39;</span>
@@ -404,7 +404,7 @@ kubectl describe deployment api-deployment
 </td></tr></table>
 
 <p>Then apply your change:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f objects/api-deployments.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployments.yaml
 </pre></div>
 </td></tr></table>
 
@@ -414,7 +414,7 @@ kubectl describe deployment api-deployment
 </td></tr></table>
 
 <p>Observe the deployment history:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment/api-deployment
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment/kuard-deployment
 </pre></div>
 </td></tr></table>
 
@@ -436,7 +436,7 @@ kubectl get pods
 # NOTE: Changing the label value is only to disassociate it the
 replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
 
-kubectl label pods api-replicaset-&lt;HASH&gt; --overwrite app=api-quarantined.
+kubectl label pods kuard-replicaset-&lt;HASH&gt; --overwrite app=kuard-quarantined.
 </pre></div>
 </td></tr></table>
 
@@ -501,9 +501,9 @@ kubectl label pods api-replicaset-&lt;HASH&gt; --overwrite app=api-quarantined.
       
     </div>
     
-      <script src="../assets/javascripts/application.30f6b8b1.js"></script>
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
       
-      <script>app.initialize({version:"0.17.5",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
       
     
     

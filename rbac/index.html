@@ -1,0 +1,526 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>RBAC - Learn Kubernetes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="blue-grey">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#rbac" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Learn Kubernetes" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">chrome_reader_mode</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Learn Kubernetes
+              </span>
+              <span class="md-header-nav__topic">
+                RBAC
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Learn Kubernetes" class="md-nav__button md-logo">
+      
+        <i class="md-icon">chrome_reader_mode</i>
+      
+    </a>
+    Learn Kubernetes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../setup/" title="Setup" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../namespaces/" title="Namespaces" class="md-nav__link">
+      Namespaces
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../pods/" title="Pods" class="md-nav__link">
+      Pods
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../services/" title="Services" class="md-nav__link">
+      Services
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../replicas/" title="Replicas" class="md-nav__link">
+      Replicas
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deployments/" title="Deployments" class="md-nav__link">
+      Deployments
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authorization" title="Authorization" class="md-nav__link">
+    Authorization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-backup-your-current-config" title="Step 1. Backup your current config" class="md-nav__link">
+    Step 1. Backup your current config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-get-the-token-from-the-default-token-secret" title="Step 2. Get the token from the default-token secret." class="md-nav__link">
+    Step 2. Get the token from the default-token secret.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment-1-authentication-via-the-token-flag" title="Experiment 1. Authentication via the --token flag" class="md-nav__link">
+    Experiment 1. Authentication via the --token flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment-2-hit-the-kubernetes-api-directly-no-kubectl" title="Experiment 2. Hit the Kubernetes API directly (no kubectl)" class="md-nav__link">
+    Experiment 2. Hit the Kubernetes API directly (no kubectl)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment-3-lets-create-a-new-user-for-our-kubectl-config" title="Experiment 3. Let's create a new user for our kubectl config." class="md-nav__link">
+    Experiment 3. Let's create a new user for our kubectl config.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" title="Access" class="md-nav__link">
+    Access
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" title="Auditing" class="md-nav__link">
+    Auditing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-cluster-roles" title="Roles and Cluster Roles" class="md-nav__link">
+    Roles and Cluster Roles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binding-roles-to-users-and-groups" title="Binding Roles to Users and Groups" class="md-nav__link">
+    Binding Roles to Users and Groups
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="rbac">RBAC<a class="headerlink" href="#rbac" title="Permanent link">&para;</a></h1>
+<p>Role-Based Access Control controls access to the Kubernetes API and restricts what objects in what namespaces an authenticated user is authorizd to access.</p>
+<p><code>RBAC</code> has been GA in Kubernetes since 1.8 (late 2017) so most Kubernetes installs now enable it out of the box which is great!</p>
+<p>RBAC is a big topic and let's start off bu looking at the three A's - Authorization, Access, and Auditing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Authentication and Authorization is a HUGE topic and we can't hope to cover it all in one lab.</p>
+<p>What we do want to do, is deviate from the defaults that are setup to expose you to the options that you have.</p>
+<p>This is because when it comes time to access Kubernetes clusters in live environments, your <code>.kube/config</code> file for <code>kubectl</code> won't be setup for you.</p>
+</div>
+<h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Is <code>kubectl</code> able to make a request?</p>
+<p>Using <code>Docker for Desktop</code> as an example, let's take a look at our <code>kubectl</code> config file at <code>$HOME/.kube/config</code>.</p>
+<p>Taking a look under the <code>users</code> key, we can see that a user called <code>docker-for-desktop</code> using <a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs" target="_blank">X509 Client Certs</a> as the authentication method.</p>
+<p>This is not the only game in town, with Tokens and Authentication proxies being others (<a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/" target="_blank">more info here</a>).</p>
+<h2 id="step-1-backup-your-current-config">Step 1. Backup your current config<a class="headerlink" href="#step-1-backup-your-current-config" title="Permanent link">&para;</a></h2>
+<p>Copy and paste your current <code>$HOME/.kube/config</code> file as <code>$HOME/.kube/config.bak</code> in case you break something.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you happen to completely break your <code>kubectl</code> configuration and did not take a back-up, Docker for Desktop has you covered.</p>
+<p>Just reset your Kubernentes cluster back to its original settings by going to Docker &gt; Preferences/Settings &gt; Reset and click the <code>Reset Kubernetes cluster</code> button.</p>
+<p>This will also reset your `$HOME/.kube/config, restoring your original certificate authenication config in the process.</p>
+</div>
+<h2 id="step-2-get-the-token-from-the-default-token-secret">Step 2. Get the token from the <code>default-token</code> secret.<a class="headerlink" href="#step-2-get-the-token-from-the-default-token-secret" title="Permanent link">&para;</a></h2>
+<p>Let's get a service account token by using <code>kubectl</code> to access the <code>.data.token</code> value of the <code>default-token</code> key.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># Extract just the token name
+DEFAULT_TOKEN_NAME=$(kubectl get secrets --namespace=kube-system | grep default-token | awk &#39;{print $1}&#39;)
+
+# Get the default token value from the secret and base64 decode it
+# Note: `KUBE_AUTH_TOKEN` is our name and does not mean anything to `kubectl`.
+KUBE_AUTH_TOKEN=$(kubectl get secret --namespace=kube-system <span class="cp">${</span><span class="n">DEFAULT_TOKEN_NAME</span><span class="cp">}</span> --template=&#39;{{.data.token}}&#39; | base64 -D)
+</pre></div>
+</td></tr></table>
+
+<p>Now it's time to experiment with our token and talking to the API server.</p>
+<h2 id="experiment-1-authentication-via-the-token-flag">Experiment 1. Authentication via the <code>--token</code> flag<a class="headerlink" href="#experiment-1-authentication-via-the-token-flag" title="Permanent link">&para;</a></h2>
+<p>We have the option of overriding the default user for our current context by using the <code>--token</code> flag.</p>
+<p>First, let's observe authentication failing if we pass in an invalid token.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get nodes --token=123
+</pre></div>
+</td></tr></table>
+
+<p>You should've gotten an error like <code>error: You must be logged in to the server (Unauthorized).</code>.</p>
+<p>Now let's try it out using our legit token.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get nodes --token=<span class="cp">${</span><span class="n">KUBE_AUTH_TOKEN</span><span class="cp">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Success!</p>
+<h2 id="experiment-2-hit-the-kubernetes-api-directly-no-kubectl">Experiment 2. Hit the Kubernetes API directly (no kubectl)<a class="headerlink" href="#experiment-2-hit-the-kubernetes-api-directly-no-kubectl" title="Permanent link">&para;</a></h2>
+<p>Let's hit the <code>/version</code> and <code>/metrics</code>endpoints for the API Server using our token.</p>
+<p>We need to know the API server endpoint which we can get from our <code>$HOME/.kube/config</code> and the <code>clusters &gt; cluster &gt; server</code> value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We'll be using the <code>--insecure</code> flag because the SSL certificate installed is a self-signed certificate.</p>
+</div>
+<p>First, let's make sure it fails without the token.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl --insecure -H &quot;Authorization: Bearer ABC123&quot; https://localhost:6443/version
+</pre></div>
+</td></tr></table>
+
+<p>And now with the token.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># Version
+curl --insecure -H &quot;Authorization: Bearer <span class="cp">${</span><span class="n">KUBE_AUTH_TOKEN</span><span class="cp">}</span>&quot; https://localhost:6443/version
+
+# Metrics
+curl --insecure -H &quot;Authorization: Bearer <span class="cp">${</span><span class="n">KUBE_AUTH_TOKEN</span><span class="cp">}</span>&quot; https://localhost:6443/metrics
+</pre></div>
+</td></tr></table>
+
+<h2 id="experiment-3-lets-create-a-new-user-for-our-kubectl-config">Experiment 3. Let's create a new user for our <code>kubectl</code> config.<a class="headerlink" href="#experiment-3-lets-create-a-new-user-for-our-kubectl-config" title="Permanent link">&para;</a></h2>
+<p>Now let's create a new user called <code>jack-sparrow</code> and we'll make him belong to a new context .</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl config set-credentials jack-sparrow --token=<span class="cp">${</span><span class="n">DEFAULT_TOKEN</span><span class="cp">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>If we want to use our current context but override the current user (<code>docker-for-desktop</code>), then we can pass <code>kubectl</code> the <code>--user</code> flag.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># Fail with non-existent user
+kubectl get nodes --user black-beard
+
+# Success with jack
+kubectl get nodes --user jack-sparrow
+</pre></div>
+</td></tr></table>
+
+<p>We can go one step further and create a new context called <code>pirate</code> that will target the <code>docker-for-desktop</code> node, but using our <code>jack-sparrow</code> user and the <code>learn-k8s</code> namespace.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl config set-context pirate -cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
+</pre></div>
+</td></tr></table>
+
+<h3 id="access">Access<a class="headerlink" href="#access" title="Permanent link">&para;</a></h3>
+<p>Does the authenticated user have the permissions required to access and perform the required task against the reqeusted resource?</p>
+<p>TODO CONTENT.</p>
+<h3 id="auditing">Auditing<a class="headerlink" href="#auditing" title="Permanent link">&para;</a></h3>
+<p>Record an audit trail of who did what.</p>
+<p>TODO CONTENT.</p>
+<h2 id="roles-and-cluster-roles">Roles and Cluster Roles<a class="headerlink" href="#roles-and-cluster-roles" title="Permanent link">&para;</a></h2>
+<h2 id="binding-roles-to-users-and-groups">Binding Roles to Users and Groups<a class="headerlink" href="#binding-roles-to-users-and-groups" title="Permanent link">&para;</a></h2>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
