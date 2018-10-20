@@ -1,18 +1,33 @@
 # Development Environment Setup
 
-These instructions are currently for MacOS users with [homebrew](https://brew.sh/) installed. Linux users will be able to easily get the same results while Windows 10 users will have to use a Linux VM or the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-
-Windows users are encouraged to install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-
 ## Docker for Desktop
 
-Download and install [Docker for Desktop](https://www.docker.com/products/docker-desktop).
+I recommend using Docker for Desktop for local development on macOS and Windows.
 
-If you're on Linux, [then this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Kubernetes super star Liz Rice (even though she uses the VM from her Mac) should work like a charm.
+- [macOS](https://download.docker.com/mac/edge/Docker.dmg)
+- [Windows 10](https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe)
+
+!!! note
+
+    Docker for Desktop also installs and configures `kubectl`, CLI that communicates with the Kubernetes cluster.
+
+!!! warning
+
+    Docker for Desktop on Windows uses Hyper-V which means it is incompatible with other Hypervisors. I recommend enabling Hyper-V just for the course, then evaluate how you will run a local cluster after. 
+
+    If that's not possible, [Minikube](https://kubernetes.io/docs/setup/minikube/) if your best option.
+
+Once Docker for Desktop is running, you need to enable Kubernetes by accessing the Preferences/Settings screen, select the *Kubernetes* tab, check the *Enable Kubernetes* checkbox, then click apply.
+
+<img alt="" src="/media/img/enable-kubernetes.png" width="480" />
+
+### Linux or Linux VM users
+
+[Minikube](https://kubernetes.io/docs/setup/minikube/) or [this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Liz Rice is recommended.
 
 ## Kubernetes Check
 
-Execute the following commands to check all is well.
+Execute the following commands to check `kubectl` can communicate with your cluster.
 
     kubectl cluster-info
     kubectl get nodes
@@ -35,21 +50,21 @@ To save some time during the class, you can run `make setup` to pull down the tw
 
 ## System utilities
 
+### make
+
+Windows users can download Make from https://tinyurl.com/make381exe. Once installed, add the folder containing the Make.exe binary to your %PATH.
+
 ### watch
 
 The `watch` binary allows you to observe the output from running a command every n seconds.
 
 While kubernetes has a built-in `--watch` flag, I often don't use it as it doesnt't flush the previous output.
 
-To install it with homebrew on the Mac, use `brew install watch`.
-
 ### jq
 
 The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
 
 For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
-
-To install it with homebrew on the Mac, use `brew install watch`. 
 
 ## Bash completion for kubectl
 

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: kuard
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: kuard
@@ -22,7 +22,7 @@ spec:
       labels:
         app: kuard
       annotations:
-        kubernetes.io/change-cause: 'Initial deploy to version 1.'
+        kubernetes.io/change-cause: 'Rolled back to version 1.'
     spec:
       containers:
         - name: kuard

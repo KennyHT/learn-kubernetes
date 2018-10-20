@@ -25,15 +25,20 @@ pod-logs:
 	./bin/kubetail $(NAME)
 
 watch-pods:
-	kubectl get pods -o wide --watch
+	watch kubectl get pods -o wide --all-namespaces
 
 event-stream:
 	kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces
 
+##########################
+##  Docker for Desktop  ##
+##########################
+
 docker-vm-shell:
 	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh
 
-
+portainer:
+	docker container run -p 9000:9000 --rm -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer:latest --no-auth
 
 ############################
 ##  Kubernetes Dashboard  ##
@@ -56,12 +61,12 @@ k8s-dashboard-down:
 #
 # Site deployed at https://ryan-blunden.github.io/learn-kubernetes/
 
-DOCS_IMAGE_NAME=rabbitbird/mkdocs
-DOCS_PORT=8000
+DOCS_IMAGE_NAME=ryanblunden/mkdocs
+DOCS_PORT=9000
 DOCS_VERSION=latest
 
 site-server:
-	docker container run --rm -v "$(CURDIR)":/usr/src/app -p $(DOCS_PORT):$(DOCS_PORT) $(DOCS_IMAGE_NAME):$(DOCS_VERSION)
+	docker container run --rm -v "$(CURDIR)":/usr/src/app -p $(DOCS_PORT):8000 $(DOCS_IMAGE_NAME):$(DOCS_VERSION)
 
 site-build:
 	docker container run --rm -v "$(CURDIR)":/usr/src/app $(DOCS_IMAGE_NAME):$(DOCS_VERSION) mkdocs build --clean --strict

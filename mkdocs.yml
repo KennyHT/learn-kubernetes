@@ -5,24 +5,27 @@ docs_dir: labs
 theme:
   name: material
   palette:
-    primary: 'blue grey'
-    accent: 'blue grey'
+    primary: 'indigo'
+    accent: 'indigo'
   logo:
-    icon: 'chrome_reader_mode'
+    icon: 'class'
 
 markdown_extensions:
     - toc:
         permalink: true
     - admonition:
-    - markdown_newtab:
     - codehilite:
         linenums: true
 
 nav:
-- Home: 'index.md'
-- Setup: 'setup.md'
-- Namespaces: 'namespaces.md'
-- Pods: 'pods.md'
-- Services: 'services.md'
-- ReplicaSets: 'replicasets.md'
-- Deployments: 'deployments.md'
+- Home: index.md
+- Setup: setup.md
+- Deploying Declarively: deploying-declaratively.md
+- Reconciliation Loop Testing: reconciliation-loop-testing.md
+- Namespaces: namespaces.md
+- Pods: pods.md
+- ConfigMaps: configmaps.md
+- Secrets: secrets.md
+- Services: services.md
+- ReplicaSets: replicasets.md
+- Deployments: deployments.md
