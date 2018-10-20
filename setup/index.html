@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
     
     
       
@@ -47,7 +47,7 @@
       
         
         
-        <meta name="theme-color" content="#546e7a">
+        <meta name="theme-color" content="#3f51b5">
       
     
     
@@ -67,7 +67,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="blue-grey">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -90,7 +90,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href=".." title="Learn Kubernetes" class="md-header-nav__button md-logo">
           
-            <i class="md-icon">chrome_reader_mode</i>
+            <i class="md-icon">class</i>
           
         </a>
       </div>
@@ -162,7 +162,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href=".." title="Learn Kubernetes" class="md-nav__button md-logo">
       
-        <i class="md-icon">chrome_reader_mode</i>
+        <i class="md-icon">class</i>
       
     </a>
     Learn Kubernetes
@@ -219,6 +219,19 @@
     Docker for Desktop
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-or-linux-vm-users" title="Linux or Linux VM users" class="md-nav__link">
+    Linux or Linux VM users
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -249,6 +262,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make" title="make" class="md-nav__link">
+    make
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#watch" title="watch" class="md-nav__link">
@@ -293,6 +313,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../deploying-declaratively/" title="Deploying Declarively" class="md-nav__link">
+      Deploying Declarively
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../reconciliation-loop-testing/" title="Reconciliation Loop Testing" class="md-nav__link">
+      Reconciliation Loop Testing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../namespaces/" title="Namespaces" class="md-nav__link">
       Namespaces
     </a>
@@ -307,6 +351,30 @@
   <li class="md-nav__item">
     <a href="../pods/" title="Pods" class="md-nav__link">
       Pods
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configmaps/" title="ConfigMaps" class="md-nav__link">
+      ConfigMaps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../secrets/" title="Secrets" class="md-nav__link">
+      Secrets
     </a>
   </li>
 
@@ -372,6 +440,19 @@
     Docker for Desktop
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-or-linux-vm-users" title="Linux or Linux VM users" class="md-nav__link">
+    Linux or Linux VM users
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -402,6 +483,13 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make" title="make" class="md-nav__link">
+    make
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#watch" title="watch" class="md-nav__link">
@@ -447,13 +535,27 @@
                 
                 
                 <h1 id="development-environment-setup">Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Permanent link">&para;</a></h1>
-<p>These instructions are currently for MacOS users with <a href="https://brew.sh/" target="_blank">homebrew</a> installed. Linux users will be able to easily get the same results while Windows 10 users will have to use a Linux VM or the <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">Windows Subsystem for Linux</a>.</p>
-<p>Windows users are encouraged to install the <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">Windows Subsystem for Linux</a>.</p>
 <h2 id="docker-for-desktop">Docker for Desktop<a class="headerlink" href="#docker-for-desktop" title="Permanent link">&para;</a></h2>
-<p>Download and install <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker for Desktop</a>.</p>
-<p>If you're on Linux, <a href="https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63" target="_blank">then this guide using kubeadm</a> by Kubernetes super star Liz Rice (even though she uses the VM from her Mac) should work like a charm.</p>
+<p>I recommend using Docker for Desktop for local development on macOS and Windows.</p>
+<ul>
+<li><a href="https://download.docker.com/mac/edge/Docker.dmg">macOS</a></li>
+<li><a href="https://download.docker.com/win/edge/Docker%20for%20Windows%20Installer.exe">Windows 10</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Docker for Desktop also installs and configures <code>kubectl</code>, CLI that communicates with the Kubernetes cluster.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Docker for Desktop on Windows uses Hyper-V which means it is incompatible with other Hypervisors. I recommend enabling Hyper-V just for the course, then evaluate how you will run a local cluster after. </p>
+<p>If that's not possible, <a href="https://kubernetes.io/docs/setup/minikube/">Minikube</a> if your best option.</p>
+</div>
+<p>Once Docker for Desktop is running, you need to enable Kubernetes by accessing the Preferences/Settings screen, select the <em>Kubernetes</em> tab, check the <em>Enable Kubernetes</em> checkbox, then click apply.</p>
+<p><img alt="" src="/media/img/enable-kubernetes.png" width="480" /></p>
+<h3 id="linux-or-linux-vm-users">Linux or Linux VM users<a class="headerlink" href="#linux-or-linux-vm-users" title="Permanent link">&para;</a></h3>
+<p><a href="https://kubernetes.io/docs/setup/minikube/">Minikube</a> or <a href="https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63">this guide using kubeadm</a> by Liz Rice is recommended.</p>
 <h2 id="kubernetes-check">Kubernetes Check<a class="headerlink" href="#kubernetes-check" title="Permanent link">&para;</a></h2>
-<p>Execute the following commands to check all is well.</p>
+<p>Execute the following commands to check <code>kubectl</code> can communicate with your cluster.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl cluster-info
 kubectl get nodes
@@ -467,7 +569,7 @@ kubectl get nodes
 </td></tr></table>
 
 <p>You can now access services throgh the tunnel exposed on localhost port 8001.</p>
-<p>See <a href="https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls" target="_blank">this page from the Kubernetes docs</a> for learning how to manually construct links to your services.</p>
+<p>See <a href="https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls">this page from the Kubernetes docs</a> for learning how to manually construct links to your services.</p>
 <h2 id="required-images">Required images<a class="headerlink" href="#required-images" title="Permanent link">&para;</a></h2>
 <p>To save some time during the class, you can run <code>make setup</code> to pull down the two required images for these labs.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make setup
@@ -475,14 +577,14 @@ kubectl get nodes
 </td></tr></table>
 
 <h2 id="system-utilities">System utilities<a class="headerlink" href="#system-utilities" title="Permanent link">&para;</a></h2>
+<h3 id="make">make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
+<p>Windows users can download Make from https://tinyurl.com/make381exe. Once installed, add the folder containing the Make.exe binary to your %PATH.</p>
 <h3 id="watch">watch<a class="headerlink" href="#watch" title="Permanent link">&para;</a></h3>
 <p>The <code>watch</code> binary allows you to observe the output from running a command every n seconds.</p>
 <p>While kubernetes has a built-in <code>--watch</code> flag, I often don't use it as it doesnt't flush the previous output.</p>
-<p>To install it with homebrew on the Mac, use <code>brew install watch</code>.</p>
 <h3 id="jq">jq<a class="headerlink" href="#jq" title="Permanent link">&para;</a></h3>
 <p>The <code>jq</code> binary allows us to nicely format, search and extract data from JSON on the commandline. </p>
 <p>For a lot of Kubernetes commands, we'll be using the <code>--template</code> flag which uses <code>golang</code> template syntax but <code>jq</code> is in general, a very useful tool, even if all you use it for is to pretty print JSON.</p>
-<p>To install it with homebrew on the Mac, use <code>brew install watch</code>. </p>
 <h2 id="bash-completion-for-kubectl">Bash completion for kubectl<a class="headerlink" href="#bash-completion-for-kubectl" title="Permanent link">&para;</a></h2>
 <p>The kubectl CLI is huge and the completion functionality will help save time and help you learn.</p>
 <p>For this to work, you need <code>bash-completion</code> installed by homebrew by running:</p>
@@ -491,12 +593,12 @@ kubectl get nodes
 </td></tr></table>
 
 <p>Then add this to your ~/.bash_profile:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ -f /usr/local/etc/bash_completion ] &amp;&amp; . /usr/local/etc/bash_completion
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[ -f /usr/local/etc/bash_completion ] &amp;amp;&amp;amp; . /usr/local/etc/bash_completion
 </pre></div>
 </td></tr></table>
 
 <p>Then install the completion for kubectl.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl completion bash &gt; $(brew --prefix)/etc/bash_completion.d/kubectl
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl completion bash &amp;gt; $(brew --prefix)/etc/bash_completion.d/kubectl
 </pre></div>
 </td></tr></table>
                 
@@ -534,13 +636,13 @@ kubectl get nodes
           </a>
         
         
-          <a href="../namespaces/" title="Namespaces" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../deploying-declaratively/" title="Deploying Declarively" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Namespaces
+                Deploying Declarively
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -572,7 +674,7 @@ kubectl get nodes
     
       <script src="../assets/javascripts/application.583bbe55.js"></script>
       
-      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
     
     

@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
     
     
       
@@ -47,7 +47,7 @@
       
         
         
-        <meta name="theme-color" content="#546e7a">
+        <meta name="theme-color" content="#3f51b5">
       
     
     
@@ -67,7 +67,7 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="blue-grey">
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -90,7 +90,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href=".." title="Learn Kubernetes" class="md-header-nav__button md-logo">
           
-            <i class="md-icon">chrome_reader_mode</i>
+            <i class="md-icon">class</i>
           
         </a>
       </div>
@@ -162,7 +162,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href=".." title="Learn Kubernetes" class="md-nav__button md-logo">
       
-        <i class="md-icon">chrome_reader_mode</i>
+        <i class="md-icon">class</i>
       
     </a>
     Learn Kubernetes
@@ -190,6 +190,30 @@
   <li class="md-nav__item">
     <a href="../setup/" title="Setup" class="md-nav__link">
       Setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deploying-declaratively/" title="Deploying Declarively" class="md-nav__link">
+      Deploying Declarively
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../reconciliation-loop-testing/" title="Reconciliation Loop Testing" class="md-nav__link">
+      Reconciliation Loop Testing
     </a>
   </li>
 
@@ -274,6 +298,30 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configmaps/" title="ConfigMaps" class="md-nav__link">
+      ConfigMaps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../secrets/" title="Secrets" class="md-nav__link">
+      Secrets
+    </a>
   </li>
 
     
@@ -381,9 +429,9 @@
                 <h1 id="pods-lab">Pods Lab<a class="headerlink" href="#pods-lab" title="Permanent link">&para;</a></h1>
 <p>In this lab, we will deploy a Pod, the unit of compute to our Kubernetes cluster.</p>
 <p>You will notice that we <strong>always</strong> use the declarative form for changing the state of our Kubernetes cluster and I strongly encourage you to always do the same.</p>
-<p>See the page on <a href="https://kubernetes.io/docs/concepts/overview/object-management-kubectl/declarative-config/" target="_blank">Object Management using kubetcl</a> for more info.</p>
+<p>See the page on <a href="https://kubernetes.io/docs/concepts/overview/object-management-kubectl/declarative-config/">Object Management using kubetcl</a> for more info.</p>
 <h2 id="introducing-the-kubernetes-up-and-running-demo-kuard-pod">Introducing the Kubernetes Up and Running Demo (kuard) Pod<a class="headerlink" href="#introducing-the-kubernetes-up-and-running-demo-kuard-pod" title="Permanent link">&para;</a></h2>
-<p>From the excellent <a href="https://www.amazon.com/Kubernetes-Running-Dive-Future-Infrastructure/dp/1491935677" target="_blank">Kubernetes Up and Running</a> book, we're going to use this container to demonstrate many of Kubernetes Pod management features.</p>
+<p>From the excellent <a href="https://www.amazon.com/Kubernetes-Running-Dive-Future-Infrastructure/dp/1491935677">Kubernetes Up and Running</a> book, we're going to use this container to demonstrate many of Kubernetes Pod management features.</p>
 <p>Deploy our kuard Pod:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/pod.yaml
 </pre></div>
@@ -392,7 +440,7 @@
 <p>Verify that the container is running in the Pod and is listening on port 8080:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">kubectl get pods kuard-pod --template=&#39;</span><span class="cp">{{</span><span class="o">(</span><span class="nv">index</span> <span class="o">(</span><span class="nv">index</span> <span class="nv">.spec.containers</span> <span class="m">0</span><span class="o">)</span><span class="nv">.ports</span> <span class="m">0</span><span class="o">)</span><span class="nv">.containerPort</span><span class="cp">}}{{</span><span class="s2">&quot;\n&quot;</span><span class="cp">}}</span><span class="x">&#39;</span>
-<span class="x"># &gt;&gt;&gt; 8080</span>
+<span class="x"># &amp;gt;&amp;gt;&amp;gt; 8080</span>
 </pre></div>
 </td></tr></table>
 
@@ -487,7 +535,7 @@ kubectl get pods kuard-pod -o json | jq
 </td></tr></table>
 
 <p>Now let's try hitting the Pod directly using its IP address.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget &lt;IP&gt;:8080 -q -O -
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget &amp;lt;IP&amp;gt;:8080 -q -O -
 </pre></div>
 </td></tr></table>
 
@@ -550,13 +598,13 @@ kubectl get pods kuard-pod -o json | jq
           </a>
         
         
-          <a href="../services/" title="Services" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../configmaps/" title="ConfigMaps" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Services
+                ConfigMaps
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -588,7 +636,7 @@ kubectl get pods kuard-pod -o json | jq
     
       <script src="../assets/javascripts/application.583bbe55.js"></script>
       
-      <script>app.initialize({version:"1.0.3",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
     
     
