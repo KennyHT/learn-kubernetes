@@ -50,9 +50,13 @@ To save some time during the class, you can run `make setup` to pull down the tw
 
 ## System utilities
 
+### kubectl
+
+This should have been installed by Docker for Desktop or Minikube. See the [kubectl installation instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) if it is not installed.
+
 ### make
 
-Windows users can download Make from https://tinyurl.com/make381exe. Once installed, add the folder containing the Make.exe binary to your %PATH.
+Windows users can [download Make from Sourceforge](https://sourceforge.net/projects/gnuwin32/files/make/3.81/). Once installed, add the folder containing the Make.exe binary to your %PATH.
 
 ### watch
 
@@ -65,6 +69,7 @@ While kubernetes has a built-in `--watch` flag, I often don't use it as it doesn
 The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
 
 For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
+
 
 ## Bash completion for kubectl
 

@@ -17,6 +17,22 @@ spec:
       - name: app
         containerPort: 8080
 
+    env:
+       # Map keys for flexibility
+       - name: DB_HOST
+         valueFrom:
+           configMapKeyRef:
+             name: db-config
+             key: HOST
+       - name: DB_NAME
+         valueFrom:
+           configMapKeyRef:
+             name: db-config
+             key: NAME
+    envFrom:
+         - configMapRef:
+             name: app-config
+
     resources:
       requests:
         memory: "200Mi"

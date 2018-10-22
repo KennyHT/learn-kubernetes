@@ -12,7 +12,7 @@ We're going to install it as an example of how we deploy things declaritively in
 
 ## Step 1. Install it
 
-We’re use the kubectl (Kube Control) CLI tool to install a bunch of objects in the kube-system namespace.
+We’re use the `kubectl` (Kube Control) CLI tool to install a bunch of objects in the kube-system namespace.
 
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
