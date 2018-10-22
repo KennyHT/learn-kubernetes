@@ -256,9 +256,66 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ConfigMaps
+      </label>
+    
     <a href="./" title="ConfigMaps" class="md-nav__link md-nav__link--active">
       ConfigMaps
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-configmap" title="Anatomy of a ConfigMap" class="md-nav__link">
+    Anatomy of a ConfigMap
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declarative-configmaps" title="Declarative ConfigMaps" class="md-nav__link">
+    Declarative ConfigMaps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-configmap-keys-to-pod-environment-files" title="Mapping ConfigMap keys to Pod environment files" class="md-nav__link">
+    Mapping ConfigMap keys to Pod environment files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pods-needs-a-valid-configmap-to-exist-ahead-of-time" title="Pods needs a valid ConfigMap to exist ahead of time" class="md-nav__link">
+    Pods needs a valid ConfigMap to exist ahead of time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-our-pod-has-expected-environment-variables" title="Verifying our Pod has expected environment variables" class="md-nav__link">
+    Verifying our Pod has expected environment variables
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -328,6 +385,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-configmap" title="Anatomy of a ConfigMap" class="md-nav__link">
+    Anatomy of a ConfigMap
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declarative-configmaps" title="Declarative ConfigMaps" class="md-nav__link">
+    Declarative ConfigMaps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapping-configmap-keys-to-pod-environment-files" title="Mapping ConfigMap keys to Pod environment files" class="md-nav__link">
+    Mapping ConfigMap keys to Pod environment files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pods-needs-a-valid-configmap-to-exist-ahead-of-time" title="Pods needs a valid ConfigMap to exist ahead of time" class="md-nav__link">
+    Pods needs a valid ConfigMap to exist ahead of time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-our-pod-has-expected-environment-variables" title="Verifying our Pod has expected environment variables" class="md-nav__link">
+    Verifying our Pod has expected environment variables
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -340,6 +441,70 @@
                 
                 
                 <h1 id="configmaps">ConfigMaps<a class="headerlink" href="#configmaps" title="Permanent link">&para;</a></h1>
+<p>These  <code>kubectl create configmap</code> can create ConfigMaps from directories, files, or literal values.</p>
+<p>This lab is going to focus on the most common use of ConfigMaps which is literal values mapping to environment files.</p>
+<p>See the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">Configure a Pod to Use a ConfigMap</a> page from the Kubernetes docs to see other examples.</p>
+<h2 id="anatomy-of-a-configmap">Anatomy of a ConfigMap<a class="headerlink" href="#anatomy-of-a-configmap" title="Permanent link">&para;</a></h2>
+<p>A ConfigMap is a collection of key-value pairs, known as its data-source.</p>
+<p>To illustrate this, let's create a ConfigMap from literal values.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create configmap db-config --from-literal=HOST=db.acmecorp.com --from-literal=NAME=users
+</pre></div>
+</td></tr></table>
+
+<p>Now let's get the ConfigMap contents.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get configmap db-config -o yaml
+</pre></div>
+</td></tr></table>
+
+<p>You can see each key-value pair passed in on its own line in the <code>data</code> section.</p>
+<p>Remove the ConfigMap before continuing.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete configmap db-config
+</pre></div>
+</td></tr></table>
+
+<h2 id="declarative-configmaps">Declarative ConfigMaps<a class="headerlink" href="#declarative-configmaps" title="Permanent link">&para;</a></h2>
+<p>We can also create a ConfigMap the declarative way.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/configmap-db.yaml
+kubectl get configmaps
+kubectl get configmap db-config -o yaml
+</pre></div>
+</td></tr></table>
+
+<p>Typically, ConfigMaps will be created as manifest files and if the values need to change, they will either be changed in source or use variable substitution at deploy time in your CI/CD system of choice. How you create the manifest file though does not matter.</p>
+<h2 id="mapping-configmap-keys-to-pod-environment-files">Mapping ConfigMap keys to Pod environment files<a class="headerlink" href="#mapping-configmap-keys-to-pod-environment-files" title="Permanent link">&para;</a></h2>
+<p>This is the most common way to use ConfigMap data. We can map keys to Pod environment variables one by one, or all at once.</p>
+<p>Let's look at <code>manifests/pod-configmap.yaml</code> for examples of both types.</p>
+<h2 id="pods-needs-a-valid-configmap-to-exist-ahead-of-time">Pods needs a valid ConfigMap to exist ahead of time<a class="headerlink" href="#pods-needs-a-valid-configmap-to-exist-ahead-of-time" title="Permanent link">&para;</a></h2>
+<p>A Pod that depends on a ConfigMap will fail to start if the ConfigMap does not exist, or if the pod references a ConfigMap key that does not exist.</p>
+<p>Let's delete all Pods and ConfigMaps from the <code>learn-k8s</code> namespace.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete pods,configmaps --all
+</pre></div>
+</td></tr></table>
+
+<p>The <code>manifests/pod-configmap.yaml</code> file relies on two ConfigMaps. Let's only deploy one ConfigMap.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/configmap-db.yaml
+kubectl apply -f manifests/pod-configmap.yaml
+kubectl get pod kuard-pod -o wide
+</pre></div>
+</td></tr></table>
+
+<p>We can see the Pod has a status of <code>CreateContainerConfigError</code>. Let's fix this by creating the missing ConfigMap.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/configmap-app.yaml
+watch kubectl get pod kuard-pod -o wide
+</pre></div>
+</td></tr></table>
+
+<p>After an amount of time, the Pod is able to start and eventually becomes healthy.</p>
+<p>What's important to remember is that with ConfigMaps (and Secrets), order of operations matter. Also be careful that any Pod spec configuration changes are matched with ConfigMap changes.</p>
+<h2 id="verifying-our-pod-has-expected-environment-variables">Verifying our Pod has expected environment variables<a class="headerlink" href="#verifying-our-pod-has-expected-environment-variables" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it kuard-pod printenv
+</pre></div>
+</td></tr></table>
                 
                   
                 
