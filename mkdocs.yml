@@ -20,7 +20,7 @@ markdown_extensions:
 nav:
 - Home: index.md
 - Setup: setup.md
-- Deploying Declarively: deploying-declaratively.md
+- Deploying Declaratively: deploying-declaratively.md
 - Reconciliation Loop Testing: reconciliation-loop-testing.md
 - Namespaces: namespaces.md
 - Pods: pods.md
