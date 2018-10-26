@@ -1,6 +1,6 @@
 # Deployments
 
-Create the deployment object:
+Before we create the deployment, let's take a look at `manifests/deployment.yaml` file to see what resources it depends on.
 
     kubectl apply -f manifests/deployment.yaml
 
@@ -13,7 +13,7 @@ Get the state of the deploloyment:
 
 In a termial window, observe the state change to the list of pods. We're going to keep this around for this entire lab.
 
-    kubectl get pods --watch
+    watch kubectl get pods
 
 ## Scale our pods using Deployments
 
@@ -27,7 +27,7 @@ Update `spec.replicas` in `deployment.yaml` to be `20`, then deploy our changes.
 
 Update `spec.replicas` in `deployment.yaml` to be `2` again.
 
-## Deploy a new version of the kuard container
+## Update the deployment Deploy a new version of the kuard container
 
 Update your `deployment.yaml` file, changing the image tag to `2` and adding the following under `spec.template.metadata` in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.
 

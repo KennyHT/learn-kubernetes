@@ -32,17 +32,7 @@ Execute the following commands to check `kubectl` can communicate with your clus
     kubectl cluster-info
     kubectl get nodes
 
-## Kubectl Proxy
-
-For easy access to services running in your development environment, you can use kubectl proxy.
-
-    kubectl proxy
-
-You can now access services throgh the tunnel exposed on localhost port 8001.
-
-See [this page from the Kubernetes docs](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls) for learning how to manually construct links to your services.
-
-## Required images
+## Lab 
 
 To save some time during the class, you can run `make setup` to pull down the two required images for these labs.
 
@@ -53,6 +43,14 @@ To save some time during the class, you can run `make setup` to pull down the tw
 ### kubectl
 
 This should have been installed by Docker for Desktop or Minikube. See the [kubectl installation instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) if it is not installed.
+
+### kubeval
+
+Validates your Kubernetes files. [Installation instructions on GitHub](https://github.com/garethr/kubeval#installation).
+
+### kubetpl
+
+Provides simple variable substitution for Kubernetes files. [Installation instructions on GitHub](https://github.com/shyiko/kubetpl#installation).
 
 ### make
 

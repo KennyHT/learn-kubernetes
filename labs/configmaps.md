@@ -1,6 +1,6 @@
 # ConfigMaps
 
-These  `kubectl create configmap` can create ConfigMaps from directories, files, or literal values.
+ConfigMaps can be created from directories, files, or literal values.
 
 This lab is going to focus on the most common use of ConfigMaps which is literal values mapping to environment files.
 
@@ -24,7 +24,7 @@ Remove the ConfigMap before continuing.
 
     kubectl delete configmap db-config
 
-## Declarative ConfigMaps
+## Creating ConfigMaps from manifest files
 
 We can also create a ConfigMap the declarative way.
 

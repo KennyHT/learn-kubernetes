@@ -1,3 +1,5 @@
+.PHONY: checksums
+
 #############
 ##  Setup  ##
 #############
@@ -5,9 +7,14 @@
 setup:
 	docker image pull debian:stretch-slim
 	docker image pull gcr.io/kuar-demo/kuard-amd64:1
+	"$(MAKE)" build-kube-tools
 
-update-kubetail:
-	./bin/update-kubetail.sh
+build-kube-tools:
+	docker image build -t ryanblunden/kubetools:latest .
+
+kube-tools:
+	docker container run --rm -it -v $(CURDIR):/usr/src/app ryanblunden/kubetools:latest
+
 
 #############
 ##  DEBUG  ##
@@ -22,7 +29,7 @@ debug-container-down:
 	kubectl delete deployment $(DEBUG_DEPLOYMENT_NAME)
 
 pod-logs:
-	./bin/kubetail $(NAME)
+	kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail
 
 watch-pods:
 	watch kubectl get pods -o wide --all-namespaces
@@ -43,6 +50,28 @@ docker-vm-shell:
 portainer:
 	docker container run -p 9000:9000 --rm -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer:latest --no-auth
 
+
+##################
+##  Kube Tools  ##
+##################
+
+# USAGE: make kubesec FILE=manifests/pod.yaml
+kubesec:
+	@./bin/kubesec kubesec $(FILE) | jq
+
+# USAGE: make kail FILTER=--pod kuard-pod
+# Filters documentation at https://github.com/boz/kail
+kail:
+	@kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail:latest kail -- "$(FILTER)"
+
+checksums:
+	@$(info APP_CONFIGMAP_CHECKSUM=$(shell shasum -a 256 manifests/configmap-app.yaml | cut -d ' ' -f 1))
+	@$(info API_TOKEN_SECRET_CHECKSUM=$(shell shasum -a 256 manifests/secret-api-token.yaml | cut -d ' ' -f 1))
+	@$(info USERS_DB_SECRET_CHECKSUM=$(shell shasum -a 256 manifests/secret-db-properties.yaml | cut -d ' ' -f 1))
+
+tmpl:
+	kubetpl render manifests/pod.yaml -x=$ -s TAG=1
+
 ############################
 ##  Kubernetes Dashboard  ##
 ############################
@@ -50,11 +79,10 @@ portainer:
 # Listens on port 30000
 
 k8s-dashboard-up:
-	./bin/kube-dashboard.sh k8s-dashboard-up
+	./bin/kube-dashboard k8s-dashboard-up
 
 k8s-dashboard-down:
-	./bin/kube-dashboard.sh k8s-dashboard-down
-
+	./bin/kube-dashboard k8s-dashboard-down
 
 ############
 ##  Docs  ##
@@ -75,4 +103,4 @@ site-build:
 	docker container run --rm -v "$(CURDIR)":/usr/src/app $(DOCS_IMAGE_NAME):$(DOCS_VERSION) mkdocs build --clean --strict
 
 deploy-gh-pages:
-	./bin/deploy-site.sh
+	./bin/deploy-site

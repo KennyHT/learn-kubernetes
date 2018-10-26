@@ -18,7 +18,6 @@ spec:
         containerPort: 8080
 
     env:
-       # Map keys for flexibility
        - name: DB_HOST
          valueFrom:
            configMapKeyRef:
@@ -31,7 +30,7 @@ spec:
              key: NAME
     envFrom:
          - configMapRef:
-             name: app-config
+             name: app
 
     resources:
       requests:

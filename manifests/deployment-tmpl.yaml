@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard-deployment
+  labels:
+    app: kuard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kuard
+  minReadySeconds: 30
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      # Rolling
+      maxUnavailable: 20%
+      maxSurge: 0%
+      # Blue/Green
+      # maxUnavailable: 0%
+      # maxSurge: 100%
+  template:
+    metadata:
+      name: kuard
+      labels:
+        app: kuard
+      annotations:
+        kubernetes.io/change-cause: $CHANGE_CAUSE
+        checksum.kuard.io/configmap/app: $APP_CONFIGMAP_CHECKSUM
+        checksum.kuard.io/secret/api-token: $API_TOKEN_SECRET_CHECKSUM
+        checksum.kuard.io/secret/users-db: $USERS_DB_SECRET_CHECKSUM
+    spec:
+      containers:
+      - name: kuard
+      imagePullPolicy: IfNotPresent
+      # $TAG can be 1, 2 or 3
+      image: gcr.io/kuar-demo/kuard-amd64:$TAG
+
+      ports:
+        - name: app
+          containerPort: 8080
+
+      env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: HOST
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: NAME
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-token
+              key: API_TOKEN
+
+      volumeMounts:
+      - name: secret-volume
+        readOnly: true
+        mountPath: '/etc/secrets'
+
+      resources:
+        requests:
+          memory: "200Mi"
+          cpu: "250m"
+        limits:
+          memory: "400Mi"
+          cpu: "500m"
+
+      # Liveness Check: Is your application alive?
+      livenessProbe:
+        httpGet:
+          path: /healthy
+          port: app
+        initialDelaySeconds: 5
+        timeoutSeconds: 3
+        periodSeconds: 5
+        failureThreshold: 3
+      #
+      # Readiness Check: Is your app ready to serve traffic
+      #
+      # Use this if there is something your container needs to do on
+      # startup (e.g. compute and load large data-set into memory)
+      # before it can be considered ready to receive traffic.
+      #
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: app
+        initialDelaySeconds: 10
+        timeoutSeconds: 3
+        periodSeconds: 5
+        failureThreshold: 3
