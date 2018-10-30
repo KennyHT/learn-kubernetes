@@ -1,5 +1,3 @@
-.PHONY: checksums
-
 #############
 ##  Setup  ##
 #############
@@ -7,10 +5,11 @@
 setup:
 	docker image pull debian:stretch-slim
 	docker image pull gcr.io/kuar-demo/kuard-amd64:1
-	"$(MAKE)" build-kube-tools
+	#"$(MAKE)" build-kube-tools
 
-build-kube-tools:
-	docker image build -t ryanblunden/kubetools:latest .
+# WIP
+#build-kube-tools:
+#	docker image build -t ryanblunden/kubetools:latest .
 
 kube-tools:
 	docker container run --rm -it -v $(CURDIR):/usr/src/app ryanblunden/kubetools:latest
@@ -29,7 +28,7 @@ debug-container-down:
 	kubectl delete deployment $(DEBUG_DEPLOYMENT_NAME)
 
 pod-logs:
-	kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail
+	kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail:latest kail
 
 watch-pods:
 	watch kubectl get pods -o wide --all-namespaces
@@ -40,6 +39,7 @@ event-stream:
 delete-all:
 	kubectl delete pods,services,configmaps,secrets,deployments,pods --all
 
+
 ##########################
 ##  Docker for Desktop  ##
 ##########################
@@ -47,8 +47,13 @@ delete-all:
 docker-vm-shell:
 	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh
 
+# TODO: How to add newlines using $(info)
 portainer:
-	docker container run -p 9000:9000 --rm -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer:latest --no-auth
+	$(info  )
+	$(info Open http://localhost:9000/#/init/endpoint to configure Portainer and select "Local" for the environment.)
+	$(info  )
+
+	docker container run --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer:latest --no-auth
 
 
 ##################
@@ -72,6 +77,7 @@ checksums:
 tmpl:
 	kubetpl render manifests/pod.yaml -x=$ -s TAG=1
 
+
 ############################
 ##  Kubernetes Dashboard  ##
 ############################
@@ -84,23 +90,23 @@ k8s-dashboard-up:
 k8s-dashboard-down:
 	./bin/kube-dashboard k8s-dashboard-down
 
-############
-##  Docs  ##
-############
 
-# Required for content development only
+##################
+##  Labs  Site  ##
+##################
+
+# Required for lab content development only.
 #
 # Site deployed at https://ryan-blunden.github.io/learn-kubernetes/
 
-DOCS_IMAGE_NAME=ryanblunden/mkdocs
-DOCS_PORT=9000
-DOCS_VERSION=latest
+LABS_IMAGE=ryanblunden/mkdocs:latest
+LABS_PORT=8000
 
-site-server:
-	docker container run --rm -v "$(CURDIR)":/usr/src/app -p $(DOCS_PORT):8000 $(DOCS_IMAGE_NAME):$(DOCS_VERSION)
+labs-server:
+	docker container run --rm -v "$(CURDIR)":/usr/src/app -p $(LABS_PORT):8000 $(LABS_IMAGE)
 
-site-build:
-	docker container run --rm -v "$(CURDIR)":/usr/src/app $(DOCS_IMAGE_NAME):$(DOCS_VERSION) mkdocs build --clean --strict
+labs-build:
+	docker container run --rm -v "$(CURDIR)":/usr/src/app $(LABS_IMAGE) mkdocs build --clean --strict
 
-deploy-gh-pages:
+deploy-labs:
 	./bin/deploy-site
