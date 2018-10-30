@@ -72,3 +72,8 @@ We can easily cleanup all of the resources in these labs by telling Kubernetes t
 It's ok that some of these were not found.
 
 Hope you enjoyed these labs!
+
+<!-- TODO: 
+- imperative command 
+- Canary
+-->

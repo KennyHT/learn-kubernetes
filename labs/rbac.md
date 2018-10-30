@@ -1,122 +1,87 @@
 # RBAC
 
-Role-Based Access Control controls access to the Kubernetes API and restricts what objects in what namespaces an authenticated user is authorizd to access.
+Role-Based Access Control (RBAC) controls access to the Kubernetes API and restricts what objects in what namespaces an authenticated user is authorizd to access.
 
-`RBAC` has been GA in Kubernetes since 1.8 (late 2017) so most Kubernetes installs now enable it out of the box which is great!
+`RBAC` has been GA in Kubernetes since 1.8 (late 2017) so most Kubernetes clusters have it enabled by default.
+
+# Kubernetes Cluster Roles
+
+Kubernetes comes with a set of default cluster roles:
+
+    kubectl get clusterroles
+
+Let's take a look at the `view` ClusterRole.
+
+    kubectl get clusterrole view -o yaml
+
+## Kubernetes Roles and Role Bindings
+
+Running this will likely not return results because we haven't created any Roles in our `learn-k8s` Namespace:
+
+    kubectl get roles
+
+Let's look in the `kube-system` namespace and inspect the Role and RoleBinding for the Kubernetes dashboard:
+
+    kubectl get roles --namespace=kube-system
+    kubectl get role kubernetes-dashboard-minimal -o yaml --namespace=kube-system
+    kubectl get rolebindings --namespace=kube-system
+    kubectl get rolebinding kubernetes-dashboard-minimal -o yaml --namespace=kube-system
+
+## Restricting a user to a namespace
+
+Let's add a new user that can manage the resources for that namespace.
+
+    kubectl apply -f manifests/rbac-role-pods-view.yaml
+
+Taking a look at `manifests/rbac-role-pods-view.yaml`, we've created three resources:
+
+ - ServiceAccount
+ - Role
+ - RoleBinding
  
-RBAC is a big topic and let's start off bu looking at the three A's - Authorization, Access, and Auditing.
+The Role has full access to all resources (including batch objects such as jobs).
+
+Because it is a Role, it can only be applied to a Namespace.
+
+### Retrieve certificate credentials
+
+In creating the ServiceAccount, Kubernetes created a secret that contains the CA and token we need for authentication.
+
+    kubectl describe serviceaccount learn-k8s-user
+
+The name of the secret is in the `Tokens` value.
+
+    SECRET_NAME=$(kubectl get serviceaccount  learn-k8s-user -o "jsonpath={.secrets[0]['name']}")
+
+Now let's get the token:
+
+    kubectl get secret $SECRET_NAME -o "jsonpath={.data.token}"
+
+And CA data:
+
+    kubectl get secret $SECRET_NAME -o "jsonpath={.data['ca\.crt']}"
+
+Now, let's append a user to our Kube config file (`~/.kube/config`), adding another entry to `users`:
+
+    - name: learn-k8s
+    user:
+        client-key-data: $CA
+        token: $TOKEN
+
+Now we can test out the access capabilities of our `learn-k8s` user:
+
+    kubectl get secrets --as=learn-k8s --namespace=kube-system
+
+You should have recieved an error indicating you are not allowed to list secrets from the `kube-system` namespace. The `--as=learn-k8s` is a great option for testing user access.
+
+Now let's change our `learn-k8s` context entry in the Kube config file to use our new `learn-k8s-user` user.
+
+Now if you run:
+
+    kubectl get secrets --namespace=kube-system
+
+You'll get the same error.
 
 !!! note
 
-    Authentication and Authorization is a HUGE topic and we can't hope to cover it all in one lab.
-    
-    What we do want to do, is deviate from the defaults that are setup to expose you to the options that you have.
-    
-    This is because when it comes time to access Kubernetes clusters in live environments, your `.kube/config` file for `kubectl` won't be setup for you.
-    
-## Authorization
-
-**Purpose:** Is `kubectl` able to make a request?
-
-Using `Docker for Desktop` as an example, let's take a look at our `kubectl` config file at `$HOME/.kube/config`.
-
-Taking a look under the `users` key, we can see that a user called `docker-for-desktop` using [X509 Client Certs](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs) as the authentication method.
-
-This is not the only game in town, with Tokens and Authentication proxies being others ([more info here](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)).
-
-## Step 1. Backup your current config
-
-Copy and paste your current `$HOME/.kube/config` file as `$HOME/.kube/config.bak` in case you break something.
-
-!!! note
-
-    If you happen to completely break your `kubectl` configuration and did not take a back-up, Docker for Desktop has you covered.
-    
-    Just reset your Kubernentes cluster back to its original settings by going to Docker > Preferences/Settings > Reset and click the `Reset Kubernetes cluster` button.
-    
-    This will also reset your `$HOME/.kube/config, restoring your original certificate authenication config in the process.
-
-## Step 2. Get the token from the `default-token` secret.
-
-Let's get a service account token by using `kubectl` to access the `.data.token` value of the `default-token` key.
-
-    # Extract just the token name
-    DEFAULT_TOKEN_NAME=$(kubectl get secrets --namespace=kube-system | grep default-token | awk '{print $1}')
-    
-    # Get the default token value from the secret and base64 decode it
-    # Note: `KUBE_AUTH_TOKEN` is our name and does not mean anything to `kubectl`.
-    KUBE_AUTH_TOKEN=$(kubectl get secret --namespace=kube-system ${DEFAULT_TOKEN_NAME} --template='{{.data.token}}' | base64 -D)
-    
-Now it's time to experiment with our token and talking to the API server.
-
-## Experiment 1. Authentication via the `--token` flag
-
-We have the option of overriding the default user for our current context by using the `--token` flag.
-
-First, let's observe authentication failing if we pass in an invalid token.
-
-    kubectl get nodes --token=123
-
-You should've gotten an error like `error: You must be logged in to the server (Unauthorized).`.
-
-Now let's try it out using our legit token.
-
-    kubectl get nodes --token=${KUBE_AUTH_TOKEN}
-
-Success!
-
-## Experiment 2. Hit the Kubernetes API directly (no kubectl)
-
-Let's hit the `/version` and `/metrics`endpoints for the API Server using our token.
-
-We need to know the API server endpoint which we can get from our `$HOME/.kube/config` and the `clusters > cluster > server` value.
-
-!!! note
-
-    We'll be using the `--insecure` flag because the SSL certificate installed is a self-signed certificate.
-
-First, let's make sure it fails without the token.
-
-    curl --insecure -H "Authorization: Bearer ABC123" https://localhost:6443/version
-    
-And now with the token.
-
-    # Version
-    curl --insecure -H "Authorization: Bearer ${KUBE_AUTH_TOKEN}" https://localhost:6443/version
-    
-    # Metrics
-    curl --insecure -H "Authorization: Bearer ${KUBE_AUTH_TOKEN}" https://localhost:6443/metrics
-
-## Experiment 3. Let's create a new user for our `kubectl` config.
-
-Now let's create a new user called `jack-sparrow` and we'll make him belong to a new context .
-
-    kubectl config set-credentials jack-sparrow --token=${DEFAULT_TOKEN}
-
-If we want to use our current context but override the current user (`docker-for-desktop`), then we can pass `kubectl` the `--user` flag.
-
-    # Fail with non-existent user
-    kubectl get nodes --user black-beard
-    
-    # Success with jack
-    kubectl get nodes --user jack-sparrow
-
-We can go one step further and create a new context called `pirate` that will target the `docker-for-desktop` node, but using our `jack-sparrow` user and the `learn-k8s` namespace.
-
-    kubectl config set-context pirate -cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
-
-### Access
-
-Does the authenticated user have the permissions required to access and perform the required task against the reqeusted resource?
-
-TODO CONTENT.
-
-### Auditing
-
-Record an audit trail of who did what.
-
-TODO CONTENT.
-
-## Roles and Cluster Roles
-
-## Binding Roles to Users and Groups
+    If you're ever running commands that need Cluster level access, switch back to the `docker-for-desktop` context by running `kubectl config use-context docker-for-desktop`.

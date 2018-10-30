@@ -2,6 +2,8 @@
 
 Namespaces allow you to break a Kubernetes cluster into several virtual clusters.
 
+Namespaces are essentially Kubernetes answer for multi-tenancy in a containerized environment.
+
 What namespaces exist for your cluster?
 
     kubectl get namespaces
@@ -17,6 +19,10 @@ Let's create the `learn-k8s` namespace that we'll use at times during this train
 Verify it succeeded.
 
     kubectl get namespaces
+
+Let's create the `kuard-pod` in the default namespace for verifying what namespace we're pointing to later.
+
+    kubectl apply -f manifests/pod.yaml
     
 ## The kubectl context
 
@@ -42,7 +48,22 @@ Test that it worked:
 
     kubectl get pods
 
-If you get an error message like `The connection to the server localhost:8080 was refused - did you specify the right host or port?`, its probably because the cluster name in your `$HOME/.kube/config` context you created doesn't match any cluster names in your context as the default server address for `kubectl` is `localhost:8080`.
+No Pods should have been returned.
+
+As a final test, let's create `kuard-pod` in our new `learn-k8s` namespace.
+
+    kubectl apply -f manifests/pod.yaml
+
+This would have failed if in the `default` due to a Pod name crash.
+
+Let's remove our Pods:
+
+    kubectl delete -f manifests/pod.yaml --namespace=default
+    kubectl delete -f manifests/pod.yaml
+
+!!! note
+
+    If you get an error message like `The connection to the server localhost:8080 was refused - did you specify the right host or port?`, its probably because the cluster name in your `$HOME/.kube/config` context you created doesn't match any cluster names in your context as the default server address for `kubectl` is `localhost:8080`.
 
 !!! note
 

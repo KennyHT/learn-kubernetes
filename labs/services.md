@@ -71,3 +71,8 @@ Let's verify that this is a legit IP address by hitting it from the Docker VM.
 No magic and no hidden IP address scheme. Kubernetes is awesome!
 
 Exit out of the Docker VM shell
+
+<!-- TODO
+ - Creating a Service alias to point to external services (e.g. PostgreSQL instance) outside of the cluster.
+ - Ambassador. 
+>

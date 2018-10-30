@@ -105,7 +105,7 @@ Then, with a single command, we can launch a deployment and exec into our debugg
 
 Now let's try hitting the Pod directly using its IP address.
 
-    wget <IP>:8080 -q -O -
+    wget $IP:8080 -q -O -
 
 We're going to use this debug container later when we look at services.
 
