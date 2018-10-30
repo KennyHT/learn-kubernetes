@@ -15,15 +15,15 @@ I recommend using Docker for Desktop for local development on macOS and Windows.
 
     Docker for Desktop on Windows uses Hyper-V which means it is incompatible with other Hypervisors. I recommend enabling Hyper-V just for the course, then evaluate how you will run a local cluster after. 
 
-    If that's not possible, [Minikube](https://kubernetes.io/docs/setup/minikube/) if your best option.
+    If that's not possible, [Minikube](https://kubernetes.io/docs/setup/minikube/) is probably your best option.
 
-Once Docker for Desktop is running, you need to enable Kubernetes by accessing the Preferences/Settings screen, select the *Kubernetes* tab, check the *Enable Kubernetes* checkbox, then click apply.
+Once Docker for Desktop is running, you need to enable Kubernetes by accessing the Preferences/Settings screen, select the **Kubernetes** tab, check the **Enable Kubernetes** checkbox, then click **Apply**.
 
 <img alt="" src="/media/img/enable-kubernetes.png" width="480" />
 
 ### Linux or Linux VM users
 
-[Minikube](https://kubernetes.io/docs/setup/minikube/) or [this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Liz Rice is recommended.
+I recommend usint [Minikube](https://kubernetes.io/docs/setup/minikube/) or [this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Liz Rice is recommended.
 
 ## Kubernetes Check
 
@@ -34,7 +34,7 @@ Execute the following commands to check `kubectl` can communicate with your clus
 
 ## Lab 
 
-To save some time during the class, you can run `make setup` to pull down the two required images for these labs.
+Run `make setup` to pull down the required images for the labs.
 
     make setup
 
@@ -60,20 +60,21 @@ Windows users can [download Make from Sourceforge](https://sourceforge.net/proje
 
 The `watch` binary allows you to observe the output from running a command every n seconds.
 
-While kubernetes has a built-in `--watch` flag, I often don't use it as it doesnt't flush the previous output.
+While kubernetes has a built-in `--watch` flag, I don't use it as it doesnt't flush the previous output.
 
 ### jq
 
 The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
 
-For a lot of Kubernetes commands, we'll be using the `--template` flag which uses `golang` template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
-
+For a lot of Kubernetes commands, we'll be using the `--template` flag which uses Go template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
 
 ## Bash completion for kubectl
 
-The kubectl CLI is huge and the completion functionality will help save time and help you learn.
+The kubectl CLI is huge and the completion functionality will help save time.
 
-For this to work, you need `bash-completion` installed by homebrew by running:
+### For macOS
+
+Install `bash-completion` for homebrew by running:
 
     brew install bash-completion
 
