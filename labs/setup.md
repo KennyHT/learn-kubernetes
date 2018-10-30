@@ -23,7 +23,7 @@ Once Docker for Desktop is running, you need to enable Kubernetes by accessing t
 
 ### Linux or Linux VM users
 
-I recommend usint [Minikube](https://kubernetes.io/docs/setup/minikube/) or [this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Liz Rice is recommended.
+I recommend using [Minikube](https://kubernetes.io/docs/setup/minikube/) or [this guide using kubeadm](https://medium.com/@lizrice/kubernetes-in-vagrant-with-kubeadm-21979ded6c63) by Liz Rice is recommended.
 
 ## Kubernetes Check
 
@@ -60,11 +60,11 @@ Windows users can [download Make from Sourceforge](https://sourceforge.net/proje
 
 The `watch` binary allows you to observe the output from running a command every n seconds.
 
-While kubernetes has a built-in `--watch` flag, I don't use it as it doesnt't flush the previous output.
+While kubernetes has a built-in `--watch` flag, I don't use it as it doesn't flush the previous output.
 
 ### jq
 
-The `jq` binary allows us to nicely format, search and extract data from JSON on the commandline. 
+The `jq` binary allows us to nicely format, search and extract data from JSON on the command line. 
 
 For a lot of Kubernetes commands, we'll be using the `--template` flag which uses Go template syntax but `jq` is in general, a very useful tool, even if all you use it for is to pretty print JSON.
 
