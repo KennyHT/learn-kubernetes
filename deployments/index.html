@@ -224,6 +224,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../kubectl/" title="Kubectl Essentials" class="md-nav__link">
+      Kubectl Essentials
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../namespaces/" title="Namespaces" class="md-nav__link">
       Namespaces
     </a>
@@ -337,8 +349,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-a-new-version-of-the-kuard-container" title="Deploy a new version of the kuard container" class="md-nav__link">
-    Deploy a new version of the kuard container
+  <a href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Update the deployment Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment Deploy a new version of the kuard container
   </a>
   
 </li>
@@ -365,6 +377,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rbac/" title="RBAC" class="md-nav__link">
+      RBAC
+    </a>
   </li>
 
     
@@ -403,8 +427,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-a-new-version-of-the-kuard-container" title="Deploy a new version of the kuard container" class="md-nav__link">
-    Deploy a new version of the kuard container
+  <a href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Update the deployment Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment Deploy a new version of the kuard container
   </a>
   
 </li>
@@ -441,7 +465,7 @@
                 
                 
                 <h1 id="deployments">Deployments<a class="headerlink" href="#deployments" title="Permanent link">&para;</a></h1>
-<p>Create the deployment object:</p>
+<p>Before we create the deployment, let's take a look at <code>manifests/deployment.yaml</code> file to see what resources it depends on.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployment.yaml
 </pre></div>
 </td></tr></table>
@@ -455,7 +479,7 @@ kubectl describe deployment kuard-deployment
 
 <h2 id="observing-the-change-to-our-pods">Observing the change to our Pods<a class="headerlink" href="#observing-the-change-to-our-pods" title="Permanent link">&para;</a></h2>
 <p>In a termial window, observe the state change to the list of pods. We're going to keep this around for this entire lab.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods --watch
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>watch kubectl get pods
 </pre></div>
 </td></tr></table>
 
@@ -468,7 +492,7 @@ kubectl describe deployment kuard-deployment
 <p>Notice the old pods don't get deleted straight away. This is because of <code>spec.minReadySeconds</code> value of 30 seconds.</p>
 <p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>20</code>, then deploy our changes. Did all of the Pods come up? Let's go checkout the Kubernetes dashboard.</p>
 <p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>2</code> again.</p>
-<h2 id="deploy-a-new-version-of-the-kuard-container">Deploy a new version of the kuard container<a class="headerlink" href="#deploy-a-new-version-of-the-kuard-container" title="Permanent link">&para;</a></h2>
+<h2 id="update-the-deployment-deploy-a-new-version-of-the-kuard-container">Update the deployment Deploy a new version of the kuard container<a class="headerlink" href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Permanent link">&para;</a></h2>
 <p>Update your <code>deployment.yaml</code> file, changing the image tag to <code>2</code> and adding the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">annotations</span><span class="o">:</span>
@@ -518,6 +542,10 @@ kubectl label pods kuard-deployment--&amp;lt;ID&amp;gt; --overwrite app=kuard-qu
 
 <p>It's ok that some of these were not found.</p>
 <p>Hope you enjoyed these labs!</p>
+<!-- TODO: 
+- imperative command 
+- Canary
+-->
                 
                   
                 
@@ -552,6 +580,20 @@ kubectl label pods kuard-deployment--&amp;lt;ID&amp;gt; --overwrite app=kuard-qu
             </div>
           </a>
         
+        
+          <a href="../rbac/" title="RBAC" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                RBAC
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

@@ -224,6 +224,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../kubectl/" title="Kubectl Essentials" class="md-nav__link">
+      Kubectl Essentials
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../namespaces/" title="Namespaces" class="md-nav__link">
       Namespaces
     </a>
@@ -282,8 +294,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declarative-configmaps" title="Declarative ConfigMaps" class="md-nav__link">
-    Declarative ConfigMaps
+  <a href="#creating-configmaps-from-manifest-files" title="Creating ConfigMaps from manifest files" class="md-nav__link">
+    Creating ConfigMaps from manifest files
   </a>
   
 </li>
@@ -368,6 +380,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rbac/" title="RBAC" class="md-nav__link">
+      RBAC
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -396,8 +420,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declarative-configmaps" title="Declarative ConfigMaps" class="md-nav__link">
-    Declarative ConfigMaps
+  <a href="#creating-configmaps-from-manifest-files" title="Creating ConfigMaps from manifest files" class="md-nav__link">
+    Creating ConfigMaps from manifest files
   </a>
   
 </li>
@@ -441,7 +465,7 @@
                 
                 
                 <h1 id="configmaps">ConfigMaps<a class="headerlink" href="#configmaps" title="Permanent link">&para;</a></h1>
-<p>These  <code>kubectl create configmap</code> can create ConfigMaps from directories, files, or literal values.</p>
+<p>ConfigMaps can be created from directories, files, or literal values.</p>
 <p>This lab is going to focus on the most common use of ConfigMaps which is literal values mapping to environment files.</p>
 <p>See the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">Configure a Pod to Use a ConfigMap</a> page from the Kubernetes docs to see other examples.</p>
 <h2 id="anatomy-of-a-configmap">Anatomy of a ConfigMap<a class="headerlink" href="#anatomy-of-a-configmap" title="Permanent link">&para;</a></h2>
@@ -462,7 +486,7 @@
 </pre></div>
 </td></tr></table>
 
-<h2 id="declarative-configmaps">Declarative ConfigMaps<a class="headerlink" href="#declarative-configmaps" title="Permanent link">&para;</a></h2>
+<h2 id="creating-configmaps-from-manifest-files">Creating ConfigMaps from manifest files<a class="headerlink" href="#creating-configmaps-from-manifest-files" title="Permanent link">&para;</a></h2>
 <p>We can also create a ConfigMap the declarative way.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2

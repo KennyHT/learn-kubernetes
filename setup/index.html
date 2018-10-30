@@ -242,15 +242,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubectl-proxy" title="Kubectl Proxy" class="md-nav__link">
-    Kubectl Proxy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-images" title="Required images" class="md-nav__link">
-    Required images
+  <a href="#lab" title="Lab" class="md-nav__link">
+    Lab
   </a>
   
 </li>
@@ -266,6 +259,20 @@
           <li class="md-nav__item">
   <a href="#kubectl" title="kubectl" class="md-nav__link">
     kubectl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeval" title="kubeval" class="md-nav__link">
+    kubeval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubetpl" title="kubetpl" class="md-nav__link">
+    kubetpl
   </a>
   
 </li>
@@ -334,6 +341,18 @@
   <li class="md-nav__item">
     <a href="../reconciliation-loop-testing/" title="Reconciliation Loop Testing" class="md-nav__link">
       Reconciliation Loop Testing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../kubectl/" title="Kubectl Essentials" class="md-nav__link">
+      Kubectl Essentials
     </a>
   </li>
 
@@ -422,6 +441,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rbac/" title="RBAC" class="md-nav__link">
+      RBAC
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -470,15 +501,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubectl-proxy" title="Kubectl Proxy" class="md-nav__link">
-    Kubectl Proxy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#required-images" title="Required images" class="md-nav__link">
-    Required images
+  <a href="#lab" title="Lab" class="md-nav__link">
+    Lab
   </a>
   
 </li>
@@ -494,6 +518,20 @@
           <li class="md-nav__item">
   <a href="#kubectl" title="kubectl" class="md-nav__link">
     kubectl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeval" title="kubeval" class="md-nav__link">
+    kubeval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubetpl" title="kubetpl" class="md-nav__link">
+    kubetpl
   </a>
   
 </li>
@@ -576,15 +614,7 @@ kubectl get nodes
 </pre></div>
 </td></tr></table>
 
-<h2 id="kubectl-proxy">Kubectl Proxy<a class="headerlink" href="#kubectl-proxy" title="Permanent link">&para;</a></h2>
-<p>For easy access to services running in your development environment, you can use kubectl proxy.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl proxy
-</pre></div>
-</td></tr></table>
-
-<p>You can now access services throgh the tunnel exposed on localhost port 8001.</p>
-<p>See <a href="https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/#manually-constructing-apiserver-proxy-urls">this page from the Kubernetes docs</a> for learning how to manually construct links to your services.</p>
-<h2 id="required-images">Required images<a class="headerlink" href="#required-images" title="Permanent link">&para;</a></h2>
+<h2 id="lab">Lab<a class="headerlink" href="#lab" title="Permanent link">&para;</a></h2>
 <p>To save some time during the class, you can run <code>make setup</code> to pull down the two required images for these labs.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make setup
 </pre></div>
@@ -593,6 +623,10 @@ kubectl get nodes
 <h2 id="system-utilities">System utilities<a class="headerlink" href="#system-utilities" title="Permanent link">&para;</a></h2>
 <h3 id="kubectl">kubectl<a class="headerlink" href="#kubectl" title="Permanent link">&para;</a></h3>
 <p>This should have been installed by Docker for Desktop or Minikube. See the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl installation instructions</a> if it is not installed.</p>
+<h3 id="kubeval">kubeval<a class="headerlink" href="#kubeval" title="Permanent link">&para;</a></h3>
+<p>Validates your Kubernetes files. <a href="https://github.com/garethr/kubeval#installation">Installation instructions on GitHub</a>.</p>
+<h3 id="kubetpl">kubetpl<a class="headerlink" href="#kubetpl" title="Permanent link">&para;</a></h3>
+<p>Provides simple variable substitution for Kubernetes files. <a href="https://github.com/shyiko/kubetpl#installation">Installation instructions on GitHub</a>.</p>
 <h3 id="make">make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
 <p>Windows users can <a href="https://sourceforge.net/projects/gnuwin32/files/make/3.81/">download Make from Sourceforge</a>. Once installed, add the folder containing the Make.exe binary to your %PATH.</p>
 <h3 id="watch">watch<a class="headerlink" href="#watch" title="Permanent link">&para;</a></h3>
