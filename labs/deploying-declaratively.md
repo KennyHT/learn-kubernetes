@@ -20,7 +20,7 @@ By the end of the training, you will understand this entire file.
 
 ## Step 2. Kubernetes dashboard access
 
-Even for our development environment, we don’t want to expose the dashboard publicly, so we have two simple options:
+Even for our development environment, we don't want to expose the dashboard publicly, so we have two simple options:
 
     kubectl proxy
 
@@ -32,14 +32,14 @@ I prefer the `kubectl port-forward` option as when using Docker for Desktop, you
 
 `kubectl proxy` may be better if you need to access other internal services, or if the self-signed certification is giving you problems.
 
-It’s up to you and below, we'll use both.
+It's up to you and below, we'll use both.
 
 ### Step 2.1 Kubernetes Dashboard with Port Forwarding
 
 The `kubectl port-forward` command needs the Pod name, the host machine port, and the local port.
 
 !!! note: 
-    The following code presumes the existence of bash so if you’re on Windows, you’ll have to grab the pod name and insert it into the port forward command manually.
+    The following code presumes the existence of bash so if you're on Windows, you'll have to grab the pod name and insert it into the port forward command manually.
 
 Grab the name of the Pod:
 
@@ -75,9 +75,9 @@ Then go to http://localhost:8001/api/v1/namespaces/kube-system/services/https:ku
 
 ## Step 3. Access the Dashboard
 
-If this is the first time you’ve accessed the dashboard, you’ll be greeted with a setup screen.
+If this is the first time you've accessed the dashboard, you'll be greeted with a setup screen.
 
-We’re going to click **SKIP** as we're using the Dashboard for our development environment.
+We're going to click **SKIP** as we're using the Dashboard for our development environment.
 
 ## Kubernetes Dashboard in Production
 

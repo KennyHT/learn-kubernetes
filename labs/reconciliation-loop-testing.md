@@ -1,18 +1,22 @@
-# Testing the Reconciliation Loop
+# Testing the reconciliation loop
 
-Let’s manually delete all of the Pods from the docker namespace and see what Kubernetes does.
+Let's manually delete all of the Pods from the `docker` Namespace and see what Kubernetes does.
 
-First, let's setup a termial that will watch the status of the Pods in the `docker` namespace.
+First, let's set up a terminal that will watch the status of the Pods in the `docker` Namespace.
 
-    watch kubectl get pods --namespace=docker —watch
+    watch kubectl get pods --namespace=docker
+    
+Or if you don't have watch installed:
 
-Now in another terminal, delete the Pods.
+    kubectl get pods --namespace=docker --watch
+
+In another terminal, delete all Pods from the `docker` Namespace.
 
     kubectl delete --all pods --namespace=docker
 
-Without us having to do anything, Kubernetes observed that the desired state was no longer the current state and sprung into action.
+Kubernetes observed that the desired state was no longer the current state and took action.
 
-Wouldn’t it be cool if we could see exactly what Kubernetes was doing? Let’s do the same thing again but this time, we’ll tail the events log.
+Wouldn't it be cool to see what Kubernetes did in more detail? Lets do the same thing again but this time, we'll tail the events log.
 
     make event-stream
 
@@ -20,4 +24,4 @@ Delete the Pods again.
 
     kubectl delete --all pods --namespace=docker
 
-Proably more information than you need, but it's great that Kubernetes makes what's happening so transaprent.
+Probably more information than you need, but it's great that Kubernetes makes what is happening so transparent.
