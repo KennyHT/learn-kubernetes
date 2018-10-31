@@ -37,7 +37,7 @@ event-stream:
 	kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces
 
 delete-all:
-	kubectl delete pods,services,configmaps,secrets,deployments,pods --all
+	kubectl delete pods,services,configmaps,secrets,replicasets,deployments,jobs,cronjobs,daemonsets,statefulsets,podsecuritypolicies --all --namespace=learn-k8s
 
 
 ##########################

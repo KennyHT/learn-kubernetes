@@ -2,8 +2,6 @@
 
 Namespaces allow you to break a Kubernetes cluster into several virtual clusters.
 
-Namespaces are essentially Kubernetes answer for multi-tenancy in a containerized environment.
-
 What namespaces exist for your cluster?
 
     kubectl get namespaces
