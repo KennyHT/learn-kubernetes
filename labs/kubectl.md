@@ -12,6 +12,12 @@ Perhaps the most important command that you may not have thought to run is:
 
 This gives you an overview of the various commands.The grouping by purpose is very useful for knowing if a particular command would be useful for what you need to accomplish.
 
+## kubectl global options
+
+kubectl has a list of options that can be passed to any command (e.g. `--namespace`)
+
+    kubectl options
+
 ## kubectl bash completion
 
 This is essential. Not as easy as using the `bash-completion` system for homebrew but still easy.

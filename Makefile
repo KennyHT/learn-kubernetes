@@ -21,17 +21,20 @@ kube-tools:
 
 DEBUG_DEPLOYMENT_NAME=debug-shell
 
-debug-container-up:
-	kubectl run $(DEBUG_DEPLOYMENT_NAME) --rm -it --image alpine:latest -- sh
+debug-container:
+	kubectl run $(DEBUG_DEPLOYMENT_NAME) --rm -it --image alpine:3.8 -- sh
 
-debug-container-down:
+kuard-port-forward:
+	kubectl port-forward kuard-pod 8080:8080
+
+kill-debug-container:
 	kubectl delete deployment $(DEBUG_DEPLOYMENT_NAME)
 
 pod-logs:
 	kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail:latest kail
 
 watch-pods:
-	watch kubectl get pods -o wide --all-namespaces
+	watch kubectl get pods -o wide
 
 event-stream:
 	kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces

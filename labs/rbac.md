@@ -51,7 +51,7 @@ In creating the ServiceAccount, Kubernetes created a secret that contains the CA
 
 The name of the secret is in the `Tokens` value.
 
-    SECRET_NAME=$(kubectl get serviceaccount  learn-k8s-user -o "jsonpath={.secrets[0]['name']}")
+    SECRET_NAME=$(kubectl get serviceaccount learn-k8s-user -o "jsonpath={.secrets[0]['name']}")
 
 Now let's get the token:
 
