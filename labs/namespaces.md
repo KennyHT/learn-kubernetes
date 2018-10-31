@@ -34,37 +34,21 @@ We'll call the context `learn-k8s` (first positional argument).
 
     kubectl config set-context learn-k8s --cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
 
-But this has only created the context. Asking for the pods without specifying a namespace lists the pods for the default namespace.
-
-    kubectl get pods
-
-Let's tell `kubectl` to use our new `learn-k8s context.
+But this has only created the context. Let's tell `kubectl` to use our new `learn-k8s context.
 
     kubectl config use-context learn-k8s
 
-Test that it worked:
-
-    kubectl get pods
-
-No Pods should have been returned.
-
-As a final test, let's create `kuard-pod` in our new `learn-k8s` namespace.
+As a test, let's create `kuard-pod` and inspect the Pod properties to see which namespace it was created in.
 
     kubectl apply -f manifests/pod.yaml
+    echo $(kubectl get pod kuard-pod -o "jsonpath={.metadata['namespace']}")
 
-This would have failed if in the `default` due to a Pod name crash.
+Cleanup the `kuard-pod`:
 
-Let's remove our Pods:
-
-    kubectl delete -f manifests/pod.yaml --namespace=default
     kubectl delete -f manifests/pod.yaml
 
 !!! note
 
-    If you get an error message like `The connection to the server localhost:8080 was refused - did you specify the right host or port?`, its probably because the cluster name in your `$HOME/.kube/config` context you created doesn't match any cluster names in your context as the default server address for `kubectl` is `localhost:8080`.
-
-!!! note
-
-    You can also switch the context by using the Docker toolbar utility.
+    You can also switch the context by using the Docker toolbar app.
     
     <img style="width: 400px" src="../media/img/docker-for-desktop-set-context.jpg" />
