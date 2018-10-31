@@ -2,7 +2,7 @@
 
 ConfigMaps can be created from directories, files, or literal values.
 
-This lab is going to focus on the most common use of ConfigMaps which is literal values mapping to environment files.
+This lab is going to focus on the most common use of ConfigMaps which is literal values mapping to environment variables.
 
 See the [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) page from the Kubernetes docs to see other examples.
 
@@ -63,6 +63,6 @@ After an amount of time, the Pod is able to start and eventually becomes healthy
 
 What's important to remember is that with ConfigMaps (and Secrets), order of operations matter. Also be careful that any Pod spec configuration changes are matched with ConfigMap changes.
 
-## Verifying our Pod has expected environment variables
+## Verifying our Pod has the expected environment variables
 
     kubectl exec -it kuard-pod printenv
