@@ -32,7 +32,13 @@ We're going to create a context for the `docker-for-desktop` cluster that sets t
 
 We'll call the context `learn-k8s` (first positional argument).
 
+If you are on *Docker for Desktop*:
+
     kubectl config set-context learn-k8s --cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
+
+If you are on *Minikube*:
+
+    kubectl config set-context learn-k8s --cluster=minikube --user=minikube --namespace=learn-k8s
 
 But this has only created the context. Let's tell `kubectl` to use our new `learn-k8s context.
 
