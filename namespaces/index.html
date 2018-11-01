@@ -440,7 +440,13 @@
 <p>You can use contexts for switching between different clusters or even the same cluster but with a different user, different namespace or both.</p>
 <p>We're going to create a context for the <code>docker-for-desktop</code> cluster that sets the namespace to <code>learn-k8s</code> so all of the resources you deploy for these labs don't interfere with any resources you may have in the <code>default</code> namespace. That's what namespaces are for! To keep things separated.</p>
 <p>We'll call the context <code>learn-k8s</code> (first positional argument).</p>
+<p>If you are on <em>Docker for Desktop</em>:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl config set-context learn-k8s --cluster=docker-for-desktop-cluster --user=docker-for-desktop --namespace=learn-k8s
+</pre></div>
+</td></tr></table>
+
+<p>If you are on <em>Minikube</em>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl config set-context learn-k8s --cluster=minikube --user=minikube --namespace=learn-k8s
 </pre></div>
 </td></tr></table>
 
