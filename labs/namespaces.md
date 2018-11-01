@@ -40,7 +40,7 @@ If you are on *Minikube*:
 
     kubectl config set-context learn-k8s --cluster=minikube --user=minikube --namespace=learn-k8s
 
-But this has only created the context. Let's tell `kubectl` to use our new `learn-k8s context.
+But this has only created the context. Let's tell `kubectl` to use our new `learn-k8s` context.
 
     kubectl config use-context learn-k8s
 

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kuard-pod
+  name: kuard-pod-configmap
   labels:
     app: kuard
     role: introspection
