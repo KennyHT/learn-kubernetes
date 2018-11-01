@@ -80,7 +80,6 @@ checksums:
 tmpl:
 	kubetpl render manifests/pod.yaml -x=$ -s TAG=1
 
-
 ############################
 ##  Kubernetes Dashboard  ##
 ############################
