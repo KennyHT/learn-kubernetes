@@ -7,9 +7,9 @@ Secrets can be created from literal values and exposed through environment varia
 Let's create a secret from a literal value.
 
     kubectl create secret generic api-token --from-literal=API_TOKEN=ksej3839034u7bk28747op21u7d3u7
-    kubectl get secrets
+    kubectl get secrets api-token
 
-Notice that `api-token` is of `TYPE` *Opaque*? That means that it is a collection of key-pairs as opposed to a type of key that Kubernetes internally as `ServiceAccount` credentials or an `ImagePullSecret` secret.
+Notice that `api-token` is of `TYPE` *Opaque*? That means that it is a collection of key-pairs as opposed to a type of key that Kubernetes uses internally as `ServiceAccount` credentials or an `ImagePullSecret` secret.
 
 Also note that the value of the secret has been base64 encoded.
 

@@ -2,7 +2,7 @@
 
 rm -fr site
 git checkout master
-make site-build 
+make labs-build 
 
 git checkout gh-pages
 
