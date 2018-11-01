@@ -1,0 +1,651 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Kubectl Essentials - Learn Kubernetes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#kubectl-essentials" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Learn Kubernetes" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">class</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Learn Kubernetes
+              </span>
+              <span class="md-header-nav__topic">
+                Kubectl Essentials
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Learn Kubernetes" class="md-nav__button md-logo">
+      
+        <i class="md-icon">class</i>
+      
+    </a>
+    Learn Kubernetes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../setup/" title="Setup" class="md-nav__link">
+      Setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deploying-declaratively/" title="Deploying Declaratively" class="md-nav__link">
+      Deploying Declaratively
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../reconciliation-loop-testing/" title="Reconciliation Loop Testing" class="md-nav__link">
+      Reconciliation Loop Testing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kubectl Essentials
+      </label>
+    
+    <a href="./" title="Kubectl Essentials" class="md-nav__link md-nav__link--active">
+      Kubectl Essentials
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl" title="kubectl" class="md-nav__link">
+    kubectl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-global-options" title="kubectl global options" class="md-nav__link">
+    kubectl global options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-bash-completion" title="kubectl bash completion" class="md-nav__link">
+    kubectl bash completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-pods" title="View pods" class="md-nav__link">
+    View pods
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../namespaces/" title="Namespaces" class="md-nav__link">
+      Namespaces
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../pods/" title="Pods" class="md-nav__link">
+      Pods
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configmaps/" title="ConfigMaps" class="md-nav__link">
+      ConfigMaps
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../secrets/" title="Secrets" class="md-nav__link">
+      Secrets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../services/" title="Services" class="md-nav__link">
+      Services
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../replicasets/" title="ReplicaSets" class="md-nav__link">
+      ReplicaSets
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deployments/" title="Deployments" class="md-nav__link">
+      Deployments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rbac/" title="RBAC" class="md-nav__link">
+      RBAC
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl" title="kubectl" class="md-nav__link">
+    kubectl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-global-options" title="kubectl global options" class="md-nav__link">
+    kubectl global options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-bash-completion" title="kubectl bash completion" class="md-nav__link">
+    kubectl bash completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-pods" title="View pods" class="md-nav__link">
+    View pods
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="kubectl-essentials">Kubectl essentials<a class="headerlink" href="#kubectl-essentials" title="Permanent link">&para;</a></h1>
+<p>The Kubernetes documentation has its own <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheat sheet</a>.</p>
+<p>It's essential reading and you should definitely look at it but for now, here are some important and some lesser known commands. Many basic ones are covered in the other labs too.</p>
+<h2 id="kubectl">kubectl<a class="headerlink" href="#kubectl" title="Permanent link">&para;</a></h2>
+<p>Perhaps the most important command that you may not have thought to run is:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl
+</pre></div>
+</td></tr></table>
+
+<p>This gives you an overview of the various commands.The grouping by purpose is very useful for knowing if a particular command would be useful for what you need to accomplish.</p>
+<h2 id="kubectl-global-options">kubectl global options<a class="headerlink" href="#kubectl-global-options" title="Permanent link">&para;</a></h2>
+<p>kubectl has a list of options that can be passed to any command (e.g. <code>--namespace</code>)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl options
+</pre></div>
+</td></tr></table>
+
+<h2 id="kubectl-bash-completion">kubectl bash completion<a class="headerlink" href="#kubectl-bash-completion" title="Permanent link">&para;</a></h2>
+<p>This is essential. Not as easy as using the <code>bash-completion</code> system for homebrew but still easy.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>source &amp;lt;(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+
+# add autocomplete permanently to your bash shell.
+echo &quot;source &amp;lt;(kubectl completion bash)&quot; &amp;gt;&amp;gt; ~/.bash_profile
+</pre></div>
+</td></tr></table>
+
+<h2 id="view-pods">View pods<a class="headerlink" href="#view-pods" title="Permanent link">&para;</a></h2>
+<p>Sometimes you need more control over the pods that are returned by <code>kubectl</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods --include-uninitialized
+
+# Status could be one of Pending, Running, Succeeded, Failed, or Unknown
+kubectl get pods --field-selector=status.phase=Running
+</pre></div>
+</td></tr></table>
+
+<h1 id="diff-configurations-between-local-and-live-versions">Diff configurations between local and live versions<a class="headerlink" href="#diff-configurations-between-local-and-live-versions" title="Permanent link">&para;</a></h1>
+<p>While you can use something like <code>kubectl get pod kuard-pod -o yaml</code>, that will return the entire YAML stores in etcd. What about if you wanted to compare what Kubernetes has vs. what you have locally.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/pod.yaml
+kubectl alpha diff -f manifests/pod.yaml
+</pre></div>
+</td></tr></table>
+
+<p>This could be used to measure drift between resources in source control vs. resources in the cluster. It's also an awesome way to learn what other fields your specifications could have.</p>
+<p>For example, I could add <code>successThreshold</code> to my <code>livenessProbe</code> properties.</p>
+<h2 id="kubectl-explain">kubectl explain<a class="headerlink" href="#kubectl-explain" title="Permanent link">&para;</a></h2>
+<p>Documentation for command line tools isn't always easy to understand. With Kubernetes, it's awesome!</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl explain deployment
+</pre></div>
+</td></tr></table>
+
+<p>Oops. Notice <code>VERSION:  extensions/v1beta1</code> at the top?. We're looking at documentation for the first version of Deployments which is now deprecated.</p>
+<p>What we need is the deployments from the <code>apps</code> API group.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl explain deployment --api-version=apps/v1
+</pre></div>
+</td></tr></table>
+
+<p>Now lets get more specific about what we want to learn about Deployments.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl explain deployment.spec --api-version=apps/v1
+kubectl explain deployment.spec.strategy --api-version=apps/v1
+</pre></div>
+</td></tr></table>
+
+<h2 id="scale-a-deployment">Scale a deployment<a class="headerlink" href="#scale-a-deployment" title="Permanent link">&para;</a></h2>
+<p>This is important if you need to scale a deployment immediately but the advisable method is change the manifest YAML and change the replias that way.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span># Note: This won&#39;t work as we don&#39;t have a Deployment named `my-app`. It&#39;s just an example.
+kubectl scale --replicas=3 deployment/my-app
+</pre></div>
+</td></tr></table>
+
+<h2 id="a-debug-pod">A debug pod<a class="headerlink" href="#a-debug-pod" title="Permanent link">&para;</a></h2>
+<p>To deug the state of an application from within the Namespace, I'd recommend deploying a short-lived debug Pod instead of <code>kubectl exec</code> to access and existing Pod.</p>
+<p>You could even create a specialized debug image that has all the typical tools you need when debugging.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl run debug-shell --rm -it --image ubuntu:latest -- bash
+</pre></div>
+</td></tr></table>
+
+<h2 id="cluster-event-stream">Cluster event stream<a class="headerlink" href="#cluster-event-stream" title="Permanent link">&para;</a></h2>
+<p>While you're probably better served by specially designed service, this is a good substitute in the absence of that.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get events --sort-by=.metadata.creationTimestamp -o custom-columns=CREATED:.metadata.creationTimestamp,NAMESPACE:involvedObject.namespace,NAME:.involvedObject.name,REASON:.reason,KIND:.involvedObject.kind,MESSAGE:.message -w --all-namespaces
+</pre></div>
+</td></tr></table>
+
+<h2 id="tail-pod-logs">Tail Pod logs<a class="headerlink" href="#tail-pod-logs" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/boz/kail">Kail</a> is an awesome tool for tailing the logs of multiple Pods using a varied set of selectors. What's great, is that we can deploy it into our cluster so there is nothing to install locally.</p>
+<p>To tail all pods in the cluster (probably only useful on your local instance).</p>
+<p>TODO: Test</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/pod.yaml
+kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail -- --pod kuard-pod
+</pre></div>
+</td></tr></table>
+
+<p>Tail the <code>kuard-pod</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail -- --pod kuard-pod
+</pre></div>
+</td></tr></table>
+
+<h2 id="force-delete-a-pod">Force delete a Pod<a class="headerlink" href="#force-delete-a-pod" title="Permanent link">&para;</a></h2>
+<p>Sometimes, a Pod can get into a state where you cannot kill it. This command should be a last resort.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete pod $POD_NAME --force --grace-period=0
+</pre></div>
+</td></tr></table>
+
+<h2 id="caution-delete-all-the-objects-from-a-namespace">Caution! Delete all the objects from a namespace<a class="headerlink" href="#caution-delete-all-the-objects-from-a-namespace" title="Permanent link">&para;</a></h2>
+<p>This is handy during development when you want to clear out all objects in a namespace. Always specify the <code>--namespace</code> for safety.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete pods,services,configmaps,secrets,replicasets,deployments,jobs,cronjobs,daemonsets,statefulsets,podsecuritypolicies --all --namespace=learn-k8s
+</pre></div>
+</td></tr></table>
+
+<p>You could achieve the same thing by deleting the Namespace. Just remember to create it again.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../reconciliation-loop-testing/" title="Reconciliation Loop Testing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Reconciliation Loop Testing
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../namespaces/" title="Namespaces" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Namespaces
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
