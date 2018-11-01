@@ -6,7 +6,7 @@ metadata:
     app: kuard
     role: introspection
     tier: frontend
-spec:
+spec:  
   containers:
   - name: kuard
     imagePullPolicy: IfNotPresent
@@ -49,3 +49,6 @@ spec:
       timeoutSeconds: 3
       periodSeconds: 5
       failureThreshold: 3
+
+  automountServiceAccountToken: false
+  

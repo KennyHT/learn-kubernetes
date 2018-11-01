@@ -31,9 +31,9 @@ Let's look in the `kube-system` namespace and inspect the Role and RoleBinding f
 
 Let's add a new user that can manage the resources for that namespace.
 
-    kubectl apply -f manifests/rbac-role-pods-view.yaml
+    kubectl apply -f manifests/rbac-role-namespace-viewer.yaml
 
-Taking a look at `manifests/rbac-role-pods-view.yaml`, we've created three resources:
+Taking a look at `manifests/rbac-role-namespace-viewer.yaml`, we've created three resources:
 
  - ServiceAccount
  - Role
@@ -72,7 +72,7 @@ Now we can test out the access capabilities of our `learn-k8s` user:
 
     kubectl get secrets --as=learn-k8s --namespace=kube-system
 
-You should have recieved an error indicating you are not allowed to list secrets from the `kube-system` namespace. The `--as=learn-k8s` is a great option for testing user access.
+You should have received an error indicating you are not allowed to list secrets from the `kube-system` namespace. The `--as=learn-k8s` is a great option for testing user access.
 
 Now let's change our `learn-k8s` context entry in the Kube config file to use our new `learn-k8s-user` user.
 
@@ -84,4 +84,4 @@ You'll get the same error.
 
 !!! note
 
-    If you're ever running commands that need Cluster level access, switch back to the `docker-for-desktop` context by running `kubectl config use-context docker-for-desktop`.
+    If you're ever running commands that need Cluster level access, switch back to original context setup for your cluster.)

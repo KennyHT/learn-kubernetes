@@ -5,11 +5,6 @@
 setup:
 	docker image pull debian:stretch-slim
 	docker image pull gcr.io/kuar-demo/kuard-amd64:1
-	#"$(MAKE)" build-kube-tools
-
-# WIP
-#build-kube-tools:
-#	docker image build -t ryanblunden/kubetools:latest .
 
 kube-tools:
 	docker container run --rm -it -v $(CURDIR):/usr/src/app ryanblunden/kubetools:latest
@@ -78,7 +73,7 @@ checksums:
 	@$(info USERS_DB_SECRET_CHECKSUM=$(shell shasum -a 256 manifests/secret-db-properties.yaml | cut -d ' ' -f 1))
 
 tmpl:
-	kubetpl render manifests/pod.yaml -x=$ -s TAG=1
+	kubetpl render manifests/pod.yaml -x=$$ -s TAG=$(TAG)
 
 ############################
 ##  Kubernetes Dashboard  ##
