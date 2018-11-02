@@ -349,15 +349,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
-    Rolling Back to a Previous Revision
+  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment to Deploy a new version of the kuard container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
-    Update the deployment to Deploy a new version of the kuard container
+  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
+    Rolling Back to a Previous Revision
   </a>
   
 </li>
@@ -427,15 +427,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
-    Rolling Back to a Previous Revision
+  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment to Deploy a new version of the kuard container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
-    Update the deployment to Deploy a new version of the kuard container
+  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
+    Rolling Back to a Previous Revision
   </a>
   
 </li>
@@ -497,14 +497,7 @@ kubectl describe deployment kuard
 
 <p>Notice the old pods don't get deleted straight away. This is because of <code>spec.minReadySeconds</code> value of 30 seconds.</p>
 <p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>20</code>, then deploy our changes. Did all of the Pods come up? Let's go checkout the Kubernetes dashboard.</p>
-<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>2</code> again and apply the change.
-&lt;!-- </p>
-<h2 id="rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision<a class="headerlink" href="#rolling-back-to-a-previous-revision" title="Permanent link">&para;</a></h2>
-<p>Let's say that something went wrong when we upgraded to the newer <code>kuard</code> container and we want to roll back:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout undo deployment kuard --&amp;gt;
-</pre></div>
-</td></tr></table>
-
+<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>2</code> again and apply the change.</p>
 <h2 id="update-the-deployment-to-deploy-a-new-version-of-the-kuard-container">Update the deployment to Deploy a new version of the kuard container<a class="headerlink" href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Permanent link">&para;</a></h2>
 <p>Update your <code>deployment.yaml</code> file, changing the image tag to <code>2</code> and add the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -520,6 +513,14 @@ kubectl describe deployment kuard
 
 <p>Observe the deployment history:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment kuard
+</pre></div>
+</td></tr></table>
+
+<h2 id="rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision<a class="headerlink" href="#rolling-back-to-a-previous-revision" title="Permanent link">&para;</a></h2>
+<p>Let's say that something went wrong when we upgraded to the newer <code>kuard</code> container and we want to roll back. The correct way is to change the YAML source back to the last known good and deploy again. </p>
+<p>The state of the cluster should always be in our manifest files.</p>
+<p>To rollback in an emergency to the previous Deployment:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout undo deployment.v1.apps/kuard
 </pre></div>
 </td></tr></table>
 
