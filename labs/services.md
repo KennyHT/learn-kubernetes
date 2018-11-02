@@ -36,7 +36,11 @@ Let's create the kuard Pod again.
 
     kubectl apply -f manifests/pod.yaml
 
-And now, we can see one endpoint.
+Watch to see that the Pod is ready:
+
+    watch kubectl get pods
+
+Once it is, you can now see one endpoint.
 
     kubectl describe service kuard-service
 
@@ -46,8 +50,9 @@ This must be done through a container running in the same namespace as the servi
 
 Now that we've deployed the kuard Pod, we can get the fully qualified domain name (FQDN).
 
-    make debug-container-up
+    make debug-container
     nslookup kuard-service
+    nslookup kuard-service.learn-k8s
 
 !!! note
     The output from `nslookup` which says "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS server to perform the lookup against.
@@ -55,31 +60,30 @@ Now that we've deployed the kuard Pod, we can get the fully qualified domain nam
 Now let's try making a request to the service.
 
     wget kuard-service -q -O -
-    wget kuard-service.learn-k8s -q -O -
 
-What's neat, is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.
+What's neat, is that the Service is constantly monitoring the Pods who's labels match its selector query, and so knows, which Pod IP addresses (endpoints) to route the request to.
 
 Exit (to kill) the debug container.
 
 ### The ClusterIP
 
-When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.
+When a Service is created, it is assigned a Cluster IP which is unique and static for the life of the service. The Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.
 
-Virtual doesn't mean magic through.
+Let's find the `.spec.clusterIP` value of the `kuard-service`.
 
-Let's find the `Cluster IP` value of the `kuard-service`. The Cluster IP is guaranteed not to change.
+    echo $(kubectl get service kuard-service --template='{{.spec.clusterIP}}')
 
-    echo `kubectl get service kuard-service --template='{{.spec.clusterIP}}'`
-    
-    
-Let's verify that this is a legit IP address by hitting it from the Docker VM.
+Let's verify that this is a legit IP address by hitting it from inside our Kubernetes instance.
+
+Docker for Desktop users should run:
 
     make docker-vm-shell
-    wget <IP> -q -O -
 
-No magic and no hidden IP address scheme. Kubernetes is awesome!
+Now inside the Kubernetes instance, use the IP address you retrieved earlier.
 
-Exit out of the Docker VM shell
+    wget $SERVICE_IP -q -O -
+
+No magic and no hidden IP address schemes. Kubernetes is awesome!
 
 <!-- TODO
  - Creating a Service alias to point to external services (e.g. PostgreSQL instance) outside of the cluster.
