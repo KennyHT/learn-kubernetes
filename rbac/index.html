@@ -396,11 +396,11 @@ kubectl get rolebinding kubernetes-dashboard-minimal -o yaml --namespace=kube-sy
 
 <h2 id="restricting-a-user-to-a-namespace">Restricting a user to a namespace<a class="headerlink" href="#restricting-a-user-to-a-namespace" title="Permanent link">&para;</a></h2>
 <p>Let's add a new user that can manage the resources for that namespace.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/rbac-role-pods-view.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/rbac-role-namespace-viewer.yaml
 </pre></div>
 </td></tr></table>
 
-<p>Taking a look at <code>manifests/rbac-role-pods-view.yaml</code>, we've created three resources:</p>
+<p>Taking a look at <code>manifests/rbac-role-namespace-viewer.yaml</code>, we've created three resources:</p>
 <ul>
 <li>ServiceAccount</li>
 <li>Role</li>
@@ -445,7 +445,7 @@ user:
 </pre></div>
 </td></tr></table>
 
-<p>You should have recieved an error indicating you are not allowed to list secrets from the <code>kube-system</code> namespace. The <code>--as=learn-k8s</code> is a great option for testing user access.</p>
+<p>You should have received an error indicating you are not allowed to list secrets from the <code>kube-system</code> namespace. The <code>--as=learn-k8s</code> is a great option for testing user access.</p>
 <p>Now let's change our <code>learn-k8s</code> context entry in the Kube config file to use our new <code>learn-k8s-user</code> user.</p>
 <p>Now if you run:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get secrets --namespace=kube-system
@@ -455,7 +455,7 @@ user:
 <p>You'll get the same error.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you're ever running commands that need Cluster level access, switch back to the <code>docker-for-desktop</code> context by running <code>kubectl config use-context docker-for-desktop</code>.</p>
+<p>If you're ever running commands that need Cluster level access, switch back to original context setup for your cluster.)</p>
 </div>
                 
                   

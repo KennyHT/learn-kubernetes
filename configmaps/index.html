@@ -512,14 +512,14 @@ kubectl get configmap db-config -o yaml
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/configmap-db.yaml
 kubectl apply -f manifests/pod-configmap.yaml
-kubectl get pod kuard-pod -o wide
+kubectl get pod kuard-pod-configmap -o wide
 </pre></div>
 </td></tr></table>
 
 <p>We can see the Pod has a status of <code>CreateContainerConfigError</code>. Let's fix this by creating the missing ConfigMap.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/configmap-app.yaml
-watch kubectl get pod kuard-pod -o wide
+watch kubectl get pod kuard-pod-configmap -o wide
 </pre></div>
 </td></tr></table>
 

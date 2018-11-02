@@ -423,28 +423,35 @@
                 
                 
                 <h1 id="services-lab">Services Lab<a class="headerlink" href="#services-lab" title="Permanent link">&para;</a></h1>
-<p>To illustrate the dynamic and loosely coupled design of Kubernetes, we're going to expose a service, but exposing the service first without any pods to support it.</p>
+<p>To illustrate the dynamic nature of Kubernetes Services and Pods, we're going to expose a service, but first exposing the Service without any Pods.</p>
+<p>Let's make sure we don't have any Podsby running:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete pods --all --namespace=learn-k8s
+</pre></div>
+</td></tr></table>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>This only applies if you're using Docker for Desktop.</p>
 <p>Because Docker for Desktop does not bind the <code>NodePort</code> associated with the <code>LoadBalancer</code> Service type to localhost (on the host), I will be using the a type of <code>NodePort</code> service.</p>
 <p>Currently when using type <code>LoadBalancer</code>, every <code>port</code> value (not the NodePort) in our service is mapped from our host machine to the Docker VM. I have no idea why this is the default as it means that we can't have multiple services which listen on the same ports.</p>
 </div>
-<p>Create the service:</p>
+<p>Create the Service:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/service.yaml
 </pre></div>
 </td></tr></table>
 
-<p>Inspect the service so we can get the randomly assigned ports:</p>
+<p>Inspect the service so we can get the randomly assigned node ports. Note that each port for our service has been assigned a node port:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service | grep Port
 </pre></div>
 </td></tr></table>
 
-<p>Confirm we don't have any pods matching the label the service is querying for:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods kuard-pod
+<p>A Service defines the interface to which requests are made. Regardless of the ports that the containers in a Pod may expose, it is the ports mapped at the Service level that are used.</p>
+<p>Confirm we don't have any Pods matching the label the service is querying for:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods --selector=app=kuard
 </pre></div>
 </td></tr></table>
 
-<p>We can tell the service doesn't have Pods because there are no endpoints associated with the service.</p>
+<p>We can determine the Service doesn't have associated Pods because there are no endpoints associated with the Service.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service
 </pre></div>
 </td></tr></table>
@@ -473,11 +480,13 @@ nslookup kuard-service
 <p>The output from <code>nslookup</code> which says "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS server to perform the lookup against.</p>
 </div>
 <p>Now let's try making a request to the service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard-service -q -O -
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard-service -q -O -
+wget kuard-service.learn-k8s -q -O -
 </pre></div>
 </td></tr></table>
 
-<p>What's neat is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.</p>
+<p>What's neat, is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.</p>
 <p>Exit (to kill) the debug container.</p>
 <h3 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h3>
 <p>When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>

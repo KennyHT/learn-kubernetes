@@ -528,7 +528,7 @@ kubectl get pods
 # NOTE: Changing the label value is only to disassociate it the
 replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
 
-kubectl label pods kuard-deployment--&amp;lt;ID&amp;gt; --overwrite app=kuard-quarantined.
+kubectl label pods kuard-deployment--$ID --overwrite app=kuard-quarantined.
 </pre></div>
 </td></tr></table>
 
