@@ -342,29 +342,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scale-our-pods-using-deployments" title="Scale our pods using Deployments" class="md-nav__link">
-    Scale our pods using Deployments
+  <a href="#scale-our-pods-using-deployments" title="Scale our Pods using Deployments" class="md-nav__link">
+    Scale our Pods using Deployments
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Update the deployment Deploy a new version of the kuard container" class="md-nav__link">
-    Update the deployment Deploy a new version of the kuard container
+  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
+    Rolling Back to a Previous Revision
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Debugging Tip: Isolating a pod or pods from a ReplicaSet" class="md-nav__link">
-    Debugging Tip: Isolating a pod or pods from a ReplicaSet
+  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment to Deploy a new version of the kuard container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleanup" title="Cleanup" class="md-nav__link">
-    Cleanup
+  <a href="#debugging-tip-isolating-a-pod-from-a-replicaset" title="Debugging Tip: Isolating a Pod from a ReplicaSet" class="md-nav__link">
+    Debugging Tip: Isolating a Pod from a ReplicaSet
   </a>
   
 </li>
@@ -420,29 +420,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scale-our-pods-using-deployments" title="Scale our pods using Deployments" class="md-nav__link">
-    Scale our pods using Deployments
+  <a href="#scale-our-pods-using-deployments" title="Scale our Pods using Deployments" class="md-nav__link">
+    Scale our Pods using Deployments
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Update the deployment Deploy a new version of the kuard container" class="md-nav__link">
-    Update the deployment Deploy a new version of the kuard container
+  <a href="#rolling-back-to-a-previous-revision" title="Rolling Back to a Previous Revision" class="md-nav__link">
+    Rolling Back to a Previous Revision
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Debugging Tip: Isolating a pod or pods from a ReplicaSet" class="md-nav__link">
-    Debugging Tip: Isolating a pod or pods from a ReplicaSet
+  <a href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Update the deployment to Deploy a new version of the kuard container" class="md-nav__link">
+    Update the deployment to Deploy a new version of the kuard container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cleanup" title="Cleanup" class="md-nav__link">
-    Cleanup
+  <a href="#debugging-tip-isolating-a-pod-from-a-replicaset" title="Debugging Tip: Isolating a Pod from a ReplicaSet" class="md-nav__link">
+    Debugging Tip: Isolating a Pod from a ReplicaSet
   </a>
   
 </li>
@@ -466,34 +466,47 @@
                 
                 <h1 id="deployments">Deployments<a class="headerlink" href="#deployments" title="Permanent link">&para;</a></h1>
 <p>Before we create the deployment, let's take a look at <code>manifests/deployment.yaml</code> file to see what resources it depends on.</p>
+<p>Make sure you have created the required ConfigMaps and Secrets. Then create the Deployment.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployment.yaml
 </pre></div>
 </td></tr></table>
 
-<p>Get the state of the deploloyment:</p>
+<p>Get the state of the Deployment:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get deployments
-kubectl describe deployment kuard-deployment
+kubectl describe deployment kuard
 </pre></div>
 </td></tr></table>
 
 <h2 id="observing-the-change-to-our-pods">Observing the change to our Pods<a class="headerlink" href="#observing-the-change-to-our-pods" title="Permanent link">&para;</a></h2>
-<p>In a termial window, observe the state change to the list of pods. We're going to keep this around for this entire lab.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>watch kubectl get pods
+<p>In a new terminal window, observe the state change to the list of Pods. We're going to keep this around for this entire lab.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make watch-pods
 </pre></div>
 </td></tr></table>
 
-<h2 id="scale-our-pods-using-deployments">Scale our pods using Deployments<a class="headerlink" href="#scale-our-pods-using-deployments" title="Permanent link">&para;</a></h2>
-<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>5</code>, then deploy our changes:</p>
+<h2 id="scale-our-pods-using-deployments">Scale our Pods using Deployments<a class="headerlink" href="#scale-our-pods-using-deployments" title="Permanent link">&para;</a></h2>
+<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>3</code>, then deploy the change:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/deployment.yaml
+</pre></div>
+</td></tr></table>
+
+<p>Let's scale up the imperative way:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl scale --replicas=5 deployment kuard
 </pre></div>
 </td></tr></table>
 
 <p>Notice the old pods don't get deleted straight away. This is because of <code>spec.minReadySeconds</code> value of 30 seconds.</p>
 <p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>20</code>, then deploy our changes. Did all of the Pods come up? Let's go checkout the Kubernetes dashboard.</p>
-<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>2</code> again.</p>
-<h2 id="update-the-deployment-deploy-a-new-version-of-the-kuard-container">Update the deployment Deploy a new version of the kuard container<a class="headerlink" href="#update-the-deployment-deploy-a-new-version-of-the-kuard-container" title="Permanent link">&para;</a></h2>
-<p>Update your <code>deployment.yaml</code> file, changing the image tag to <code>2</code> and adding the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
+<p>Update <code>spec.replicas</code> in <code>deployment.yaml</code> to be <code>2</code> again and apply the change.
+&lt;!-- </p>
+<h2 id="rolling-back-to-a-previous-revision">Rolling Back to a Previous Revision<a class="headerlink" href="#rolling-back-to-a-previous-revision" title="Permanent link">&para;</a></h2>
+<p>Let's say that something went wrong when we upgraded to the newer <code>kuard</code> container and we want to roll back:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout undo deployment kuard --&amp;gt;
+</pre></div>
+</td></tr></table>
+
+<h2 id="update-the-deployment-to-deploy-a-new-version-of-the-kuard-container">Update the deployment to Deploy a new version of the kuard container<a class="headerlink" href="#update-the-deployment-to-deploy-a-new-version-of-the-kuard-container" title="Permanent link">&para;</a></h2>
+<p>Update your <code>deployment.yaml</code> file, changing the image tag to <code>2</code> and add the following under <code>spec.template.metadata</code> in order to provide a reason for the manifest change. This is something that would be template driven by your CD system.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">annotations</span><span class="o">:</span>
     <span class="n">kubernetes</span><span class="o">.</span><span class="na">io</span><span class="o">/</span> <span class="n">change</span><span class="o">-</span><span class="n">cause</span><span class="o">:</span> <span class="s1">&#39;Upgraded to version 2.&#39;</span>
@@ -506,13 +519,13 @@ kubectl describe deployment kuard-deployment
 </td></tr></table>
 
 <p>Observe the deployment history:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment/kuard-deployment
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl rollout history deployment kuard
 </pre></div>
 </td></tr></table>
 
-<h2 id="debugging-tip-isolating-a-pod-or-pods-from-a-replicaset">Debugging Tip: Isolating a pod or pods from a ReplicaSet<a class="headerlink" href="#debugging-tip-isolating-a-pod-or-pods-from-a-replicaset" title="Permanent link">&para;</a></h2>
+<h2 id="debugging-tip-isolating-a-pod-from-a-replicaset">Debugging Tip: Isolating a Pod from a ReplicaSet<a class="headerlink" href="#debugging-tip-isolating-a-pod-from-a-replicaset" title="Permanent link">&para;</a></h2>
 <p>If a pod pods begin misbehaving, you may not want it to be killed, as you may want to quarantine it (take it out of service) in order to inspect it figure out what went wrong.</p>
-<p>To do this, you can change or overwrite the labels (depending upon the replicaset label selector).</p>
+<p>To do this, you can change or overwrite the labels (depending upon the RepicaSet label selector).</p>
 <p>Let's take one of the deployment pods out of service.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -526,24 +539,15 @@ kubectl get pods
 
 # Take it out of service by changing its label
 # NOTE: Changing the label value is only to disassociate it the
-replicaset and service. It has nothing to do with the actual health of the pod and Kubernetes does not care about the value.
+RepicaSet and Service. It has nothing to do with the actual health of the Pod and Kubernetes does not care about the value.
 
-kubectl label pods kuard-deployment--$ID --overwrite app=kuard-quarantined.
+kubectl label pods kuard-- $ID --overwrite app=kuard-quarantined.
 </pre></div>
 </td></tr></table>
 
-<p>This will cause Kubernetes to disassociate that pod with the deployment which in turn, will cause Kubernetes to create a new pod. </p>
-<p>As the renamed pod is now unmanaged, you can exec into it without fear of it being killed.</p>
-<h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h2>
-<p>We can easily cleanup all of the resources in these labs by telling Kubernetes to delete all of the resources found in the <code>manifests</code> directory.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl delete -f manifests/
-</pre></div>
-</td></tr></table>
-
-<p>It's ok that some of these were not found.</p>
-<p>Hope you enjoyed these labs!</p>
+<p>This will cause Kubernetes to disassociate that Pod with the deployment which in turn, will cause Kubernetes to create a new Pod. </p>
+<p>As the renamed Pod is now un-managed, you can exec into it for investigation. Be aware that because it is now un-managed, it will need to be deleted manually.</p>
 <!-- TODO: 
-- imperative command 
 - Canary
 -->
                 
