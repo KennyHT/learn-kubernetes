@@ -65,8 +65,16 @@ First, let's create the secrets:
 Now let's create the `kuard` Pod.
 
     kubectl apply -f manifests/pod-db-secret.yaml
-    kubectl port-forward kuard-pod 8080:8080
+
+Then view the environment vars to confirm that the Secret info has been mapped to the environment variables.
+
+    kubectl exec kuard-pod-db-secret printenv
+    
 
 The `kuard`Pod has a file browser which while being a disaster for security, is really great for labs.
+
+Port forward to the Pod:
+
+    kubectl port-forward kuard-pod-db-secret 8080:8080
 
 Open http://localhost:8080/fs/ and navigate to the `/etc/secrets/` directory where you can view the contents of the `db.properties` file.

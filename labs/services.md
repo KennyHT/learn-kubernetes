@@ -1,26 +1,34 @@
 # Services Lab
 
-To illustrate the dynamic and loosely coupled design of Kubernetes, we're going to expose a service, but exposing the service first without any pods to support it.
+To illustrate the dynamic nature of Kubernetes Services and Pods, we're going to expose a service, but first exposing the Service without any Pods.
+
+Let's make sure we don't have any Podsby running:
+
+    kubectl delete pods --all --namespace=learn-k8s
 
 !!! note
 
+    This only applies if you're using Docker for Desktop.
+    
     Because Docker for Desktop does not bind the `NodePort` associated with the `LoadBalancer` Service type to localhost (on the host), I will be using the a type of `NodePort` service.
 
     Currently when using type `LoadBalancer`, every `port` value (not the NodePort) in our service is mapped from our host machine to the Docker VM. I have no idea why this is the default as it means that we can't have multiple services which listen on the same ports.
 
-Create the service:
+Create the Service:
 
     kubectl apply -f manifests/service.yaml
 
-Inspect the service so we can get the randomly assigned ports:
+Inspect the service so we can get the randomly assigned node ports. Note that each port for our service has been assigned a node port:
 
     kubectl describe service kuard-service | grep Port
 
-Confirm we don't have any pods matching the label the service is querying for:
+A Service defines the interface to which requests are made. Regardless of the ports that the containers in a Pod may expose, it is the ports mapped at the Service level that are used.
 
-    kubectl get pods kuard-pod
+Confirm we don't have any Pods matching the label the service is querying for:
 
-We can tell the service doesn't have Pods because there are no endpoints associated with the service.
+    kubectl get pods --selector=app=kuard
+
+We can determine the Service doesn't have associated Pods because there are no endpoints associated with the Service.
 
     kubectl describe service kuard-service
 
@@ -47,8 +55,9 @@ Now that we've deployed the kuard Pod, we can get the fully qualified domain nam
 Now let's try making a request to the service.
 
     wget kuard-service -q -O -
+    wget kuard-service.learn-k8s -q -O -
 
-What's neat is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.
+What's neat, is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.
 
 Exit (to kill) the debug container.
 

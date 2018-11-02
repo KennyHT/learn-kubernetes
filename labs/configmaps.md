@@ -52,12 +52,12 @@ The `manifests/pod-configmap.yaml` file relies on two ConfigMaps. Let's only dep
 
     kubectl apply -f manifests/configmap-db.yaml
     kubectl apply -f manifests/pod-configmap.yaml
-    kubectl get pod kuard-pod -o wide
+    kubectl get pod kuard-pod-configmap -o wide
 
 We can see the Pod has a status of `CreateContainerConfigError`. Let's fix this by creating the missing ConfigMap.
 
     kubectl apply -f manifests/configmap-app.yaml
-    watch kubectl get pod kuard-pod -o wide
+    watch kubectl get pod kuard-pod-configmap -o wide
 
 After an amount of time, the Pod is able to start and eventually becomes healthy.
 
