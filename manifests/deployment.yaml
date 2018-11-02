@@ -26,7 +26,7 @@ spec:
       labels:
         app: kuard
       annotations:
-        kubernetes.io/change-cause: Upgraded to  gcr.io/kuar-demo/kuard-amd64:2
+        kubernetes.io/change-cause: Initial deploy of gcr.io/kuar-demo/kuard-amd64:1
         checksum.kuard.io/configmap-app: 4028b1207b09641310193a85f85b42d1f9ee51673fd3824d43c39df1e03fa441
         checksum.kuard.io/secret-api-token: eccbff586ce5457cebd9a1c3fcc7156b3fa02151e09a595cb04b1ad318f0d2bb
         checksum.kuard.io/secret-users-db: d22ebceb520ad11895522ec54b9d6caffc92d3f7a445173caea04d7c86c256f2
