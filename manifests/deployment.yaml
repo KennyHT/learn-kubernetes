@@ -46,21 +46,15 @@ spec:
             containerPort: 8080
 
         env:
-          - name: DB_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: db-config
-                key: HOST
-          - name: DB_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: db-config
-                key: NAME
           - name: API_KEY
             valueFrom:
               secretKeyRef:
                 name: api-token
                 key: API_TOKEN
+
+        envFrom:
+         - configMapRef:
+             name: app
 
         volumeMounts:
         - name: secret-volume
