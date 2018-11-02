@@ -32,12 +32,6 @@ Notice the old pods don't get deleted straight away. This is because of `spec.mi
 Update `spec.replicas` in `deployment.yaml` to be `20`, then deploy our changes. Did all of the Pods come up? Let's go checkout the Kubernetes dashboard.
 
 Update `spec.replicas` in `deployment.yaml` to be `2` again and apply the change.
-<!-- 
-## Rolling Back to a Previous Revision
-
-Let's say that something went wrong when we upgraded to the newer `kuard` container and we want to roll back:
-
-    kubectl rollout undo deployment kuard -->
 
 ## Update the deployment to Deploy a new version of the kuard container
 
@@ -54,7 +48,15 @@ Observe the deployment history:
 
     kubectl rollout history deployment kuard
 
+## Rolling Back to a Previous Revision
 
+Let's say that something went wrong when we upgraded to the newer `kuard` container and we want to roll back. The correct way is to change the YAML source back to the last known good and deploy again. 
+
+The state of the cluster should always be in our manifest files.
+
+To rollback in an emergency to the previous Deployment:
+
+    kubectl rollout undo deployment.v1.apps/kuard
 
 ## Debugging Tip: Isolating a Pod from a ReplicaSet
 
