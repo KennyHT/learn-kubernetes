@@ -461,7 +461,12 @@
 </pre></div>
 </td></tr></table>
 
-<p>And now, we can see one endpoint.</p>
+<p>Watch to see that the Pod is ready:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>watch kubectl get pods
+</pre></div>
+</td></tr></table>
+
+<p>Once it is, you can now see one endpoint.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service
 </pre></div>
 </td></tr></table>
@@ -470,8 +475,10 @@
 <p>This must be done through a container running in the same namespace as the service.</p>
 <p>Now that we've deployed the kuard Pod, we can get the fully qualified domain name (FQDN).</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make debug-container-up
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make debug-container
 nslookup kuard-service
+nslookup kuard-service.learn-k8s
 </pre></div>
 </td></tr></table>
 
@@ -480,31 +487,31 @@ nslookup kuard-service
 <p>The output from <code>nslookup</code> which says "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS server to perform the lookup against.</p>
 </div>
 <p>Now let's try making a request to the service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard-service -q -O -
-wget kuard-service.learn-k8s -q -O -
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard-service -q -O -
 </pre></div>
 </td></tr></table>
 
-<p>What's neat, is that the service is constantly monitoring the Pods who's labels match it's selector query and so knows which Pod Ip addresses (endpoints) to route the request to.</p>
+<p>What's neat, is that the Service is constantly monitoring the Pods who's labels match its selector query, and so knows, which Pod IP addresses (endpoints) to route the request to.</p>
 <p>Exit (to kill) the debug container.</p>
 <h3 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h3>
-<p>When a Service is created, it is assigned Cluster IP which is unique for the life of the service. This Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>
-<p>Virtual doesn't mean magic through.</p>
-<p>Let's find the <code>Cluster IP</code> value of the <code>kuard-service</code>. The Cluster IP is guaranteed not to change.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">echo `kubectl get service kuard-service --template=&#39;</span><span class="cp">{{</span><span class="nv">.spec.clusterIP</span><span class="cp">}}</span><span class="x">&#39;`</span>
+<p>When a Service is created, it is assigned a Cluster IP which is unique and static for the life of the service. The Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>
+<p>Let's find the <code>.spec.clusterIP</code> value of the <code>kuard-service</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">echo $(kubectl get service kuard-service --template=&#39;</span><span class="cp">{{</span><span class="nv">.spec.clusterIP</span><span class="cp">}}</span><span class="x">&#39;)</span>
 </pre></div>
 </td></tr></table>
 
-<p>Let's verify that this is a legit IP address by hitting it from the Docker VM.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make docker-vm-shell
-wget &amp;lt;IP&amp;gt; -q -O -
+<p>Let's verify that this is a legit IP address by hitting it from inside our Kubernetes instance.</p>
+<p>Docker for Desktop users should run:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make docker-vm-shell
 </pre></div>
 </td></tr></table>
 
-<p>No magic and no hidden IP address scheme. Kubernetes is awesome!</p>
-<p>Exit out of the Docker VM shell</p>
+<p>Now inside the Kubernetes instance, use the IP address you retrieved earlier.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget $SERVICE_IP -q -O -
+</pre></div>
+</td></tr></table>
+
+<p>No magic and no hidden IP address schemes. Kubernetes is awesome!</p>
 <!-- TODO
  - Creating a Service alias to point to external services (e.g. PostgreSQL instance) outside of the cluster.
  - Ambassador. 
