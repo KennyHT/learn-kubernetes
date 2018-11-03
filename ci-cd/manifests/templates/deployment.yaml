@@ -22,7 +22,7 @@ spec:
       labels:
         app: api
       annotations:
-        kubernetes.io/change-cause: Initial deployment
+        kubernetes.io/change-cause: $CHANGE
         checksum.api.io/configmap-app: 4028b1207b09641310193a85f85b42d1f9ee51673fd3824d43c39df1e03fa441
     spec:      
       containers:

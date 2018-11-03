@@ -3,6 +3,7 @@
 #############
 
 setup:
+	docker image pull python:3.7-slim-stretch
 	docker image pull debian:stretch-slim
 	docker image pull gcr.io/kuar-demo/kuard-amd64:1
 

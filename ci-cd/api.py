@@ -1,4 +1,7 @@
+import os
 from flask import Flask, jsonify
+
+HOSTNAME = os.environ.get('HOSTNAME', 'unknown')
 
 
 def create_app():
@@ -6,7 +9,10 @@ def create_app():
 
     @app.route('/')
     def hello_world():
-        return jsonify(message='Hello, Kubernetes!')
+        return jsonify(
+            message='Hello, Kubernetes!',
+            pod=HOSTNAME
+        )
 
     @app.route('/healthz')
     def health_check():

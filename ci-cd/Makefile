@@ -57,11 +57,12 @@ kubesec:
 # Lots of students ask for examples of manifest files with variables which
 # is why it's included here. Keep it as simple as possible!
 #
-# usage: make render-templates TAG=0.0.1-dev REPLICAS=2
+# usage: make render-templates TAG=0.0.1-dev REPLICAS=2 CHANGE="New build, amazing features!"
 render-templates:
 	-rm manifests/final/deployment.yaml
 
-	kubetpl render manifests/templates/deployment.yaml -x=$$ -s TAG=$(TAG) -s REPLICAS=$(REPLICAS) > manifests/final/deployment.yaml
+	kubetpl render manifests/templates/deployment.yaml -x=$$ -s TAG=$(TAG) -s REPLICAS=$(REPLICAS) -s CHANGE="$(CHANGE)" > manifests/final/deployment.yaml
+	printf "# AUTO_GENERATED. DO NOT EDIT!\n" >> manifests/final/deployment.yaml
 
 kube-deploy:
 	kubectl apply -f manifests/final
@@ -73,7 +74,7 @@ pipeline-build:
 	"$(MAKE)" app-test
 
 pipeline-deploy:
-	"$(MAKE)" render-templates TAG=0.0.1-dev REPLICAS=2
+	"$(MAKE)" render-templates TAG=0.0.1-dev REPLICAS=2 CHANGE="New build, amazing features!"
 	"$(MAKE)" kube-validate
 	"$(MAKE)" kube-security-score
 	"$(MAKE)" kube-deploy
