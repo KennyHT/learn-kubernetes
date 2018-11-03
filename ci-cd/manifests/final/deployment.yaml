@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+spec:
+  minReadySeconds: 30
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: api
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0%
+  template:
+    metadata:
+      annotations:
+        checksum.api.io/configmap-app: 4028b1207b09641310193a85f85b42d1f9ee51673fd3824d43c39df1e03fa441
+        kubernetes.io/change-cause: Initial deployment
+      labels:
+        app: api
+      name: api
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: api
+        image: ryanblunden/api:0.0.1-dev
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: app
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+        name: api
+        ports:
+        - containerPort: 5000
+          name: app
+        resources:
+          limits:
+            cpu: 500m
+            memory: 50Mi
+          requests:
+            cpu: 250m
+            memory: 20Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+

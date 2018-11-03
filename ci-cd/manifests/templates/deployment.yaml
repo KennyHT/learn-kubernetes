@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api
 spec:
-  replicas: 2
+  replicas: $REPLICAS
   selector:
     matchLabels:
       app: api
@@ -55,5 +55,9 @@ spec:
           timeoutSeconds: 3
           periodSeconds: 5
           failureThreshold: 3
+        
+        securityContext:
+          runAsNonRoot: true
+          readOnlyRootFilesystem: true
 
       automountServiceAccountToken: false

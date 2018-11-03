@@ -31,7 +31,7 @@ Let's look in the `kube-system` namespace and inspect the Role and RoleBinding f
 
 Let's add a new user that can manage the resources for that namespace.
 
-    kubectl apply -f manifests/rbac-role-namespace-viewer.yaml
+    kubectl apply -f manifests/rbac-learn-k8s-namespace-manager.yaml
 
 Taking a look at `manifests/rbac-role-namespace-viewer.yaml`, we've created three resources:
 
@@ -47,26 +47,19 @@ Because it is a Role, it can only be applied to a Namespace.
 
 In creating the ServiceAccount, Kubernetes created a secret that contains the CA and token we need for authentication.
 
-    kubectl describe serviceaccount learn-k8s-user
+    kubectl describe serviceaccount learn-k8s
 
 The name of the secret is in the `Tokens` value.
 
-    SECRET_NAME=$(kubectl get serviceaccount learn-k8s-user -o "jsonpath={.secrets[0]['name']}")
+    SECRET_NAME=$(kubectl get serviceaccount learn-k8s -o "jsonpath={.secrets[0]['name']}")
 
 Now let's get the token:
 
-    kubectl get secret $SECRET_NAME -o "jsonpath={.data.token}"
+    TOKEN=$(kubectl get secret $SECRET_NAME -o "jsonpath={.data.token}" | base64 -D)
 
 And CA data:
 
     kubectl get secret $SECRET_NAME -o "jsonpath={.data['ca\.crt']}"
-
-Now, let's append a user to our Kube config file (`~/.kube/config`), adding another entry to `users`:
-
-    - name: learn-k8s
-    user:
-        client-key-data: $CA
-        token: $TOKEN
 
 Now we can test out the access capabilities of our `learn-k8s` user:
 
@@ -74,7 +67,7 @@ Now we can test out the access capabilities of our `learn-k8s` user:
 
 You should have received an error indicating you are not allowed to list secrets from the `kube-system` namespace. The `--as=learn-k8s` is a great option for testing user access.
 
-Now let's change our `learn-k8s` context entry in the Kube config file to use our new `learn-k8s-user` user.
+Now let's change our `learn-k8s` context entry in the Kube config file to use our new `learn-k8s` user.
 
 Now if you run:
 
