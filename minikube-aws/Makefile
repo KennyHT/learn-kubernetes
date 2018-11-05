@@ -14,4 +14,4 @@ output:
 	 terraform output
 
 ssh:
-	ssh ubuntu@$(IP) -i ~/Downloads/minikube.pem
+	ssh ubuntu@$(IP) -i minikube.pem

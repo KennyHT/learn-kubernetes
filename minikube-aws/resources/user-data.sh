@@ -3,6 +3,9 @@
 apt-get update -y
 apt-get install -y make socat docker.io
 
+# Solves DNS resolve issues that affect Docker
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 chmod +x minikube
 mv minikube /usr/local/bin/
