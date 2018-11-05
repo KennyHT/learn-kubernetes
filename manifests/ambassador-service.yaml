@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kuard-service
+  name: kuard
   annotations:
     getambassador.io/config: |
       ---
@@ -9,7 +9,7 @@ metadata:
       kind:  Mapping
       name:  kuard_mapping
       prefix: /kuard/
-      service: kuard-service
+      service: kuard
 spec:
   selector:
     app: kuard
