@@ -5,3 +5,6 @@ bin/kubetail
 __pycache__
 .pytest_cache
 .terraform
+terraform.tfstate*
+minikube-aws/terraform.tfvars
+minikube-aws/.aws/credentials
