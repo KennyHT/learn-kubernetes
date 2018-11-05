@@ -314,27 +314,6 @@
   </li>
 
     
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="RBAC" class="md-nav__link md-nav__link--active">
-      RBAC
-    </a>
-    
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -396,7 +375,7 @@ kubectl get rolebinding kubernetes-dashboard-minimal -o yaml --namespace=kube-sy
 
 <h2 id="restricting-a-user-to-a-namespace">Restricting a user to a namespace<a class="headerlink" href="#restricting-a-user-to-a-namespace" title="Permanent link">&para;</a></h2>
 <p>Let's add a new user that can manage the resources for that namespace.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/rbac-role-namespace-viewer.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/rbac-learn-k8s-namespace-manager.yaml
 </pre></div>
 </td></tr></table>
 
@@ -410,33 +389,22 @@ kubectl get rolebinding kubernetes-dashboard-minimal -o yaml --namespace=kube-sy
 <p>Because it is a Role, it can only be applied to a Namespace.</p>
 <h3 id="retrieve-certificate-credentials">Retrieve certificate credentials<a class="headerlink" href="#retrieve-certificate-credentials" title="Permanent link">&para;</a></h3>
 <p>In creating the ServiceAccount, Kubernetes created a secret that contains the CA and token we need for authentication.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe serviceaccount learn-k8s-user
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe serviceaccount learn-k8s
 </pre></div>
 </td></tr></table>
 
 <p>The name of the secret is in the <code>Tokens</code> value.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>SECRET_NAME=$(kubectl get serviceaccount learn-k8s-user -o &quot;jsonpath={.secrets[0][&#39;name&#39;]}&quot;)
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>SECRET_NAME=$(kubectl get serviceaccount learn-k8s -o &quot;jsonpath={.secrets[0][&#39;name&#39;]}&quot;)
 </pre></div>
 </td></tr></table>
 
 <p>Now let's get the token:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get secret $SECRET_NAME -o &quot;jsonpath={.data.token}&quot;
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>TOKEN=$(kubectl get secret $SECRET_NAME -o &quot;jsonpath={.data.token}&quot; | base64 -D)
 </pre></div>
 </td></tr></table>
 
 <p>And CA data:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get secret $SECRET_NAME -o &quot;jsonpath={.data[&#39;ca\.crt&#39;]}&quot;
-</pre></div>
-</td></tr></table>
-
-<p>Now, let's append a user to our Kube config file (<code>~/.kube/config</code>), adding another entry to <code>users</code>:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>- name: learn-k8s
-user:
-    client-key-data: $CA
-    token: $TOKEN
 </pre></div>
 </td></tr></table>
 
@@ -446,7 +414,7 @@ user:
 </td></tr></table>
 
 <p>You should have received an error indicating you are not allowed to list secrets from the <code>kube-system</code> namespace. The <code>--as=learn-k8s</code> is a great option for testing user access.</p>
-<p>Now let's change our <code>learn-k8s</code> context entry in the Kube config file to use our new <code>learn-k8s-user</code> user.</p>
+<p>Now let's change our <code>learn-k8s</code> context entry in the Kube config file to use our new <code>learn-k8s</code> user.</p>
 <p>Now if you run:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get secrets --namespace=kube-system
 </pre></div>
@@ -473,27 +441,6 @@ user:
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../deployments/" title="Deployments" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Deployments
-              </span>
-            </div>
-          </a>
-        
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

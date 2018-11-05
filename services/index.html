@@ -359,18 +359,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../rbac/" title="RBAC" class="md-nav__link">
-      RBAC
-    </a>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -441,7 +429,7 @@
 </td></tr></table>
 
 <p>Inspect the service so we can get the randomly assigned node ports. Note that each port for our service has been assigned a node port:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service | grep Port
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard | grep Port
 </pre></div>
 </td></tr></table>
 
@@ -452,7 +440,7 @@
 </td></tr></table>
 
 <p>We can determine the Service doesn't have associated Pods because there are no endpoints associated with the Service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard
 </pre></div>
 </td></tr></table>
 
@@ -467,7 +455,7 @@
 </td></tr></table>
 
 <p>Once it is, you can now see one endpoint.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard-service
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl describe service kuard
 </pre></div>
 </td></tr></table>
 
@@ -477,8 +465,8 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make debug-container
-nslookup kuard-service
-nslookup kuard-service.learn-k8s
+nslookup kuard
+nslookup kuard.learn-k8s
 </pre></div>
 </td></tr></table>
 
@@ -487,7 +475,7 @@ nslookup kuard-service.learn-k8s
 <p>The output from <code>nslookup</code> which says "nslookup: can't resolve '(null)': Name does not resolve" is expected because there is no DNS server to perform the lookup against.</p>
 </div>
 <p>Now let's try making a request to the service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard-service -q -O -
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget kuard -q -O -
 </pre></div>
 </td></tr></table>
 
@@ -495,8 +483,8 @@ nslookup kuard-service.learn-k8s
 <p>Exit (to kill) the debug container.</p>
 <h3 id="the-clusterip">The ClusterIP<a class="headerlink" href="#the-clusterip" title="Permanent link">&para;</a></h3>
 <p>When a Service is created, it is assigned a Cluster IP which is unique and static for the life of the service. The Service IP is completely virtual though. See https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies for more info.</p>
-<p>Let's find the <code>.spec.clusterIP</code> value of the <code>kuard-service</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">echo $(kubectl get service kuard-service --template=&#39;</span><span class="cp">{{</span><span class="nv">.spec.clusterIP</span><span class="cp">}}</span><span class="x">&#39;)</span>
+<p>Let's find the <code>.spec.clusterIP</code> value of the <code>kuard</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">echo $(kubectl get service kuard --template=&#39;</span><span class="cp">{{</span><span class="nv">.spec.clusterIP</span><span class="cp">}}</span><span class="x">&#39;)</span>
 </pre></div>
 </td></tr></table>
 
