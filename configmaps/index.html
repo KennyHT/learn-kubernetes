@@ -514,7 +514,7 @@ watch kubectl get pod kuard-pod-configmap -o wide
 <p>After an amount of time, the Pod is able to start and eventually becomes healthy.</p>
 <p>What's important to remember is that with ConfigMaps (and Secrets), order of operations matter. Also be careful that any Pod spec configuration changes are matched with ConfigMap changes.</p>
 <h2 id="verifying-our-pod-has-the-expected-environment-variables">Verifying our Pod has the expected environment variables<a class="headerlink" href="#verifying-our-pod-has-the-expected-environment-variables" title="Permanent link">&para;</a></h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it kuard-pod printenv
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it kuard-pod-configmap printenv
 </pre></div>
 </td></tr></table>
                 

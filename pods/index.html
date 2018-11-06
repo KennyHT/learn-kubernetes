@@ -538,7 +538,7 @@ kubectl logs kuard-pod kuard
 </pre></div>
 </td></tr></table>
 
-<p>Open the [readiness page]http://localhost:8080/-/readiness) for the <code>kuard</code> container and click on the <strong>Fail</strong> link.</p>
+<p>Open the <a href="http://localhost:8080/-/readiness">readiness page</a> for the <code>kuard</code> container and click on the <strong>Fail</strong> link.</p>
 <p>Once the readiness probe exceeds the <code>failureThreshold</code> value, the <code>READY</code> values changes to <code>0/1</code>.</p>
 <p>But notice that the Pod did not get killed. That's because it is still alive.</p>
 <p>If on the [readiness page]http://localhost:8080/-/readiness), we click on the <strong>Succeed</strong> link, we will see <code>READY</code> change to <code>1/1</code>.</p>
@@ -555,6 +555,10 @@ kubectl logs kuard-pod kuard
 </td></tr></table>
 
 <p>Then, with a single command, we can launch a deployment and exec into our debugging container.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make debug-container
+</pre></div>
+</td></tr></table>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>I'm now aware this command is now deprecated and am investigating an alternative.</p>

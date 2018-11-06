@@ -531,10 +531,9 @@ kubectl scale --replicas=3 deployment/my-app
 <h2 id="tail-pod-logs">Tail Pod logs<a class="headerlink" href="#tail-pod-logs" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/boz/kail">Kail</a> is an awesome tool for tailing the logs of multiple Pods using a varied set of selectors. What's great, is that we can deploy it into our cluster so there is nothing to install locally.</p>
 <p>To tail all pods in the cluster (probably only useful on your local instance).</p>
-<p>TODO: Test</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f manifests/pod.yaml
-kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail -- --pod kuard-pod
+kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail --
 </pre></div>
 </td></tr></table>
 
