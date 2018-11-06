@@ -65,4 +65,4 @@ What's important to remember is that with ConfigMaps (and Secrets), order of ope
 
 ## Verifying our Pod has the expected environment variables
 
-    kubectl exec -it kuard-pod printenv
+    kubectl exec -it kuard-pod-configmap printenv
