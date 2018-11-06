@@ -91,10 +91,8 @@ While you're probably better served by specially designed service, this is a goo
 
 To tail all pods in the cluster (probably only useful on your local instance).
 
-TODO: Test
-
     kubectl apply -f manifests/pod.yaml
-    kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail -- --pod kuard-pod
+    kubectl run -it --rm -l kail.ignore=true --restart=Never --image=abozanich/kail kail --
     
 Tail the `kuard-pod`.
 
@@ -113,4 +111,3 @@ This is handy during development when you want to clear out all objects in a nam
     kubectl delete pods,services,configmaps,secrets,replicasets,deployments,jobs,cronjobs,daemonsets,statefulsets,podsecuritypolicies --all --namespace=learn-k8s
 
 You could achieve the same thing by deleting the Namespace. Just remember to create it again.
-
