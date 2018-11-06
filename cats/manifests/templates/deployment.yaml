@@ -28,7 +28,7 @@ spec:
       containers:
       - name: cats
         imagePullPolicy: IfNotPresent
-        image: ryanblunden/api:$TAG
+        image: ryanblunden/cats:$TAG
 
         ports:
           - name: app
