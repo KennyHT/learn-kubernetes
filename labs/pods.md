@@ -154,6 +154,8 @@ First, let's get the IP of the kuard Pod. We'll use this in our debugging contai
 
 Then, with a single command, we can launch a deployment and exec into our debugging container.
 
+    make debug-container
+
 !!! note
 
     I'm now aware this command is now deprecated and am investigating an alternative.
