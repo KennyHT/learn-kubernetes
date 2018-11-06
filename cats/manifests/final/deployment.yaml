@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api
-  name: api
+    app: cats
+  name: cats
 spec:
   minReadySeconds: 30
   progressDeadlineSeconds: 600
@@ -12,7 +12,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: api
+      app: cats
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -23,14 +23,14 @@ spec:
         checksum.api.io/configmap-app: 4028b1207b09641310193a85f85b42d1f9ee51673fd3824d43c39df1e03fa441
         kubernetes.io/change-cause: New build, amazing features!
       labels:
-        app: api
-      name: api
+        app: cats
+      name: cats
     spec:
       automountServiceAccountToken: false
       containers:
       - envFrom:
         - configMapRef:
-            name: api
+            name: app
         image: ryanblunden/api:0.0.1-dev
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -41,7 +41,7 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 3
-        name: api
+        name: cats
         ports:
         - containerPort: 5000
           name: app

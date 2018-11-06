@@ -2,3 +2,6 @@ README.md
 __pychache__
 .pytest_cache
 manifests
+__pycache__
+Dockerfile
+.dockerignore

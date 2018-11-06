@@ -19,7 +19,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt && rm -rf ~/.cache/pip/*
+RUN pip install --no-cache-dir -r requirements.txt
 
 ARG GIT_SHA
 ARG JOB_NUMBER
@@ -29,7 +29,7 @@ ENV GIT_SHA=${GIT_SHA}
 ENV JOB_NUMBER=${JOB_NUMBER}
 ENV VERSION=${VERSION}
 ENV HOME=${HOME}
-ENV FLASK_APP=api.py
+ENV FLASK_APP=app.py
 
 RUN printf "GIT_SHA=%s\\nJOB_NUMBER=%s\\nVERSION=%s\\n" "${GIT_SHA}" "${JOB_NUMBER}" "${VERSION}" > .properties
 
@@ -38,7 +38,7 @@ USER ${UID}:${GID}
 COPY . .
 
 # The health check *must* return 0 or 1 so either make sure it does, or you can use the ` || exit 1` trick.
-HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD wget localhost:8080/healthz -q -O - > /dev/null 2>&1
+HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD wget localhost:8080/healthz -q -O - > /dev/null 2>&1 || exit 1
 
 EXPOSE 5000
 

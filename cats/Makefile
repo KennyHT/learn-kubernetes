@@ -1,4 +1,4 @@
-IMAGE=ryanblunden/api
+IMAGE=ryanblunden/cats
 BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 GIT_SHA=$(shell git rev-parse --short HEAD)
 
@@ -19,6 +19,10 @@ build:
 		-t $(IMAGE):$(VERSION) -t $(IMAGE):latest .
 
 docker-run:
+	docker container run --rm -it \
+	-p 5000:5000 $(IMAGE):latest $(CMD)
+
+docker-run-dev:
 	docker container run --rm -it \
 	-v "$(CURDIR)":/usr/src/app \
 	-p 5000:5000 $(IMAGE):latest $(CMD)
@@ -57,7 +61,7 @@ kubesec:
 # Lots of students ask for examples of manifest files with variables which
 # is why it's included here. Keep it as simple as possible!
 #
-# usage: make render-templates TAG=0.0.1-dev REPLICAS=2 CHANGE="New build, amazing features!"
+# usage: make render-templates TAG=0.0.1-dev REPLICAS=2 CHANGE='New build, amazing features!'
 render-templates:
 	-rm manifests/final/deployment.yaml
 
