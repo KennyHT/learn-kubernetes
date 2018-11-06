@@ -38,7 +38,7 @@ USER ${UID}:${GID}
 COPY . .
 
 # The health check *must* return 0 or 1 so either make sure it does, or you can use the ` || exit 1` trick.
-HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD wget localhost:8080/healthz -q -O - > /dev/null 2>&1 || exit 1
+HEALTHCHECK --interval=5s --timeout=5s --retries=3 CMD wget localhost:5000/healthz -q -O - > /dev/null 2>&1 || exit 1
 
 EXPOSE 5000
 
