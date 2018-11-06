@@ -126,7 +126,7 @@ In the terminal that you previously ran `make event-stream`, run:
 
     watch kubectl get pod kuard-pod -o wide
 
-Open the [readiness page]http://localhost:8080/-/readiness) for the `kuard` container and click on the **Fail** link.
+Open the [readiness page](http://localhost:8080/-/readiness) for the `kuard` container and click on the **Fail** link.
 
 Once the readiness probe exceeds the `failureThreshold` value, the `READY` values changes to `0/1`.
 
