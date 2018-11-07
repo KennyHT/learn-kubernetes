@@ -73,7 +73,7 @@ Let's take one of the deployment pods out of service.
     # NOTE: Changing the label value is only to disassociate it the
     RepicaSet and Service. It has nothing to do with the actual health of the Pod and Kubernetes does not care about the value.
 
-    kubectl label pods kuard-- $ID --overwrite app=kuard-quarantined.
+    kubectl label pods $NAME --overwrite app=kuard-quarantined
 
 This will cause Kubernetes to disassociate that Pod with the deployment which in turn, will cause Kubernetes to create a new Pod. 
 

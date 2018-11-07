@@ -43,8 +43,9 @@ delete-all:
 ##  Docker for Desktop  ##
 ##########################
 
+DOCKER_VM_CMD=sh
 docker-vm-shell:
-	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i sh
+	docker container run --rm -it --privileged --pid=host debian:stretch-slim nsenter -t 1 -m -u -n -i $(DOCKER_VM_CMD)
 
 # TODO: How to add newlines using $(info)
 portainer:

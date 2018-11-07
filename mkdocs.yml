@@ -30,4 +30,4 @@ nav:
 - Services: services.md
 - ReplicaSets: replicasets.md
 - Deployments: deployments.md
-# - RBAC: rbac.md
+- RBAC: rbac.md

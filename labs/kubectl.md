@@ -1,10 +1,14 @@
 # Kubectl essentials
 
+## The Kubernetes kubectl cheat sheet
+
 The Kubernetes documentation has its own [kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/).
 
-It's essential reading and you should definitely look at it but for now, here are some important and some lesser known commands. Many basic ones are covered in the other labs too.
+It is awesome. Let's spend some time reading it.
 
-## kubectl 
+Then, here are a few that I like from that cheat sheet, as well as some of others that I find useful.
+
+## kubectl
 
 Perhaps the most important command that you may not have thought to run is:
 
@@ -103,6 +107,8 @@ Tail the `kuard-pod`.
 Sometimes, a Pod can get into a state where you cannot kill it. This command should be a last resort.
 
     kubectl delete pod $POD_NAME --force --grace-period=0
+
+If that doesn't work, it could be because the finalizer for a Pod
 
 ## Caution! Delete all the objects from a namespace
 

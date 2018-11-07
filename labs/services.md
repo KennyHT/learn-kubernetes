@@ -6,14 +6,6 @@ Let's make sure we don't have any Podsby running:
 
     kubectl delete pods --all --namespace=learn-k8s
 
-!!! note
-
-    This only applies if you're using Docker for Desktop.
-    
-    Because Docker for Desktop does not bind the `NodePort` associated with the `LoadBalancer` Service type to localhost (on the host), I will be using the a type of `NodePort` service.
-
-    Currently when using type `LoadBalancer`, every `port` value (not the NodePort) in our service is mapped from our host machine to the Docker VM. I have no idea why this is the default as it means that we can't have multiple services which listen on the same ports.
-
 Create the Service:
 
     kubectl apply -f manifests/service.yaml
