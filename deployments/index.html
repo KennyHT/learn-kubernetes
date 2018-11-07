@@ -380,6 +380,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rbac/" title="RBAC" class="md-nav__link">
+      RBAC
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -530,7 +542,7 @@ kubectl get pods
 # NOTE: Changing the label value is only to disassociate it the
 RepicaSet and Service. It has nothing to do with the actual health of the Pod and Kubernetes does not care about the value.
 
-kubectl label pods kuard-- $ID --overwrite app=kuard-quarantined.
+kubectl label pods $NAME --overwrite app=kuard-quarantined
 </pre></div>
 </td></tr></table>
 
@@ -573,6 +585,20 @@ kubectl label pods kuard-- $ID --overwrite app=kuard-quarantined.
             </div>
           </a>
         
+        
+          <a href="../rbac/" title="RBAC" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                RBAC
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
