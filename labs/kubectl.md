@@ -110,6 +110,10 @@ Sometimes, a Pod can get into a state where you cannot kill it. This command sho
 
 If that doesn't work, it could be because the finalizer for a Pod
 
+## List the available API resources for your cluster
+
+    kubectl api-resources
+
 ## Caution! Delete all the objects from a namespace
 
 This is handy during development when you want to clear out all objects in a namespace. Always specify the `--namespace` for safety.
